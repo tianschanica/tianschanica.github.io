@@ -7,11 +7,13 @@
 const START_YEAR   = 1850;
 const END_YEAR     = 1902;
 const PX_PER_YEAR  = 220;
-const CARD_W       = 210;
-const HEADER_H     = 58;
-const STRIP_H      = 52;
 const FOCUS_RATIO  = 0.32;
-const MAP_FLY_DELAY = 140;
+const MAP_FLY_DELAY = 220;
+const DUPLICATE_YEAR_STEP = 0.42;
+const ACTIVE_YEAR_WINDOW = 0.46;
+const WHEEL_EASE = 0.18;
+const ROUTE_LIBRARY = window.ROUTE_LIBRARY || {};
+const HEDIN_1893_ROUTE = ROUTE_LIBRARY.hedin1893_1897;
 
 /* ── Expedition data ────────────────────────────────────────── */
 /* lane: 'a'=near top … 'f'=near bottom; 'c'/'d' straddle the timeline */
@@ -57,7 +59,7 @@ const EXPEDITIONS = [
     ],
     route: [
       [53.35,83.76],[50.41,80.23],[45.01,78.37],[43.25,76.90],
-      [42.84,75.30],[42.46,76.19],[42.49,78.38],[43.25,76.90],
+      [42.84,75.30],[42.46,76.19],[42.73,77.25],[43.25,76.90],
     ],
     keyPoints: [
       { ll:[53.35,83.76], name:'Барнаул', note:'Реальная точка отправления экспедиции 1856 года' },
@@ -85,7 +87,7 @@ const EXPEDITIONS = [
       [41.93,78.26],[42.18,79.76],[42.18,80.18],[42.49,78.38],[42.15,77.61],[43.25,76.90],
     ],
     keyPoints: [
-      { ll:[42.49,78.38], name:'Каракол', note:'Восточный берег Иссык-Куля' },
+      { ll:[42.49,78.38], name:'Восточный Иссык-Куль', note:'Район современного Каракола; город возник позднее маршрута Семёнова' },
       { ll:[41.93,78.26], name:'Ак-Шыйрак и ледник Петрова', note:'Высокогорный ледниковый узел, достигнутый в 1857 году' },
       { ll:[42.18,80.18], name:'Панорама Хан-Тенгри', note:'Наблюдение с дальнего рубежа, а не непосредственный подход' },
     ],
@@ -97,25 +99,26 @@ const EXPEDITIONS = [
     flag: '🇭🇺', country: 'HU', color: '#D09020',
     year: 1863, endYear: 1864, lane: 'e',
     title: 'Под видом дервиша: Хива, Бухара, Самарканд',
-    region: 'Тегеран → Мешхед → Хива → Бухара → Самарканд',
+    region: 'Тегеран → Каспий → Хива → Бухара → Самарканд',
     distance: '~5 000 км', duration: '14 месяцев',
-    summary: 'Венгерский ориенталист шёл как «дервиш Решид-эфенди»: через Мешхед и Мерв в Хиву, затем в Бухару и Самарканд, а возвращался через Герат. Главная ошибка прежней версии была в том, что Хива стояла не на своём месте.',
+    summary: 'Венгерский ориенталист шёл как «дервиш Решид-эфенди»: из Тегерана к юго-восточному Каспию, через туркменские степи и Каракумы к Хиве, затем в Бухару и Самарканд. Обратный путь шёл через Карши, Керки, Андхой, Герат и Мешхед.',
     discoveries: [
       'Подробные описания Хивы, Бухары и Самарканда до русского завоевания',
       'Наблюдения над туркменами и городами ханств',
       'Лингвистические материалы по тюркским языкам',
     ],
     route: [
-      [35.69,51.39],[36.30,59.60],[37.60,61.83],[41.37,60.36],
-      [39.78,64.43],[39.65,66.95],[38.86,65.80],[39.78,64.43],
-      [37.60,61.83],[34.35,62.20],[36.30,59.60],[35.69,51.39],
+      [35.69,51.39],[36.27,50.00],[36.84,54.43],[37.07,54.08],
+      [38.10,55.80],[41.37,60.36],[43.07,58.90],[42.32,59.15],
+      [41.37,60.36],[39.78,64.43],[39.65,66.95],[38.86,65.80],
+      [37.84,65.21],[36.95,65.12],[34.35,62.20],[36.30,59.60],[35.69,51.39],
     ],
     keyPoints: [
-      { ll:[36.30,59.60], name:'Мешхед', note:'Переход из Ирана в караванный маршрут Средней Азии' },
+      { ll:[37.07,54.08], name:'Юго-восточный Каспий', note:'Выход к туркменскому караванному пути перед переходом через Каракумы' },
       { ll:[41.37,60.36], name:'Хива', note:'Первый крупный центр ханств на его пути' },
       { ll:[34.35,62.20], name:'Герат', note:'Ключевой пункт обратного пути из Бухары и Самарканда' },
     ],
-    mapBounds: [[32.5,49],[43,70]],
+    mapBounds: [[33.5,49],[44,67]],
   },
 
   {
@@ -148,26 +151,26 @@ const EXPEDITIONS = [
     id: 'prz1', name: 'Пржевальский I', fullName: 'Николай Пржевальский',
     flag: '🇷🇺', country: 'RU', color: '#C83210',
     year: 1870, endYear: 1873, lane: 'f',
-    title: 'Монголия, Пекин, Кукунор и северный Тибет',
-    region: 'Кяхта → Урга → Пекин → Алашань → Кукунор',
+    title: 'Монголия, Калган, Кукунор и северный Тибет',
+    region: 'Кяхта → Урга → Калган → Алашань → Кукунор',
     distance: '11 800 км', duration: '2 г. 10 мес.',
-    summary: 'Первая центральноазиатская экспедиция вела не только к Кукунору: Пржевальский прошёл через Ургу и Пекин, затем через Алашань и Цайдам в северотибетские пространства. Это был полноценный прорыв из Монголии к границам Тибета.',
+    summary: 'Первая центральноазиатская экспедиция вела не только к Кукунору: Пржевальский прошёл через Ургу и Калган у северного входа в Китай, затем через Алашань и Цайдам в северотибетские пространства.',
     discoveries: [
       'Первое русское научное описание озера Кукунор',
       '100+ новых видов птиц',
       'Коллекции из Монголии, Алашани и северного Тибета',
     ],
     route: [
-      [50.38,106.45],[47.90,106.90],[40.00,116.40],[39.50,105.00],
+      [50.38,106.45],[47.90,106.90],[40.81,114.88],[39.50,105.00],
       [36.74,100.55],[35.30,97.20],[37.37,95.30],[35.00,92.50],
       [37.37,95.30],[39.50,105.00],[47.90,106.90],[50.38,106.45],
     ],
     keyPoints: [
       { ll:[50.38,106.45], name:'Кяхта', note:'Начало всех монгольских экспедиций' },
-      { ll:[40.00,116.40], name:'Пекин', note:'Ключевой, часто забываемый участок первой экспедиции' },
+      { ll:[40.81,114.88], name:'Калган', note:'Китайский рубеж у северного входа из Монголии' },
       { ll:[36.74,100.55], name:'Кукунор', note:'Главная научная цель экспедиции 1870–1873 годов' },
     ],
-    mapBounds: [[34,92],[52,117]],
+    mapBounds: [[34,92],[52,116]],
   },
 
   {
@@ -275,25 +278,26 @@ const EXPEDITIONS = [
     flag: '🇷🇺', country: 'RU', color: '#7A3080',
     year: 1879, endYear: 1880, lane: 'b',
     title: 'Первый Тибет — 250 км от Лхасы',
-    region: 'Зайсан → Хами → Цайдам → Кукунор → Тибет',
+    region: 'Зайсан → Хами → Цайдам → Кукунор → Тибет → Хотан',
     distance: '~7 815 км', duration: '19 месяцев',
-    summary: 'Третья экспедиция прошла через Хами и Цайдам к Кукунору и далее на северотибетское плато, где была остановлена примерно в 250–260 км от Лхасы. Кукунор в прежней версии маршрута вообще отсутствовал, хотя был важнейшим узлом пути.',
+    summary: 'Третья экспедиция прошла через Хами и Цайдам к Кукунору и далее на северотибетское плато, где была остановлена примерно в 250–260 км от Лхасы. После разворота маршрут вернулся к Кукунору и ушёл западнее, к Хотану и Иссык-Кулю.',
     discoveries: [
       'Открытие лошади Пржевальского (Equus przewalskii)',
       'Первое описание Цайдамской котловины',
       'Подход к Лхасе через северный Тибет и вынужденный поворот назад',
     ],
     route: [
-      [47.47,84.87],[44.03,89.52],[42.83,93.51],[42.95,89.19],
-      [40.17,90.62],[37.37,95.30],[36.74,100.55],[31.48,92.06],
-      [36.74,100.55],[42.83,93.51],[47.47,84.87],
+      [47.47,84.87],[44.03,89.52],[42.83,93.51],[37.37,95.30],
+      [36.74,100.55],[34.20,97.30],[31.48,92.06],[34.20,97.30],
+      [36.74,100.55],[37.37,95.30],[38.13,85.53],[37.12,79.92],
+      [42.49,78.38],
     ],
     keyPoints: [
       { ll:[42.83,93.51], name:'Хами', note:'Подтверждённый вход в тибетский маршрут с севера' },
       { ll:[36.74,100.55], name:'Кукунор', note:'Главный озёрный узел перед выходом на плато' },
       { ll:[31.48,92.06], name:'Северный Тибет', note:'Здесь экспедицию развернули на подходе к Лхасе' },
     ],
-    mapBounds: [[30,84],[49,101]],
+    mapBounds: [[30,78],[49,101]],
   },
 
   {
@@ -396,7 +400,7 @@ const EXPEDITIONS = [
       { ll:[39.48,76.00], name:'Кашгар', note:'Узел встречи британских и русских маршрутов' },
       { ll:[36.62,75.13], name:'Перевал Мустаг', note:'Знаменитый переход 1887 года — не Каракорумский перевал' },
     ],
-    mapBounds: [[33,73],[43,129]],
+    mapBounds: [[33,73],[44,129]],
   },
 
   {
@@ -404,24 +408,26 @@ const EXPEDITIONS = [
     flag: '🇷🇺', country: 'RU', color: '#C03060',
     year: 1888, endYear: 1890, lane: 'e',
     title: 'Памир, Рашкем и подножие K2',
-    region: 'Маргелан → Памир → Рашкем → Хотан',
+    region: 'Маргелан → Алай → Памир → Рашкем → Хотан',
     distance: '~6 500 км', duration: '2.5 года',
-    summary: 'Это не «Грум-Гржимайло», а именно Бронислав Громбчевский (польск. Grąbczewski). Его маршруты в 1888–1890 годах шли из Ферганы на Памир, к ваханским и хунзинским рубежам, затем в долину Рашкема и к северной стене Каракорума.',
+    summary: 'Это не «Грум-Гржимайло», а именно Бронислав Громбчевский (польск. Grąbczewski). Его маршруты в 1888–1890 годах шли из Ферганы через Алай, Каратегин и памирские рубежи к Вахану, Канджуту, Рашкему и северной стороне Каракорума.',
     discoveries: [
       'Детальная съёмка Памира и пограничных долин «Большой игры»',
       'Маршрутные сведения о Рашкеме и северной стороне Каракорума',
       'Связь каракорумских путей с Хотаном и Каракашем',
     ],
     route: [
-      [40.47,71.72],[40.52,72.79],[38.20,73.50],[36.93,73.24],
-      [36.32,74.65],[36.74,75.42],[35.90,76.51],[36.80,78.20],[37.12,79.92],[36.85,81.68],
+      [40.47,71.72],[40.52,72.79],[39.55,72.21],[38.57,68.78],
+      [38.45,70.79],[37.02,72.68],[36.93,73.24],[36.32,74.65],
+      [36.74,75.42],[35.90,76.51],[36.80,78.20],[37.12,79.92],
+      [36.85,81.68],
     ],
     keyPoints: [
       { ll:[40.47,71.72], name:'Маргелан', note:'Ферганская отправная база Громбчевского' },
       { ll:[36.74,75.42], name:'Долина Рашкема', note:'Здесь он встретился с Янгхазбендом в 1889 году' },
       { ll:[37.12,79.92], name:'Хотан', note:'Западнокитайский узел позднего этапа 1889–1890 годов' },
     ],
-    mapBounds: [[35,71],[41,82]],
+    mapBounds: [[35,68],[41,82]],
   },
 
   {
@@ -431,17 +437,17 @@ const EXPEDITIONS = [
     title: 'Последняя экспедиция',
     region: 'Самарканд → Ташкент → Пишпек → Каракол',
     distance: '—', duration: 'прервана',
-    summary: 'Пятая экспедиция не успела развернуться: Пржевальский шёл к Иссык-Кулю как к базе нового выхода в Тибет, но 1 ноября 1888 года умер от тифа в Караколе. Это скорее точка смерти и несостоявшегося старта, чем полноценный маршрут.',
+    summary: 'Пятая экспедиция не успела развернуться: Пржевальский шёл через Самарканд, Ташкент и Пишпек к Иссык-Кулю как к базе нового выхода в Тибет, но 20 октября / 1 ноября 1888 года умер от тифа в Караколе.',
     discoveries: [
-      'Скончался 1 ноября 1888 г. в Караколе',
+      'Скончался 20 октября / 1 ноября 1888 г. в Караколе',
       'Город переименован в Пржевальск',
       '"В экспедиционной одежде" — последнее желание',
     ],
-    route: [[42.49,78.38]],
+    route: [[39.65,66.95],[41.31,69.28],[42.87,74.59],[42.49,78.38]],
     keyPoints: [
       { ll:[42.49,78.38], name:'Каракол (Пржевальск)', note:'Место гибели, 1 нояб. 1888' },
     ],
-    mapBounds: [[41.5,76],[44,80.5]],
+    mapBounds: [[39,66],[43.5,80.5]],
     isDeath: true,
   },
 
@@ -450,51 +456,52 @@ const EXPEDITIONS = [
     flag: '🇷🇺', country: 'RU', color: '#208090',
     year: 1889, endYear: 1891, lane: 'a',
     title: 'Таримский бассейн, Куньлунь и северный Тибет',
-    region: 'Зайсан → Турфан → Кашгар → Хотан → Лоб-Нор',
+    region: 'Каракол → Бедель → Яркенд → Хотан → Лоб-Нор → Зайсан',
     distance: '~9 000 км', duration: '2 года',
-    summary: 'Певцов возглавил отряд после смерти Пржевальского и работал до 1891 года вместе с Роборовским и Козловым. Маршрут охватывал Турфан, Аксу, Кашгар, Хотан, Керию, северный Тибет и Лоб-Нор.',
+    summary: 'Певцов возглавил отряд после смерти Пржевальского и работал до 1891 года вместе с Роборовским и Козловым. Маршрут шёл от Иссык-Куля через Бедель к Яркенду и Хотану, затем к Керии, Нии, северному Куньлуню, Черчену, Лоб-Нору, Корле, Карашару, Урумчи и Зайсану.',
     discoveries: [
       'Детальная карта Кашгарии и Хотанского оазиса',
       'Маршрутные наблюдения в северном Тибете',
       'Продолжение работ по Куньлуню и Лоб-Нору',
     ],
     route: [
-      [47.47,84.87],[44.03,89.52],[42.95,89.19],[41.17,80.26],
-      [39.48,76.00],[38.42,77.25],[37.12,79.92],[36.85,81.68],
-      [35.20,85.50],[40.17,90.62],[37.12,79.92],[39.48,76.00],[47.47,84.87],
+      [42.49,78.38],[41.42,78.38],[40.50,79.05],[38.42,77.25],
+      [37.12,79.92],[36.85,81.68],[37.06,82.70],[35.20,85.50],
+      [38.13,85.53],[40.17,90.62],[41.76,86.15],[42.06,86.57],
+      [43.82,87.62],[44.03,89.52],[47.47,84.87],
     ],
     keyPoints: [
-      { ll:[42.95,89.19], name:'Турфан', note:'Восточный вход в синьцзянский сектор экспедиции' },
+      { ll:[41.42,78.38], name:'Перевал Бедель', note:'Переход из Иссык-Кульской базы в Кашгарию' },
       { ll:[37.12,79.92], name:'Хотан', note:'Ключевой оазис и база работ у Куньлуня' },
-      { ll:[35.20,85.50], name:'Северный Тибет', note:'Певцов действительно выходил на тибетский рубеж' },
+      { ll:[40.17,90.62], name:'Лоб-Нор', note:'Поздний восточный узел маршрута перед возвращением через Корлу и Урумчи' },
     ],
-    mapBounds: [[35,76],[49,96]],
+    mapBounds: [[35,76],[48,92]],
   },
 
   {
     id: 'roborovsky', name: 'Роборовский', fullName: 'Всеволод Роборовский',
     flag: '🇷🇺', country: 'RU', color: '#1870A0',
     year: 1893, endYear: 1895, lane: 'd',
-    title: 'Восточный Тянь-Шань и Таримский бассейн',
-    region: 'Зайсан → Джунгарские ворота → Турфан → Хами → Тарим',
+    title: 'Восточный Тянь-Шань и Нань-Шань',
+    region: 'Зайсан → Джунгарские ворота → Турфан → Хами → Нань-Шань',
     distance: '~14 000 км', duration: '2.5 года',
-    summary: 'Собственная экспедиция Роборовского шла через Джунгарские ворота в Турфан и Хами, затем в восточный Тянь-Шань и Лобскую область. Так маршрут лучше соответствует его восточнотяньшанскому фокусу и раннему возвращению после инсульта в 1895 году.',
+    summary: 'Собственная экспедиция Роборовского и Козлова продолжила линию Пржевальского: через Джунгарский вход и восточный Тянь-Шань к Турфану, Хами, пустынным районам у Нань-Шаня и Амнэ-Мачину. Возврат был ускорен болезнью Роборовского в 1895 году.',
     discoveries: [
       'Подробная карта восточного Тянь-Шаня',
-      'Маршрутная съёмка восточного Таримского бассейна',
-      'Богатые ботанические коллекции из пустынной окраины Лопа',
+      'Маршрутные съёмки Нань-Шаня и Амнэ-Мачина',
+      'Богатые ботанические, зоологические и геологические коллекции',
     ],
     route: [
-      [47.47,84.87],[45.20,82.50],[44.03,89.52],[42.95,89.19],
-      [42.83,93.51],[41.76,86.15],[40.50,89.50],[39.90,88.00],
-      [42.95,89.19],[44.03,89.52],[47.47,84.87],
+      [47.47,84.87],[45.20,82.50],[43.82,87.62],[42.95,89.19],
+      [42.83,93.51],[39.50,97.50],[34.80,99.46],[36.62,101.78],
+      [42.83,93.51],[43.82,87.62],[47.47,84.87],
     ],
     keyPoints: [
       { ll:[45.20,82.50], name:'Джунгарские ворота', note:'Ключевой проход из степей в Синьцзян' },
       { ll:[42.83,93.51], name:'Хами', note:'Подтверждённый узел восточного Тянь-Шаня' },
-      { ll:[40.50,89.50], name:'Лобская область', note:'Восточный край Таримского бассейна' },
+      { ll:[34.80,99.46], name:'Амнэ-Мачин', note:'Юго-восточный предел экспедиции, где болезнь Роборовского прервала движение' },
     ],
-    mapBounds: [[39,82],[48,95]],
+    mapBounds: [[34,82],[48,104]],
   },
 
   {
@@ -504,25 +511,66 @@ const EXPEDITIONS = [
     title: 'Первая Центральноазиатская экспедиция',
     region: 'Памир → Кашгар → Такламакан → Кара-Кошун → Тибет',
     distance: '~12 000 км', duration: '4 года',
-    summary: 'Первая центральноазиатская экспедиция Хедина шла из Памира в Кашгар, через смертельно опасное пересечение Такламакана к Хотану, Дандань-Уйлыку, озеру Бостен и Кара-Кошуну, а затем в северный Тибет. Для этой поездки важнее говорить о Кара-Кошуне и лобнорской системе, чем о позднейшем открытии Лоуланя.',
+    routeSource: HEDIN_1893_ROUTE?.source || 'Реконструкция по опубликованным описаниям',
+    routeSourceUrl: HEDIN_1893_ROUTE?.url,
+    summary: 'Первая центральноазиатская экспедиция Хедина шла через Памир в Кашгар, затем из Меркета через Такламакан к Хотанской реке и Хотану. Позднее он обследовал Дандань-Уйлык, озеро Бостен, Кара-Кошун и северный Тибет.',
     discoveries: [
       'Съёмка путей Памира и Кашгарии',
       'Пересечение пустыни Такламакан в 1895–1896 годах',
       'Карта Кара-Кошуна и подвижной лобнорской озёрной системы',
     ],
+    routeParts: HEDIN_1893_ROUTE?.routeParts,
     route: [
       [41.31,69.28],[40.52,72.79],[38.28,75.10],[39.48,76.00],
-      [38.50,83.50],[40.54,82.63],[37.12,79.92],[42.11,86.84],[39.75,88.75],
-      [35.00,88.00],[39.75,88.75],
+      [38.91,77.62],[38.50,83.50],[37.12,79.92],[40.54,82.63],
+      [41.86,83.83],[42.11,86.84],[39.75,88.75],[35.00,88.00],
+      [39.75,88.75],
     ],
     keyPoints: [
       { ll:[38.28,75.10], name:'Музтаг-Ата', note:'Памирский старт и неудачные попытки восхождения' },
       { ll:[40.54,82.63], name:'Дандань-Уйлык', note:'Руины на южной окраине Такламакана' },
       { ll:[39.75,88.75], name:'Кара-Кошун', note:'Тогдашняя лобнорская озёрная система, нанесённая на карту' },
     ],
-    mapBounds: [[34,69],[43,90]],
+    mapBounds: [[34,69],[43,97]],
   },
 ];
+
+function assignTimelineYears() {
+  const groups = new Map();
+  EXPEDITIONS.forEach(exp => {
+    if (!groups.has(exp.year)) groups.set(exp.year, []);
+    groups.get(exp.year).push(exp);
+  });
+
+  groups.forEach(group => {
+    const mid = (group.length - 1) / 2;
+    group.forEach((exp, index) => {
+      exp.timelineYear = exp.year + (index - mid) * DUPLICATE_YEAR_STEP;
+    });
+  });
+}
+
+function applyRouteLibrary() {
+  EXPEDITIONS.forEach(exp => {
+    const entry = ROUTE_LIBRARY[exp.id] || (exp.id === 'hedin' ? HEDIN_1893_ROUTE : null);
+    if (!entry) {
+      exp.routeAccuracy = 'Схема';
+      exp.routeSource ||= 'Схематическая реконструкция по ключевым пунктам';
+      return;
+    }
+
+    exp.routeAccuracy = entry.accuracy || exp.routeAccuracy || 'Историческая реконструкция';
+    exp.routeSource = entry.source || exp.routeSource;
+    exp.routeSourceUrl = entry.url || exp.routeSourceUrl;
+
+    if (Array.isArray(entry.routeParts) && entry.routeParts.length) {
+      exp.routeParts = entry.routeParts;
+    }
+  });
+}
+
+applyRouteLibrary();
+assignTimelineYears();
 
 /* ── Layout helpers ─────────────────────────────────────── */
 const dom = {};
@@ -538,9 +586,17 @@ let dragScrollStart = 0;
 let didDrag = false;
 let suppressClickUntil = 0;
 let scrollbarTimer = null;
+let wheelTarget = 0;
+let wheelScrollRaf = null;
+
+function cssPxVar(name, fallback) {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const parsed = Number.parseFloat(raw);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
 
 function canvasH() {
-  return window.innerHeight - HEADER_H - STRIP_H;
+  return dom.scrollWrap?.clientHeight || window.innerHeight - cssPxVar('--header-h', 64) - cssPxVar('--strip-h', 58);
 }
 
 function tlY() {
@@ -549,6 +605,10 @@ function tlY() {
 
 function yearToX(y) {
   return (y - START_YEAR) * PX_PER_YEAR;
+}
+
+function expToX(exp) {
+  return yearToX(exp.timelineYear ?? exp.year);
 }
 
 function xToYear(x) {
@@ -580,19 +640,56 @@ function focusYear(scrollX = dom.scrollWrap.scrollLeft) {
   return xToYear(focusX(scrollX));
 }
 
+function cardFallbackWidth() {
+  return cssPxVar('--card-w', 248);
+}
+
+function cardFallbackHeight() {
+  return cssPxVar('--card-h', 158);
+}
+
+function getRouteParts(exp) {
+  if (Array.isArray(exp.routeParts) && exp.routeParts.length) {
+    return exp.routeParts.filter(part => Array.isArray(part) && part.length > 1);
+  }
+
+  if (Array.isArray(exp.route) && exp.route.length > 1) return [exp.route];
+  return [];
+}
+
+function getRoutePointCount(exp) {
+  const detailedCount = getRouteParts(exp).reduce((total, part) => total + part.length, 0);
+  return detailedCount || exp.route?.length || 0;
+}
+
+function getRouteSourceLabel(exp) {
+  if (exp.routeSource) return exp.routeSource;
+  return getRoutePointCount(exp) > 60
+    ? 'Детализированный маршрут'
+    : 'Реконструкция по опубликованным описаниям';
+}
+
 /* Lane top positions (absolute, from top of canvas) */
 function laneTop(lane) {
   const h = canvasH();
   const tl = tlY();
-  const cardHeight = 152;
+  const cardHeight = cardFallbackHeight();
+  const gap = 18;
+  const upperMin = 12;
+  const upperMax = Math.max(upperMin, tl - cardHeight - gap);
+  const lowerMin = Math.min(h - cardHeight - 12, tl + gap);
+  const lowerMax = Math.max(lowerMin, h - cardHeight - 12);
+  const upperMid = upperMin + (upperMax - upperMin) * 0.52;
+  const lowerMid = lowerMin + (lowerMax - lowerMin) * 0.52;
+
   switch (lane) {
-    case 'a': return Math.max(12, tl - 420);
-    case 'b': return Math.max(12, tl - 286);
-    case 'c': return Math.max(12, tl - 158);
-    case 'd': return tl + 20;
-    case 'e': return tl + 152;
-    case 'f': return Math.min(h - cardHeight - 12, tl + 298);
-    default: return tl - 160;
+    case 'a': return upperMin;
+    case 'b': return upperMid;
+    case 'c': return upperMax;
+    case 'd': return lowerMin;
+    case 'e': return lowerMid;
+    case 'f': return lowerMax;
+    default: return upperMax;
   }
 }
 
@@ -614,6 +711,26 @@ function showScrollbarTemporarily() {
   }, 700);
 }
 
+function stopWheelAnimation() {
+  if (wheelScrollRaf) cancelAnimationFrame(wheelScrollRaf);
+  wheelScrollRaf = null;
+  wheelTarget = dom.scrollWrap?.scrollLeft || 0;
+}
+
+function animateWheelScroll() {
+  const current = dom.scrollWrap.scrollLeft;
+  const next = current + (wheelTarget - current) * WHEEL_EASE;
+
+  if (Math.abs(wheelTarget - next) < 0.45) {
+    dom.scrollWrap.scrollLeft = wheelTarget;
+    wheelScrollRaf = null;
+    return;
+  }
+
+  dom.scrollWrap.scrollLeft = next;
+  wheelScrollRaf = requestAnimationFrame(animateWheelScroll);
+}
+
 /* ── Build year ruler (bottom strip) ───────────────────── */
 function buildRuler(totalWidth) {
   dom.yearRuler.style.width = `${totalWidth}px`;
@@ -630,7 +747,7 @@ function buildRuler(totalWidth) {
     }
   }
   EXPEDITIONS.forEach(exp => {
-    html += `<div class="yr-dot" style="left:${yearToX(exp.year)}px;background:${exp.color}" title="${exp.name}"></div>`;
+    html += `<div class="yr-dot" style="left:${expToX(exp)}px;background:${exp.color}" title="${exp.name}"></div>`;
   });
   dom.yearRuler.innerHTML = html;
 }
@@ -656,10 +773,10 @@ function refreshExpeditionLayout() {
     if (!els) return;
 
     const { card, connector } = els;
-    const width = card.offsetWidth || CARD_W;
-    const height = card.offsetHeight || 148;
+    const width = card.offsetWidth || cardFallbackWidth();
+    const height = card.offsetHeight || cardFallbackHeight();
     const top = laneTop(exp.lane);
-    const x = yearToX(exp.year);
+    const x = expToX(exp);
     const bottom = top + height;
 
     card.style.left = `${x - width / 2}px`;
@@ -691,9 +808,10 @@ function buildCards() {
     card.style.borderTopColor = exp.isDeath ? '#666' : exp.color;
     card.innerHTML = `
       <div class="card-year" style="color:${exp.isDeath ? '#888' : exp.color}">${exp.year}</div>
-      <div class="card-name">${exp.flag} ${exp.fullName}</div>
+      <div class="card-name">${exp.fullName}</div>
       <div class="card-title">${exp.title}</div>
       <div class="card-tags">
+        <span class="card-tag">${exp.country}</span>
         <span class="card-tag">${exp.region.split('·')[0].trim().split('→')[0].trim()}</span>
         <span class="card-tag">${getYearsLabel(exp)}</span>
       </div>
@@ -718,6 +836,11 @@ function buildCards() {
 
 /* ── Leaflet map ────────────────────────────────────────── */
 function initMap() {
+  if (!window.L) {
+    document.getElementById('main-map').innerHTML = '<div class="map-fallback">Карта временно недоступна</div>';
+    return;
+  }
+
   const lineRenderer = L.canvas({ padding: 0.4 });
 
   map = L.map('main-map', {
@@ -731,12 +854,14 @@ function initMap() {
   });
 
   L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     { attribution: '© OpenStreetMap · © CARTO', maxZoom: 14 }
   ).addTo(map);
 
   EXPEDITIONS.forEach(exp => {
-    if (!exp.route || exp.route.length < 2) {
+    const routeParts = getRouteParts(exp);
+
+    if (!routeParts.length) {
       if (exp.route && exp.route.length === 1) {
         const marker = L.circleMarker(exp.route[0], {
           radius: 7,
@@ -745,24 +870,26 @@ function initMap() {
           fillOpacity: 0.82,
           weight: 2,
         }).addTo(map).bindPopup(`
-          <div class="popup-year">${exp.flag} ${exp.year}</div>
+          <div class="popup-year">${exp.country} ${exp.year}</div>
           <div class="popup-title">${exp.fullName}</div>
           <div class="popup-body">${exp.summary}</div>
         `);
-        layers[exp.id] = { line: null, markers: [marker], exp };
+        layers[exp.id] = { lines: [], markers: [marker], exp };
       }
       return;
     }
 
-    const line = L.polyline(exp.route, {
-      renderer: lineRenderer,
-      color: exp.color,
-      weight: 2.2,
-      opacity: 0.2,
-      lineCap: 'round',
-      lineJoin: 'round',
-      interactive: false,
-    }).addTo(map);
+    const lines = routeParts.map(routePart =>
+      L.polyline(routePart, {
+        renderer: lineRenderer,
+        color: exp.color,
+        weight: 2.4,
+        opacity: 0.24,
+        lineCap: 'round',
+        lineJoin: 'round',
+        interactive: false,
+      }).addTo(map)
+    );
 
     const markers = exp.keyPoints.map(point =>
       L.circleMarker(point.ll, {
@@ -773,13 +900,13 @@ function initMap() {
         weight: 1.5,
         opacity: 0.38,
       }).addTo(map).bindPopup(`
-        <div class="popup-year">${exp.flag} ${point.name}</div>
+        <div class="popup-year">${exp.country} ${point.name}</div>
         <div class="popup-title">${exp.name}</div>
         <div class="popup-body">${point.note}</div>
       `)
     );
 
-    layers[exp.id] = { line, markers, exp };
+    layers[exp.id] = { lines, markers, exp };
   });
 }
 
@@ -797,7 +924,7 @@ function updateMapInfo(exp) {
   dom.mapInfoEmpty.style.display = 'none';
   dom.mapInfoCard.style.display = 'block';
 
-  dom.miTag.textContent = `${exp.flag} ${exp.country} · ${getYearsLabel(exp)}`;
+  dom.miTag.textContent = `${exp.country} · ${getYearsLabel(exp)}`;
   dom.miTag.style.background = `${exp.color}30`;
   dom.miTag.style.color = exp.color;
   dom.miTag.style.border = `1px solid ${exp.color}50`;
@@ -805,7 +932,11 @@ function updateMapInfo(exp) {
   dom.miName.textContent = exp.fullName;
   dom.miTitle.textContent = exp.title;
   dom.miMeta.textContent = `${exp.region} · ${exp.distance} · ${exp.duration}`;
-  dom.miDiscoveries.innerHTML = exp.discoveries.map(item => `<li>${item}</li>`).join('');
+  dom.miSource.textContent = `${exp.routeAccuracy || 'Маршрут'} · ${getRoutePointCount(exp)} точек`;
+  dom.miSource.title = exp.routeSourceUrl
+    ? `${getRouteSourceLabel(exp)} — ${exp.routeSourceUrl}`
+    : getRouteSourceLabel(exp);
+  dom.miDiscoveries.innerHTML = `<ul>${exp.discoveries.map(item => `<li>${item}</li>`).join('')}</ul>`;
 }
 
 function scheduleMapFocus(exp, immediate = false) {
@@ -836,9 +967,9 @@ function resetLayerState() {
     const layer = layers[exp.id];
     if (!layer) return;
 
-    if (layer.line) {
-      layer.line.setStyle({ weight: 2.2, opacity: 0.18 });
-    }
+    layer.lines.forEach(line => {
+      line.setStyle({ weight: 2.4, opacity: 0.2 });
+    });
 
     layer.markers.forEach(marker => {
       if (marker.setStyle) {
@@ -862,12 +993,12 @@ function activateExpedition(id, options = {}) {
 
   const exp = EXPEDITIONS.find(item => item.id === id);
   const layer = layers[id];
-  if (!exp || !layer) return;
+  if (!exp) return;
 
-  if (layer.line) {
-    layer.line.setStyle({ weight: 4.6, opacity: 0.94 });
-  }
-  layer.markers.forEach(marker => {
+  layer?.lines.forEach(line => {
+    line.setStyle({ weight: 4.8, opacity: 0.94 });
+  });
+  layer?.markers.forEach(marker => {
     if (marker.setStyle) {
       marker.setStyle({ opacity: 1, fillOpacity: 0.92 });
     }
@@ -883,24 +1014,25 @@ function findActiveExpedition(currentFocusYear) {
   let bestDist = Infinity;
 
   EXPEDITIONS.forEach(exp => {
-    const dist = Math.abs(exp.year - currentFocusYear);
+    const dist = Math.abs((exp.timelineYear ?? exp.year) - currentFocusYear);
     if (dist < bestDist) {
       bestDist = dist;
       bestExp = exp;
     }
   });
 
-  return bestDist <= 1.75 ? bestExp : null;
+  return bestDist <= ACTIVE_YEAR_WINDOW ? bestExp : null;
 }
 
-function updateCardStates(currentFocusYear) {
+function updateCardStates(currentFocusYear, activeExpId) {
   EXPEDITIONS.forEach(exp => {
     const els = expeditionEls.get(exp.id);
     if (!els) return;
 
-    const diff = exp.year - currentFocusYear;
-    const isActive = Math.abs(diff) <= 1.5;
-    const isPast = diff < -1.5;
+    const timelineYear = exp.timelineYear ?? exp.year;
+    const diff = timelineYear - currentFocusYear;
+    const isActive = exp.id === activeExpId;
+    const isPast = diff < -ACTIVE_YEAR_WINDOW;
 
     els.card.classList.toggle('is-active', isActive);
     els.card.classList.toggle('is-past', isPast);
@@ -923,13 +1055,18 @@ function onScroll() {
 
     dom.currentYearNum.textContent = displayYear;
     dom.yearRuler.style.transform = `translateX(${-sx}px)`;
-    updateCardStates(currentFocusYear);
+    updateCardStates(currentFocusYear, activeExp?.id);
 
     if (activeExp) {
       dom.expNameDisplay.textContent = `— ${activeExp.name}`;
       activateExpedition(activeExp.id);
     } else {
       dom.expNameDisplay.textContent = '';
+      if (activeId) {
+        activeId = null;
+        resetLayerState();
+        showWelcomeMapInfo();
+      }
     }
   });
 }
@@ -944,11 +1081,10 @@ function onWheel(event) {
   if (!horizontalDelta) return;
 
   event.preventDefault();
-  dom.scrollWrap.scrollLeft = clamp(
-    dom.scrollWrap.scrollLeft + horizontalDelta,
-    0,
-    maxScrollLeft()
-  );
+  showScrollbarTemporarily();
+  if (!wheelScrollRaf) wheelTarget = dom.scrollWrap.scrollLeft;
+  wheelTarget = clamp(wheelTarget + horizontalDelta * 1.12, 0, maxScrollLeft());
+  if (!wheelScrollRaf) wheelScrollRaf = requestAnimationFrame(animateWheelScroll);
 }
 
 /* ── Drag-to-scroll ─────────────────────────────────────── */
@@ -958,10 +1094,12 @@ function endDragging() {
   }
   isDragging = false;
   didDrag = false;
+  wheelTarget = dom.scrollWrap.scrollLeft;
   dom.scrollWrap.classList.remove('show-bar');
 }
 
 function onPointerDown(event) {
+  stopWheelAnimation();
   isDragging = true;
   didDrag = false;
   dragStartX = event.clientX;
@@ -980,7 +1118,8 @@ function onPointerMove(event) {
 
 /* ── Keyboard navigation ────────────────────────────────── */
 function scrollToExpedition(exp, behavior = 'smooth') {
-  const targetLeft = clamp(yearToX(exp.year) - focusOffset(), 0, maxScrollLeft());
+  stopWheelAnimation();
+  const targetLeft = clamp(expToX(exp) - focusOffset(), 0, maxScrollLeft());
   dom.scrollWrap.scrollTo({ left: targetLeft, behavior });
 }
 
@@ -988,10 +1127,10 @@ function onKeyDown(event) {
   if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
 
   const currentFocusYear = focusYear();
-  const sorted = [...EXPEDITIONS].sort((a, b) => a.year - b.year);
+  const sorted = [...EXPEDITIONS].sort((a, b) => (a.timelineYear ?? a.year) - (b.timelineYear ?? b.year));
   const target = event.key === 'ArrowRight'
-    ? sorted.find(exp => exp.year > currentFocusYear + 0.3)
-    : [...sorted].reverse().find(exp => exp.year < currentFocusYear - 0.3);
+    ? sorted.find(exp => (exp.timelineYear ?? exp.year) > currentFocusYear + 0.05)
+    : [...sorted].reverse().find(exp => (exp.timelineYear ?? exp.year) < currentFocusYear - 0.05);
 
   if (!target) return;
   event.preventDefault();
@@ -1009,8 +1148,8 @@ function bindEvents() {
   document.addEventListener('keydown', onKeyDown);
 
   window.addEventListener('resize', () => {
-    updateCanvasWidth();
-    buildRuler(dom.canvas.scrollWidth);
+    const totalWidth = updateCanvasWidth();
+    buildRuler(totalWidth);
     buildDecadeLabels();
     refreshExpeditionLayout();
     invalidateMapSize();
@@ -1026,13 +1165,16 @@ document.addEventListener('DOMContentLoaded', () => {
   dom.decadeLabels = document.getElementById('decade-labels');
   dom.currentYearNum = document.getElementById('current-year-num');
   dom.expNameDisplay = document.getElementById('exp-name-display');
+  dom.hdrCount = document.getElementById('hdr-count');
   dom.mapInfoEmpty = document.getElementById('map-info-empty');
   dom.mapInfoCard = document.getElementById('map-info-card');
   dom.miTag = document.getElementById('mi-tag');
   dom.miName = document.getElementById('mi-name');
   dom.miTitle = document.getElementById('mi-title');
   dom.miMeta = document.getElementById('mi-meta');
+  dom.miSource = document.getElementById('mi-source');
   dom.miDiscoveries = document.getElementById('mi-discoveries');
+  dom.hdrCount.textContent = `${EXPEDITIONS.length} маршрутов`;
 
   const totalWidth = updateCanvasWidth();
   buildRuler(totalWidth);
@@ -1046,7 +1188,8 @@ document.addEventListener('DOMContentLoaded', () => {
     refreshExpeditionLayout();
     invalidateMapSize();
     window.setTimeout(invalidateMapSize, 280);
-    scrollToExpedition(EXPEDITIONS[1], 'auto');
+    const firstExpedition = [...EXPEDITIONS].sort((a, b) => (a.timelineYear ?? a.year) - (b.timelineYear ?? b.year))[0];
+    scrollToExpedition(firstExpedition, 'auto');
     onScroll();
   });
 });

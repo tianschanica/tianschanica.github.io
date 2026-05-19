@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Тяньшаника — Экспедиции в Центральную Азию XIX в.</title>
+  <title>Тяньшаника — музей маршрутов Центральной Азии</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <link rel="stylesheet" href="style.css">
@@ -17,7 +17,7 @@
   <header id="hdr">
     <a href="#" id="hdr-logo">
       <span class="logo-main">ТЯНЬШАНИКА</span>
-      <span class="logo-sub">Архив · XIX век</span>
+      <span class="logo-sub">маршрутный музей</span>
     </a>
     <div id="hdr-center">
       <div id="year-display">
@@ -31,7 +31,7 @@
         <svg width="14" height="10" viewBox="0 0 14 10"><path d="M0 5h13M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         прокручивайте
       </span>
-      <span id="hdr-count">20 экспедиций</span>
+      <span id="hdr-count">20 маршрутов</span>
     </div>
   </header>
 
@@ -42,13 +42,14 @@
       <div id="map-info-empty">
         <div class="mi-welcome-title">Центральная Азия</div>
         <div class="mi-welcome-sub">XIX столетие</div>
-        <p class="mi-welcome-text">Прокручивайте вправо, чтобы путешествовать во времени. Маршруты 20 экспедиций 1856–1897 гг.</p>
+        <p class="mi-welcome-text">Маршруты 20 экспедиций 1856–1897 гг. собраны как музейная лента: годы, ключевые пункты и уточнённые линии движения.</p>
       </div>
       <div id="map-info-card" style="display:none">
         <div id="mi-tag"></div>
         <div id="mi-name"></div>
         <div id="mi-title"></div>
         <div id="mi-meta"></div>
+        <div id="mi-source"></div>
         <div id="mi-discoveries"></div>
       </div>
     </div>
@@ -76,6 +77,7 @@
     <span>← → стрелки для перехода между экспедициями</span>
   </div>
 
+  <script src="route-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
