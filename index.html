@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIAN SHAN — A Central Asia Expedition</title>
+  <meta name="description" content="An exhibition documenting a 92-day scientific and mountaineering expedition through the Tian Shan range of Central Asia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ NAVIGATION ═══ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <span class="nav-logo-main">TIANSCHANICA</span>
+        <span class="nav-logo-sub">Museum of Expedition · 2024</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#geography">Geography</a></li>
+        <li><a href="#peaks">Peaks</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#timeline">Journal</a></li>
+        <li><a href="#flora">Biosphere</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ HERO ═══ -->
+  <section class="hero" id="home">
+    <div class="hero-mountain">
+      <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="heroSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#010508"/>
+            <stop offset="35%"  stop-color="#050F20"/>
+            <stop offset="65%"  stop-color="#0C1E3C"/>
+            <stop offset="100%" stop-color="#152844"/>
+          </linearGradient>
+          <linearGradient id="mtn1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#243448" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#121E2C" stop-opacity="0.7"/>
+          </linearGradient>
+          <linearGradient id="mtn2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#192C44" stop-opacity="0.82"/>
+            <stop offset="100%" stop-color="#0A1826" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="mtn3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0A1620"/>
+            <stop offset="100%" stop-color="#050C14"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Sky -->
+        <rect width="1440" height="600" fill="url(#heroSky)"/>
+
+        <!-- Milky Way glow -->
+        <path d="M 0,180 Q 400,100 720,130 Q 1040,160 1440,110"
+              stroke="rgba(180,195,255,0.07)" stroke-width="100" fill="none"/>
+
+        <!-- Stars -->
+        <g fill="white">
+          <circle cx="68"  cy="38"  r="0.8" opacity="0.9"/>
+          <circle cx="145" cy="22"  r="1.1" opacity="0.8"/>
+          <circle cx="210" cy="58"  r="0.7" opacity="0.9"/>
+          <circle cx="272" cy="35"  r="0.9" opacity="0.7"/>
+          <circle cx="335" cy="15"  r="0.8" opacity="0.85"/>
+          <circle cx="392" cy="48"  r="1.0" opacity="0.9"/>
+          <circle cx="448" cy="28"  r="0.7" opacity="0.75"/>
+          <circle cx="508" cy="65"  r="0.9" opacity="0.8"/>
+          <circle cx="572" cy="20"  r="1.2" opacity="0.9"/>
+          <circle cx="628" cy="50"  r="0.8" opacity="0.7"/>
+          <circle cx="685" cy="32"  r="0.7" opacity="0.85"/>
+          <circle cx="740" cy="58"  r="1.0" opacity="0.8"/>
+          <circle cx="800" cy="18"  r="1.1" opacity="0.9"/>
+          <circle cx="858" cy="44"  r="0.8" opacity="0.75"/>
+          <circle cx="912" cy="26"  r="0.9" opacity="0.85"/>
+          <circle cx="970" cy="62"  r="0.7" opacity="0.9"/>
+          <circle cx="1030" cy="30" r="1.2" opacity="0.8"/>
+          <circle cx="1088" cy="52" r="0.8" opacity="0.7"/>
+          <circle cx="1142" cy="20" r="0.9" opacity="0.9"/>
+          <circle cx="1202" cy="42" r="1.0" opacity="0.8"/>
+          <circle cx="1260" cy="60" r="0.7" opacity="0.75"/>
+          <circle cx="1318" cy="28" r="1.1" opacity="0.85"/>
+          <circle cx="1375" cy="48" r="0.8" opacity="0.9"/>
+          <circle cx="1420" cy="35" r="0.9" opacity="0.8"/>
+          <!-- Row 2 -->
+          <circle cx="42"  cy="88"  r="0.7" opacity="0.7"/>
+          <circle cx="105" cy="102" r="0.9" opacity="0.8"/>
+          <circle cx="172" cy="78"  r="1.0" opacity="0.9"/>
+          <circle cx="238" cy="115" r="0.7" opacity="0.65"/>
+          <circle cx="302" cy="92"  r="0.8" opacity="0.75"/>
+          <circle cx="368" cy="118" r="1.1" opacity="0.8"/>
+          <circle cx="428" cy="82"  r="0.7" opacity="0.85"/>
+          <circle cx="492" cy="108" r="0.9" opacity="0.7"/>
+          <circle cx="555" cy="88"  r="0.8" opacity="0.8"/>
+          <circle cx="620" cy="120" r="0.7" opacity="0.75"/>
+          <circle cx="688" cy="95"  r="1.0" opacity="0.85"/>
+          <circle cx="752" cy="115" r="0.8" opacity="0.7"/>
+          <circle cx="818" cy="82"  r="0.9" opacity="0.9"/>
+          <circle cx="882" cy="108" r="0.7" opacity="0.8"/>
+          <circle cx="948" cy="90"  r="1.1" opacity="0.75"/>
+          <circle cx="1012" cy="122" r="0.8" opacity="0.8"/>
+          <circle cx="1075" cy="85"  r="0.7" opacity="0.85"/>
+          <circle cx="1138" cy="112" r="0.9" opacity="0.7"/>
+          <circle cx="1200" cy="92"  r="1.0" opacity="0.8"/>
+          <circle cx="1265" cy="118" r="0.8" opacity="0.75"/>
+          <circle cx="1328" cy="82"  r="0.7" opacity="0.85"/>
+          <circle cx="1390" cy="105" r="0.9" opacity="0.8"/>
+          <!-- Bright stars / planets -->
+          <circle cx="710" cy="72"  r="2.0" opacity="0.92" fill="rgba(255,248,228,1)"/>
+          <circle cx="1095" cy="50" r="1.8" opacity="0.88" fill="rgba(210,225,255,1)"/>
+          <circle cx="375"  cy="28" r="1.6" opacity="0.90" fill="rgba(255,238,210,1)"/>
+        </g>
+
+        <!-- Distant range -->
+        <path d="M 0,600 0,420 Q 120,378 240,358 Q 380,335 500,318 Q 640,298 760,308 Q 900,278 1020,268 Q 1140,255 1260,272 Q 1360,258 1440,272 L 1440,600 Z"
+              fill="url(#mtn1)"/>
+
+        <!-- Middle range -->
+        <path d="M 0,600 0,468 Q 80,430 160,410 Q 240,388 330,362 Q 420,336 510,318 Q 600,298 680,278 Q 740,258 800,248 Q 858,238 918,252 Q 978,268 1040,254 Q 1098,240 1158,256 Q 1220,272 1282,260 Q 1350,248 1440,264 L 1440,600 Z"
+              fill="url(#mtn2)"/>
+        <!-- Snow on middle -->
+        <polygon points="720,258 744,235 768,258 752,286 727,289" fill="rgba(195,218,248,0.72)"/>
+        <polygon points="800,248 826,222 852,248 835,278 808,281" fill="rgba(205,225,252,0.75)"/>
+        <polygon points="638,278 658,258 678,278 665,300 645,302" fill="rgba(190,212,245,0.68)"/>
+
+        <!-- Main foreground range -->
+        <path d="M 0,600 0,508 Q 65,476 140,458 Q 215,438 282,452 Q 348,466 412,445 Q 475,424 542,405 Q 608,385 672,368 Q 736,350 800,335 Q 858,320 920,342 Q 982,364 1044,348 Q 1108,332 1172,348 Q 1238,365 1300,352 Q 1362,340 1440,358 L 1440,600 Z"
+              fill="url(#mtn3)"/>
+        <!-- Snow on main -->
+        <polygon points="800,335 830,305 860,335 843,368 808,372" fill="rgba(232,242,255,0.87)"/>
+        <polygon points="672,368 702,336 732,368 714,402 680,406" fill="rgba(228,240,255,0.82)"/>
+        <polygon points="542,405 572,372 602,405 583,440 560,444" fill="rgba(222,236,255,0.78)"/>
+
+        <!-- Ground / near silhouette -->
+        <path d="M 0,600 0,560 Q 180,536 360,550 Q 540,562 720,544 Q 900,526 1080,542 Q 1260,556 1440,545 L 1440,600 Z"
+              fill="#020810"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-pre">Central Asia Expedition · Summer 2024</div>
+      <h1 class="hero-title">
+        <span class="hero-tian">TIAN</span>
+        <span class="hero-shan">SHAN</span>
+      </h1>
+      <p class="hero-chinese">天 山</p>
+      <p class="hero-eng">Heavenly Mountains</p>
+      <div class="hero-divider"></div>
+      <p class="hero-desc">Kazakhstan · Kyrgyzstan · China<br>92 Days · 7,010 m Summit · 2,500 km Range</p>
+    </div>
+
+    <div class="hero-stats-bar">
+      <div class="hstat">
+        <span class="hstat-n" data-target="7439">0</span>
+        <span class="hstat-l">m · Highest Peak</span>
+      </div>
+      <div class="hstat-sep"></div>
+      <div class="hstat">
+        <span class="hstat-n" data-target="2500">0</span>
+        <span class="hstat-l">km · Range Length</span>
+      </div>
+      <div class="hstat-sep"></div>
+      <div class="hstat">
+        <span class="hstat-n" data-target="92">0</span>
+        <span class="hstat-l">Days · Field Work</span>
+      </div>
+      <div class="hstat-sep"></div>
+      <div class="hstat">
+        <span class="hstat-n" data-target="3">0</span>
+        <span class="hstat-l">Nations · Traversed</span>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ OVERVIEW ═══ -->
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="exhibit-header">
+        <span class="exhibit-num">01</span>
+        <div>
+          <h2 class="section-title">The Exhibition</h2>
+          <p class="section-sub">An introduction to the range and its significance</p>
+        </div>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-text">
+          <p class="lead-text">
+            "Tian Shan" — 天山 — the Heavenly Mountains. A 2,500-kilometer arc of ice and stone
+            spanning the heart of Central Asia, where the ancient Silk Road wove between glaciated
+            summits that rise to altitudes where air thins and the world below disappears.
+          </p>
+          <p class="body-text">
+            This exhibition documents a 92-day expedition through the Tian Shan range, recording
+            the geological, ecological, and human dimensions of one of Earth's most spectacular
+            yet least-visited mountain systems. From the Zailiysky Alatau above Almaty to the
+            glaciated heights of Khan Tengri on the Kazakhstan–Kyrgyzstan–China tri-border,
+            the journey traversed terrain unchanged since caravans of the Silk Road passed below.
+          </p>
+          <p class="body-text">
+            The range shelters snow leopards and Marco Polo sheep, ancient Tian Shan spruce
+            forests, and nomadic traditions stretching back centuries — all under the looming
+            permanence of 7,000-meter summits cloaked in eternal ice.
+          </p>
+          <blockquote class="pull-quote">
+            "The mountains are not stadiums where I satisfy my ambition to achieve,
+            they are cathedrals where I practice my religion."
+            <cite>— Anatoli Boukreev</cite>
+          </blockquote>
+        </div>
+        <div class="overview-facts">
+          <div class="fact-card">
+            <div class="fact-num">7,439</div>
+            <div class="fact-lbl">Meters<br><small>Jengish Chokusu (Pik Pobedy) — highest peak</small></div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-num">3</div>
+            <div class="fact-lbl">Countries<br><small>Kazakhstan · Kyrgyzstan · China</small></div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-num">15,000+</div>
+            <div class="fact-lbl">Years<br><small>Age of glacial ice sampled at altitude</small></div>
+          </div>
+          <div class="fact-card">
+            <div class="fact-num">847</div>
+            <div class="fact-lbl">Photographs<br><small>Documented over 92 expedition days</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ GEOGRAPHY ═══ -->
+  <section class="section section--dark" id="geography">
+    <div class="container">
+      <div class="exhibit-header exhibit-header--light">
+        <span class="exhibit-num exhibit-num--light">02</span>
+        <div>
+          <h2 class="section-title section-title--light">Geographic Survey</h2>
+          <p class="section-sub section-sub--light">The range spans 2,500 km from Uzbekistan to western China</p>
+        </div>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <svg id="ts-map" viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mapBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#1A2838"/>
+            <stop offset="100%" stop-color="#0E1A28"/>
+          </linearGradient>
+          <linearGradient id="ridgeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#5A7A9A"/>
+            <stop offset="100%" stop-color="#2A4A6A"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <rect width="960" height="520" fill="url(#mapBg)"/>
+
+        <!-- Terrain regions -->
+        <!-- Kazakh steppe (north) -->
+        <ellipse cx="320" cy="85"  rx="300" ry="78" fill="#2A3C28" opacity="0.4"/>
+        <!-- Tarim Basin (SE) -->
+        <ellipse cx="780" cy="420" rx="165" ry="90" fill="#3A3420" opacity="0.45"/>
+        <!-- Fergana Valley -->
+        <ellipse cx="155" cy="350" rx="72"  ry="38" fill="#283A20" opacity="0.5"/>
+
+        <!-- Lake Balkhash -->
+        <path d="M 92,118 Q 160,96 245,108 Q 325,102 362,120 Q 328,145 262,150 Q 178,154 112,145 Z"
+              fill="#1A4A72" opacity="0.85" stroke="#2A6A9A" stroke-width="0.8"/>
+        <text x="210" y="132" class="map-water">Balkhash</text>
+
+        <!-- Issyk-Kul -->
+        <ellipse cx="448" cy="272" rx="88" ry="32" fill="#1A4A72" opacity="0.9"
+                 stroke="#2A6A9A" stroke-width="0.8"/>
+        <text x="406" y="277" class="map-water">Issyk-Kul</text>
+
+        <!-- Tian Shan main ridge (filled polygon) -->
+        <path d="M 180,335 L 220,302 L 252,318 L 292,278 L 328,295 L 368,258 L 405,272 L 440,242 L 475,258 L 508,228 L 542,244 L 575,215 L 610,232 L 644,212 L 678,228 L 715,218 L 750,234 L 788,222 L 825,238 L 862,228 L 900,244 L 940,234 L 960,248 L 960,400 L 180,400 Z"
+              fill="url(#ridgeGrad)" opacity="0.78"/>
+
+        <!-- Snow caps on ridge -->
+        <polygon points="508,228 525,210 542,228 530,248 513,251" fill="rgba(220,235,255,0.88)"/>
+        <polygon points="575,215 594,196 613,215 600,237 580,240" fill="rgba(225,238,255,0.90)"/>
+        <polygon points="644,212 664,192 684,212 670,235 650,238" fill="rgba(230,240,255,0.92)"/>
+        <polygon points="715,218 735,198 755,218 740,242 720,245" fill="rgba(232,242,255,0.88)"/>
+
+        <!-- Northern sub-range (Zailiysky Alatau) -->
+        <path d="M 240,248 L 270,228 L 298,242 L 325,222 L 355,235 L 382,218 L 412,228 L 440,242"
+              fill="none" stroke="#4A6A8A" stroke-width="5" stroke-linecap="round" opacity="0.65"/>
+        <path d="M 240,248 L 270,228 L 298,242 L 325,222 L 355,235 L 382,218 L 412,228 L 440,242 L 440,268 L 240,268 Z"
+              fill="#3A5A7A" opacity="0.35"/>
+
+        <!-- Expedition route -->
+        <path d="M 362,222 Q 388,228 412,248 Q 435,262 452,272 Q 476,272 496,268 Q 518,260 535,248 Q 548,240 558,228"
+              fill="none" stroke="#E63329" stroke-width="2.5" stroke-dasharray="7,5" opacity="0.9"
+              class="route-path"/>
+
+        <!-- Country labels -->
+        <text x="255" y="75"  class="map-country">KAZAKHSTAN</text>
+        <text x="225" y="405" class="map-country">KYRGYZSTAN</text>
+        <text x="720" cy="460" class="map-country">CHINA (XINJIANG)</text>
+        <text x="30"  y="440" class="map-country">UZBEKISTAN</text>
+        <text x="720" y="460" class="map-country">CHINA (XINJIANG)</text>
+
+        <!-- Cities -->
+        <circle cx="362" cy="218" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
+        <text x="372" y="215" class="map-city">Almaty</text>
+        <circle cx="292" cy="252" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
+        <text x="302" y="249" class="map-city">Bishkek</text>
+        <circle cx="78"  cy="348" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
+        <text x="88"  y="345" class="map-city">Tashkent</text>
+        <circle cx="712" cy="375" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
+        <text x="722" y="372" class="map-city">Kashgar</text>
+        <circle cx="835" cy="318" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
+        <text x="845" y="315" class="map-city">Ürümqi</text>
+
+        <!-- Peak markers -->
+        <!-- Khan Tengri -->
+        <polygon points="542,228 552,208 562,228" fill="#fff" stroke="#5AAAE8" stroke-width="1.5"/>
+        <text x="565" y="214" class="map-peak">Khan Tengri</text>
+        <text x="565" y="225" class="map-peak-elev">7,010 m</text>
+        <!-- Jengish Chokusu -->
+        <polygon points="610,232 621,210 632,232" fill="#fff" stroke="#5AAAE8" stroke-width="1.5"/>
+        <text x="636" y="216" class="map-peak">Jengish Chokusu</text>
+        <text x="636" y="227" class="map-peak-elev">7,439 m</text>
+
+        <!-- Compass -->
+        <g transform="translate(898,55)">
+          <circle r="24" fill="rgba(10,20,36,0.8)" stroke="rgba(90,130,180,0.6)" stroke-width="1"/>
+          <polygon points="0,-18 -4,-6 4,-6" fill="#E0EAF8"/>
+          <polygon points="0,18 -4,6 4,6" fill="#506070"/>
+          <polygon points="-18,0 -6,-4 -6,4" fill="#506070"/>
+          <polygon points="18,0 6,-4 6,4" fill="#506070"/>
+          <text x="0" y="-20" class="compass-n">N</text>
+        </g>
+
+        <!-- Scale bar -->
+        <g transform="translate(48,480)">
+          <line x1="0" y1="0" x2="108" y2="0" stroke="#8AAAC8" stroke-width="2"/>
+          <line x1="0" y1="-5" x2="0"   y2="5" stroke="#8AAAC8" stroke-width="2"/>
+          <line x1="108" y1="-5" x2="108" y2="5" stroke="#8AAAC8" stroke-width="2"/>
+          <text x="54" y="-8" class="scale-lbl">500 km</text>
+        </g>
+
+        <!-- Legend box -->
+        <g transform="translate(720,468)">
+          <rect x="0" y="-18" width="192" height="60" rx="2"
+                fill="rgba(8,16,28,0.88)" stroke="rgba(90,130,180,0.4)" stroke-width="0.8"/>
+          <polygon points="8,5 13,-8 18,5" fill="#fff" stroke="#5AAAE8" stroke-width="1.2"/>
+          <text x="25" y="6"  class="legend-lbl">Major Peak</text>
+          <circle cx="10" cy="20" r="4.5" fill="#E63329" stroke="#fff" stroke-width="1"/>
+          <text x="25" y="24" class="legend-lbl">City</text>
+          <line x1="5" y1="37" x2="22" y2="37" stroke="#E63329" stroke-width="2" stroke-dasharray="5,3"/>
+          <text x="25" y="41" class="legend-lbl">Expedition Route</text>
+        </g>
+      </svg>
+    </div>
+    <div class="container map-caption-wrap">
+      <p class="map-caption">
+        Map of the Tian Shan region showing the expedition route (dashed red line) from Almaty, Kazakhstan
+        to the Khan Tengri base camp, traversing Issyk-Kul and the Central Tian Shan massif.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ PEAKS ═══ -->
+  <section class="section" id="peaks">
+    <div class="container">
+      <div class="exhibit-header">
+        <span class="exhibit-num">03</span>
+        <div>
+          <h2 class="section-title">Summit Catalogue</h2>
+          <p class="section-sub">Principal peaks of the Tian Shan by elevation</p>
+        </div>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-panel">
+          <div class="chart-label">Peak Elevations — Tian Shan</div>
+          <div class="chart-wrap chart-wrap--tall">
+            <canvas id="peaksChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-panel">
+          <div class="chart-label">Terrain Composition</div>
+          <div class="chart-wrap chart-wrap--sq">
+            <canvas id="terrainChart"></canvas>
+          </div>
+          <div class="donut-legend" id="terrainLegend"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ ELEVATION PROFILE ═══ -->
+  <section class="section section--cream" id="elevation">
+    <div class="container">
+      <div class="exhibit-header">
+        <span class="exhibit-num">04</span>
+        <div>
+          <h2 class="section-title">Elevation Profile</h2>
+          <p class="section-sub">Altitude traverse — Base camp to Khan Tengri summit and return over 21 days</p>
+        </div>
+      </div>
+      <div class="chart-panel chart-panel--full">
+        <div class="chart-label">Expedition Elevation Profile (meters above sea level)</div>
+        <div class="chart-wrap chart-wrap--wide">
+          <canvas id="elevChart"></canvas>
+        </div>
+      </div>
+      <div class="elev-zones">
+        <div class="elev-zone" style="--color:#3D6B4F">
+          <div class="elev-zone-bar"></div>
+          <div class="elev-zone-name">Alpine Zone</div>
+          <div class="elev-zone-range">3,000 – 4,000 m</div>
+        </div>
+        <div class="elev-zone" style="--color:#5A8A9A">
+          <div class="elev-zone-bar"></div>
+          <div class="elev-zone-name">Subalpine</div>
+          <div class="elev-zone-range">4,000 – 5,000 m</div>
+        </div>
+        <div class="elev-zone" style="--color:#3A6080">
+          <div class="elev-zone-bar"></div>
+          <div class="elev-zone-name">Glacial Zone</div>
+          <div class="elev-zone-range">5,000 – 6,000 m</div>
+        </div>
+        <div class="elev-zone" style="--color:#1B3D6B">
+          <div class="elev-zone-bar"></div>
+          <div class="elev-zone-name">High Alpine</div>
+          <div class="elev-zone-range">6,000 m +</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ GALLERY ═══ -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="exhibit-header">
+        <span class="exhibit-num">05</span>
+        <div>
+          <h2 class="section-title">Visual Record</h2>
+          <p class="section-sub">Selected landscapes — rendered as chromatic studies</p>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-grid">
+
+      <!-- Artwork 1: Dawn -->
+      <div class="artwork fade-in">
+        <div class="artwork-frame">
+          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#14102A"/>
+                <stop offset="28%"  stop-color="#3A1E4A"/>
+                <stop offset="52%"  stop-color="#A84C22"/>
+                <stop offset="68%"  stop-color="#E09050"/>
+                <stop offset="82%"  stop-color="#F2C870"/>
+                <stop offset="100%" stop-color="#E8BC60"/>
+              </linearGradient>
+              <linearGradient id="dawnMtn" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#18263A"/>
+                <stop offset="100%" stop-color="#080E18"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="280" fill="url(#dawn)"/>
+            <!-- Sun glow -->
+            <ellipse cx="200" cy="158" rx="80" ry="40" fill="#F5A030" opacity="0.25"/>
+            <ellipse cx="200" cy="162" rx="40" ry="20" fill="#FAC040" opacity="0.35"/>
+            <!-- Mountains -->
+            <polygon points="0,280 70,190 120,215 180,158 225,185 288,128 330,162 382,138 400,155 400,280"
+                     fill="url(#dawnMtn)"/>
+            <!-- Snow peak glow -->
+            <polygon points="288,128 306,114 324,128 312,150 293,153" fill="#ECBA60" opacity="0.65"/>
+            <!-- Foreground dark -->
+            <rect x="0" y="255" width="400" height="25" fill="#050C14"/>
+          </svg>
+        </div>
+        <div class="artwork-placard">
+          <div class="artwork-title">Dawn at Base Camp</div>
+          <div class="artwork-meta">Khan Tengri Massif · 3,200 m · Day 1</div>
+        </div>
+      </div>
+
+      <!-- Artwork 2: Glacier -->
+      <div class="artwork fade-in">
+        <div class="artwork-frame">
+          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="glacSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#204A7A"/>
+                <stop offset="55%"  stop-color="#3E74A8"/>
+                <stop offset="100%" stop-color="#78A8C8"/>
+              </linearGradient>
+              <linearGradient id="iceBody" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%"   stop-color="#C2DCF0"/>
+                <stop offset="45%"  stop-color="#98C0E0"/>
+                <stop offset="80%"  stop-color="#68A0C0"/>
+                <stop offset="100%" stop-color="#3A7098"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="280" fill="url(#glacSky)"/>
+            <!-- Glacier -->
+            <path d="M 0,280 0,175 Q 55,158 115,168 Q 178,152 224,162 Q 278,148 328,158 Q 368,152 400,162 L 400,280 Z"
+                  fill="url(#iceBody)"/>
+            <!-- Crevasse lines -->
+            <path d="M 90,195  Q 128,180 162,196" stroke="#5A90B0" stroke-width="1.8" fill="none" opacity="0.7"/>
+            <path d="M 195,182 Q 238,168 272,183" stroke="#5A90B0" stroke-width="1.5" fill="none" opacity="0.7"/>
+            <path d="M 305,174 Q 338,163 362,175" stroke="#5A90B0" stroke-width="1.5" fill="none" opacity="0.7"/>
+            <!-- Rocky peak -->
+            <polygon points="148,168 188,72 228,168" fill="#7A8E9A"/>
+            <polygon points="188,72 206,56 224,72 212,98 191,101" fill="#EBF0F8"/>
+            <!-- Moraine -->
+            <path d="M 0,245 Q 100,238 200,242 Q 300,235 400,240"
+                  stroke="#7A7060" stroke-width="14" fill="none" opacity="0.45" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="artwork-placard">
+          <div class="artwork-title">The Inylchek Glacier</div>
+          <div class="artwork-meta">South Inylchek · 4,000 m · Day 7</div>
+        </div>
+      </div>
+
+      <!-- Artwork 3: Wide panorama -->
+      <div class="artwork artwork--wide fade-in">
+        <div class="artwork-frame">
+          <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="panSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#080E22"/>
+                <stop offset="38%"  stop-color="#183060"/>
+                <stop offset="70%"  stop-color="#3868A8"/>
+                <stop offset="100%" stop-color="#6898C8"/>
+              </linearGradient>
+              <linearGradient id="snowF" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#EEF4FA"/>
+                <stop offset="100%" stop-color="#B4C8DC"/>
+              </linearGradient>
+            </defs>
+            <rect width="800" height="280" fill="url(#panSky)"/>
+            <!-- Background range -->
+            <path d="M 0,280 0,200 Q 80,175 160,188 Q 240,165 320,178 Q 400,155 480,168 Q 560,148 640,160 Q 720,145 800,158 L 800,280 Z"
+                  fill="#1A2E48" opacity="0.65"/>
+            <!-- Middle peaks -->
+            <polygon points="0,280 60,218 120,238 200,182 260,202 340,165 400,185 460,155 520,178 560,280" fill="#243C5A" opacity="0.8"/>
+            <!-- Main peaks (Khan Tengri style) -->
+            <polygon points="260,280 295,88  330,280" fill="#2E4E72"/>
+            <polygon points="295,88  315,68  335,88  322,118 298,121" fill="url(#snowF)"/>
+            <polygon points="440,280 475,118 510,280" fill="#3A5880"/>
+            <polygon points="475,118 493,98  511,118 498,145 478,148" fill="#E5EEF8"/>
+            <polygon points="600,280 630,148 660,280" fill="#2A4A68"/>
+            <polygon points="630,148 648,130 666,148 654,172 634,175" fill="#E8F0FA"/>
+            <!-- Snow field foreground -->
+            <path d="M 0,280 0,252 Q 200,238 400,248 Q 600,235 800,245 L 800,280 Z" fill="url(#snowF)" opacity="0.88"/>
+            <!-- Haze bands -->
+            <rect x="0" y="195" width="800" height="22" fill="#3868A8" opacity="0.12"/>
+            <rect x="0" y="215" width="800" height="15" fill="#5888C0" opacity="0.08"/>
+          </svg>
+        </div>
+        <div class="artwork-placard">
+          <div class="artwork-title">Khan Tengri Panorama — "Pyramid of the Sky"</div>
+          <div class="artwork-meta">Central Tian Shan · 5,800 m · Day 14</div>
+        </div>
+      </div>
+
+      <!-- Artwork 4: Alpine meadow -->
+      <div class="artwork fade-in">
+        <div class="artwork-frame">
+          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="meadSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#3A80C8"/>
+                <stop offset="100%" stop-color="#80C0E8"/>
+              </linearGradient>
+              <linearGradient id="grassG" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#4A7A3A"/>
+                <stop offset="100%" stop-color="#2E5A28"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="280" fill="url(#meadSky)"/>
+            <!-- Clouds -->
+            <ellipse cx="110" cy="72" rx="58" ry="22" fill="white" opacity="0.82"/>
+            <ellipse cx="140" cy="64" rx="42" ry="20" fill="white" opacity="0.9"/>
+            <ellipse cx="295" cy="58" rx="48" ry="18" fill="white" opacity="0.75"/>
+            <ellipse cx="322" cy="52" rx="32" ry="16" fill="white" opacity="0.85"/>
+            <!-- Background mountains -->
+            <polygon points="0,280 55,192 115,218 195,172 258,202 338,168 400,195 400,280"
+                     fill="#688060" opacity="0.55"/>
+            <!-- Meadow -->
+            <rect x="0" y="215" width="400" height="65" fill="url(#grassG)"/>
+            <!-- Wildflowers -->
+            <circle cx="72"  cy="210" r="4"   fill="#E8CC28"/>
+            <circle cx="132" cy="213" r="3.2" fill="#E06090"/>
+            <circle cx="175" cy="208" r="4"   fill="#E8DC38"/>
+            <circle cx="225" cy="212" r="3.2" fill="#9ACC68"/>
+            <circle cx="295" cy="210" r="4"   fill="#E06090"/>
+            <circle cx="348" cy="212" r="3.2" fill="#E8CC28"/>
+            <circle cx="40"  cy="215" r="3"   fill="#70B850"/>
+            <circle cx="382" cy="214" r="3"   fill="#D050A0"/>
+            <!-- Yurt -->
+            <ellipse cx="312" cy="206" rx="14" ry="8"  fill="#F0E0C0"/>
+            <polygon points="298,206 312,196 326,206"   fill="#D8C8A0"/>
+            <!-- Stream -->
+            <path d="M 0,244 Q 100,236 200,240 Q 300,232 400,238"
+                  stroke="#6AAAC8" stroke-width="3" fill="none" opacity="0.72"/>
+          </svg>
+        </div>
+        <div class="artwork-placard">
+          <div class="artwork-title">Jyrgalan Valley — Summer Pasture</div>
+          <div class="artwork-meta">Eastern Kyrgyzstan · 2,100 m · Day 28</div>
+        </div>
+      </div>
+
+      <!-- Artwork 5: Night / stars -->
+      <div class="artwork fade-in">
+        <div class="artwork-frame">
+          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#010410"/>
+                <stop offset="55%"  stop-color="#081225"/>
+                <stop offset="100%" stop-color="#12203C"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="280" fill="url(#nightSky)"/>
+            <!-- Milky Way -->
+            <path d="M -60,260 Q 100,145 200,115 Q 300,85 460,18"
+                  stroke="rgba(190,205,255,0.22)" stroke-width="65" fill="none"/>
+            <!-- Stars -->
+            <g fill="white">
+              <circle cx="48"  cy="28" r="1.4" opacity="0.9"/>
+              <circle cx="88"  cy="14" r="1.0" opacity="0.7"/>
+              <circle cx="128" cy="42" r="1.4" opacity="0.85"/>
+              <circle cx="168" cy="18" r="1.0" opacity="0.9"/>
+              <circle cx="202" cy="52" r="1.8" opacity="0.7"/>
+              <circle cx="238" cy="28" r="1.0" opacity="0.8"/>
+              <circle cx="278" cy="14" r="1.4" opacity="0.9"/>
+              <circle cx="315" cy="38" r="1.0" opacity="0.7"/>
+              <circle cx="352" cy="22" r="1.4" opacity="0.85"/>
+              <circle cx="382" cy="58" r="1.0" opacity="0.9"/>
+              <circle cx="28"  cy="68" r="1.0" opacity="0.6"/>
+              <circle cx="68"  cy="82" r="1.4" opacity="0.8"/>
+              <circle cx="108" cy="95" r="1.0" opacity="0.7"/>
+              <circle cx="148" cy="72" r="1.0" opacity="0.9"/>
+              <circle cx="218" cy="88" r="1.4" opacity="0.8"/>
+              <circle cx="258" cy="62" r="1.0" opacity="0.7"/>
+              <circle cx="298" cy="78" r="1.0" opacity="0.85"/>
+              <circle cx="338" cy="52" r="1.4" opacity="0.9"/>
+              <circle cx="388" cy="88" r="1.0" opacity="0.7"/>
+              <circle cx="44"  cy="118" r="1.0" opacity="0.5"/>
+              <circle cx="84"  cy="108" r="1.4" opacity="0.65"/>
+              <circle cx="152" cy="122" r="1.0" opacity="0.7"/>
+              <circle cx="192" cy="105" r="1.0" opacity="0.6"/>
+              <circle cx="245" cy="112" r="1.4" opacity="0.7"/>
+              <circle cx="325" cy="102" r="1.0" opacity="0.55"/>
+              <circle cx="375" cy="115" r="1.0" opacity="0.65"/>
+              <!-- Bright -->
+              <circle cx="175" cy="40"  r="2.2" fill="rgba(255,248,220,0.95)"/>
+              <circle cx="320" cy="25"  r="1.8" fill="rgba(210,230,255,0.92)"/>
+            </g>
+            <!-- Mountain silhouette -->
+            <polygon points="0,280 48,225 98,245 158,192 218,215 288,172 348,198 400,182 400,280"
+                     fill="#050C1A"/>
+            <!-- Glacier reflection highlight -->
+            <path d="M 282,178 Q 312,172 338,178 Q 342,184 312,190 Q 285,187 278,183"
+                  fill="#8AAAC8" opacity="0.45"/>
+            <!-- Tent glow -->
+            <ellipse cx="198" cy="262" rx="18" ry="8" fill="#F09820" opacity="0.3"/>
+            <polygon points="184,268 198,244 212,268" fill="#E08818" opacity="0.72"/>
+          </svg>
+        </div>
+        <div class="artwork-placard">
+          <div class="artwork-title">Milky Way over Base Camp</div>
+          <div class="artwork-meta">Inylchek Glacier · 4,100 m · Night, Day 9</div>
+        </div>
+      </div>
+
+      <!-- Artwork 6: Summit -->
+      <div class="artwork fade-in">
+        <div class="artwork-frame">
+          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="summSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#030610"/>
+                <stop offset="38%"  stop-color="#0A1435"/>
+                <stop offset="100%" stop-color="#182E60"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="280" fill="url(#summSky)"/>
+            <!-- Horizon glow (sunrise seen from summit) -->
+            <ellipse cx="200" cy="268" rx="280" ry="72" fill="#D87018" opacity="0.38"/>
+            <ellipse cx="200" cy="280" rx="200" ry="55" fill="#F09828" opacity="0.28"/>
+            <!-- Stars at altitude -->
+            <g fill="white" opacity="0.7">
+              <circle cx="52"  cy="22" r="1.2"/>
+              <circle cx="115" cy="12" r="0.9"/>
+              <circle cx="178" cy="35" r="1.1"/>
+              <circle cx="248" cy="18" r="0.9"/>
+              <circle cx="302" cy="30" r="1.2"/>
+              <circle cx="358" cy="15" r="0.9"/>
+              <circle cx="385" cy="42" r="1.1"/>
+            </g>
+            <!-- Distant mountains below (view from above) -->
+            <polygon points="0,280 38,248 88,262 158,238 238,254 308,232 372,245 400,238 400,280"
+                     fill="#1A2838" opacity="0.82"/>
+            <!-- Near summit ridge -->
+            <polygon points="118,280 168,262 200,270 242,255 282,268 325,280"
+                     fill="#080E1C"/>
+            <!-- Summit snow surface -->
+            <path d="M 75,272 Q 200,232 325,268"
+                  stroke="#E0ECF8" stroke-width="5" fill="none" opacity="0.82" stroke-linecap="round"/>
+            <!-- Wind-blown snow -->
+            <g fill="rgba(220,235,255,0.65)">
+              <circle cx="198" cy="238" r="1.1"/>
+              <circle cx="218" cy="233" r="1.5"/>
+              <circle cx="238" cy="242" r="1.1"/>
+              <circle cx="258" cy="236" r="1.0"/>
+              <circle cx="278" cy="244" r="1.5"/>
+              <circle cx="155" cy="240" r="1.0"/>
+              <circle cx="135" cy="246" r="1.5"/>
+            </g>
+            <!-- Flag / figure -->
+            <line x1="200" y1="270" x2="200" y2="243" stroke="#E63329" stroke-width="2.2"/>
+            <polygon points="200,243 218,248 200,255" fill="#E63329"/>
+          </svg>
+        </div>
+        <div class="artwork-placard">
+          <div class="artwork-title">Summit — Khan Tengri, 7,010 m</div>
+          <div class="artwork-meta">Central Tian Shan · Day 18 · 06:42 AM</div>
+        </div>
+      </div>
+
+    </div><!-- /gallery-grid -->
+  </section>
+
+  <!-- ════════════════════════════════════ CLIMATE ═══ -->
+  <section class="section section--cream" id="climate">
+    <div class="container">
+      <div class="exhibit-header">
+        <span class="exhibit-num">06</span>
+        <div>
+          <h2 class="section-title">Climate & Conditions</h2>
+          <p class="section-sub">Meteorological data recorded at 4,200 m base camp, June – October</p>
+        </div>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-panel">
+          <div class="chart-label">Temperature & Precipitation</div>
+          <div class="chart-wrap">
+            <canvas id="climateChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-panel">
+          <div class="chart-label">Wind Speed & Visibility</div>
+          <div class="chart-wrap">
+            <canvas id="windChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════ TIMELINE ═══ -->
+  <section class="section" id="timeline">
+    <div class="container">
+      <div class="exhibit-header">
+        <span class="exhibit-num">07</span>
+        <div>
+          <h2 class="section-title">Expedition Journal</h2>
+          <p class="section-sub">Key milestones across 92 days in the field</p>
+        </div>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Jun 1</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title">Departure — Almaty, Kazakhstan</div>
+            <p class="tl-text">The expedition departs Almaty at dawn. First sight of the Zailiysky Alatau range: snow-capped summits emerging from morning haze above the city at 847 m.</p>
+            <span class="tl-elev">847 m</span>
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Jun 8</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title">Issyk-Kul Traverse</div>
+            <p class="tl-text">Circumnavigation of Lake Issyk-Kul, Central Asia's largest alpine lake. Water temperature 17 °C despite surrounding snow peaks. Edelweiss fields in full bloom along the southern shore.</p>
+            <span class="tl-elev">1,607 m</span>
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Jun 22</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title">Inylchek Glacier — First Crossing</div>
+            <p class="tl-text">The South Inylchek glacier stretches 60 km — one of the longest outside polar regions. Navigating the chaotic icefall required 3 days. Crevasse depths measured at 40+ meters.</p>
+            <span class="tl-elev">3,800 – 4,200 m</span>
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Jul 3</div>
+          <div class="tl-dot tl-dot--accent"></div>
+          <div class="tl-body">
+            <div class="tl-title">Base Camp Established — Khan Tengri</div>
+            <p class="tl-text">The marble peak of Khan Tengri reveals itself — a perfect pyramid of white marble rising 7,010 m. Named "Ruler of the Spirits" in Kazakh. Not climbed until 1931.</p>
+            <span class="tl-elev">4,100 m</span>
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Jul 18</div>
+          <div class="tl-dot tl-dot--summit"></div>
+          <div class="tl-body">
+            <div class="tl-title tl-title--summit">SUMMIT — Khan Tengri, 7,010 m</div>
+            <p class="tl-text">Summit achieved at 06:42 AM after a 14-hour push from high camp. Temperature: −42 °C, wind 80 km/h. Visibility: 400 km in all directions. The peak's shadow stretched to the horizon at sunrise.</p>
+            <span class="tl-elev tl-elev--summit">7,010 m ▲</span>
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Aug 5</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title">Border Crossing — China (Xinjiang)</div>
+            <p class="tl-text">Entry to China via the Torugart Pass. Landscape transforms: alpine meadows give way to the Tarim Basin. Ancient Silk Road caravanserai visible in the valley below.</p>
+            <span class="tl-elev">3,752 m</span>
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Aug 24</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title">Turfan Depression</div>
+            <p class="tl-text">Descent to the Turfan Depression at −154 m below sea level — the world's second lowest point. Temperature: +49 °C. The contrast with glaciated summits 5 days prior is staggering.</p>
+            <span class="tl-elev">−154 m</span>
+          </div>
+        </div>
+
+        <div class="tl-item fade-in">
+          <div class="tl-date">Sep 1</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title">Return via Silk Road</div>
+            <p class="tl-text">Final traverse westward through Kashgar and Osh. The Fergana Valley seen in autumn colours from the Kara-Darya valley rim — the expedition concludes at the point where the mountains meet the steppe.</p>
+            <span class="tl-elev">750 m</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ FLORA ═══ -->
+  <section class="section section--dark" id="flora">
+    <div class="container">
+      <div class="exhibit-header exhibit-header--light">
+        <span class="exhibit-num exhibit-num--light">08</span>
+        <div>
+          <h2 class="section-title section-title--light">Biodiversity Survey</h2>
+          <p class="section-sub section-sub--light">Species recorded across elevation zones during the expedition</p>
+        </div>
+      </div>
+      <div class="species-grid">
+
+        <div class="species-card fade-in">
+          <div class="species-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="36" fill="#2A2018" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <ellipse cx="40" cy="42" rx="18" ry="14" fill="#C8B898"/>
+              <circle  cx="35" cy="32" r="10" fill="#D0C0A0"/>
+              <circle  cx="27" cy="28" r="4.5" fill="#C0B090" opacity="0.8"/>
+              <circle  cx="40" cy="29" r="3.5" fill="#A89870" opacity="0.75"/>
+              <circle  cx="48" cy="34" r="3"   fill="#A89870" opacity="0.7"/>
+              <circle  cx="33" cy="38" r="2.5" fill="#988860" opacity="0.65"/>
+              <polygon points="28,22 24,13 32,20" fill="#C0B090"/>
+              <polygon points="42,22 46,13 38,20" fill="#C0B090"/>
+              <ellipse cx="30" cy="30" rx="3.5" ry="3"  fill="#4A7840"/>
+              <ellipse cx="40" cy="30" rx="3.5" ry="3"  fill="#4A7840"/>
+              <circle  cx="30" cy="30" r="2"   fill="#0A0A0A"/>
+              <circle  cx="40" cy="30" r="2"   fill="#0A0A0A"/>
+            </svg>
+          </div>
+          <div class="species-name">Snow Leopard</div>
+          <div class="species-latin">Panthera uncia</div>
+          <div class="species-bar"><div class="species-bar-fill" style="width:15%"></div></div>
+          <div class="species-stats">3 sightings · 3,500 – 5,000 m</div>
+        </div>
+
+        <div class="species-card fade-in">
+          <div class="species-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="36" fill="#1E2C18" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <ellipse cx="40" cy="44" rx="20" ry="16" fill="#C0B090"/>
+              <circle  cx="30" cy="30" r="12"  fill="#CABEA0"/>
+              <path d="M 22,22 Q 14,10 22,6 Q 28,4 26,16" stroke="#8A7050" stroke-width="2.5" fill="none"/>
+              <path d="M 38,22 Q 46,10 38,6 Q 32,4 34,16" stroke="#8A7050" stroke-width="2.5" fill="none"/>
+              <circle cx="24" cy="28" r="3" fill="#2A1808"/>
+              <ellipse cx="22" cy="36" rx="6" ry="4" fill="#B8A888"/>
+            </svg>
+          </div>
+          <div class="species-name">Marco Polo Sheep</div>
+          <div class="species-latin">Ovis ammon polii</div>
+          <div class="species-bar"><div class="species-bar-fill" style="width:78%"></div></div>
+          <div class="species-stats">47 sightings · 3,000 – 5,500 m</div>
+        </div>
+
+        <div class="species-card fade-in">
+          <div class="species-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="36" fill="#221A10" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <ellipse cx="40" cy="46" rx="18" ry="14" fill="#8A5A28"/>
+              <circle  cx="32" cy="30" r="12"  fill="#9A6A38"/>
+              <circle  cx="23" cy="22" r="7"   fill="#8A5A28"/>
+              <circle  cx="44" cy="22" r="7"   fill="#8A5A28"/>
+              <circle  cx="28" cy="28" r="3.5" fill="#120A04"/>
+              <circle  cx="38" cy="28" r="3.5" fill="#120A04"/>
+              <ellipse cx="33" cy="35" rx="7" ry="6" fill="#7A4818"/>
+              <ellipse cx="33" cy="37" rx="4" ry="3" fill="#200A04"/>
+            </svg>
+          </div>
+          <div class="species-name">Tian Shan Brown Bear</div>
+          <div class="species-latin">Ursus arctos isabellinus</div>
+          <div class="species-bar"><div class="species-bar-fill" style="width:25%"></div></div>
+          <div class="species-stats">8 sightings · 1,500 – 3,500 m</div>
+        </div>
+
+        <div class="species-card fade-in">
+          <div class="species-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="36" fill="#1A2810" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#F0EEE0" transform="rotate(0,40,40)"/>
+              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#EEECDe" transform="rotate(51.4,40,40)"/>
+              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#EEEAE0" transform="rotate(102.8,40,40)"/>
+              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#F0EEE0" transform="rotate(154.2,40,40)"/>
+              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#EEECDe" transform="rotate(205.6,40,40)"/>
+              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#EEEAE0" transform="rotate(257,40,40)"/>
+              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#F0EEE0" transform="rotate(308.4,40,40)"/>
+              <circle cx="40" cy="40" r="9" fill="#D4C030"/>
+              <circle cx="40" cy="40" r="6" fill="#C0AC28"/>
+            </svg>
+          </div>
+          <div class="species-name">Edelweiss</div>
+          <div class="species-latin">Leontopodium fedtschenkoanum</div>
+          <div class="species-bar"><div class="species-bar-fill" style="width:95%"></div></div>
+          <div class="species-stats">Abundant · 2,800 – 4,200 m</div>
+        </div>
+
+        <div class="species-card fade-in">
+          <div class="species-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="36" fill="#18200A" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <path d="M 40,40 Q 12,30 8,42 Q 14,37 40,45" fill="#7A5018"/>
+              <path d="M 40,40 Q 68,30 72,42 Q 66,37 40,45" fill="#6A4010"/>
+              <ellipse cx="40" cy="44" rx="14" ry="11" fill="#B08030"/>
+              <circle  cx="40" cy="30"  r="10"  fill="#C09038"/>
+              <circle  cx="30" cy="28"  r="4.5" fill="#D8A838"/>
+              <circle  cx="30" cy="28"  r="3"   fill="#100A04"/>
+              <polygon points="25,33 20,37 25,37" fill="#C07818"/>
+              <path d="M 28,49 Q 40,58 52,49" stroke="#7A4010" stroke-width="2.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="species-name">Golden Eagle</div>
+          <div class="species-latin">Aquila chrysaetos daphanes</div>
+          <div class="species-bar"><div class="species-bar-fill" style="width:57%"></div></div>
+          <div class="species-stats">34 sightings · 500 – 4,500 m</div>
+        </div>
+
+        <div class="species-card fade-in">
+          <div class="species-icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="36" fill="#10200E" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <polygon points="40,12 28,32 52,32" fill="#286828"/>
+              <polygon points="40,20 24,42 56,42" fill="#2E7030"/>
+              <polygon points="40,28 18,54 62,54" fill="#347838"/>
+              <rect x="36" y="54" width="8" height="10" fill="#7A4820"/>
+              <path d="M 28,32 Q 40,26 52,32" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+              <path d="M 24,42 Q 40,35 56,42" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="species-name">Tian Shan Spruce</div>
+          <div class="species-latin">Picea schrenkiana</div>
+          <div class="species-bar"><div class="species-bar-fill" style="width:100%"></div></div>
+          <div class="species-stats">Dominant · 1,600 – 3,000 m</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ STATISTICS ═══ -->
+  <section class="section section--stats" id="stats">
+    <div class="container">
+      <div class="exhibit-header exhibit-header--light">
+        <span class="exhibit-num exhibit-num--light">09</span>
+        <div>
+          <h2 class="section-title section-title--light">Expedition Data</h2>
+          <p class="section-sub section-sub--light">Quantitative record of the 92-day traverse</p>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-block fade-in">
+          <div class="stat-val" data-target="92">0</div>
+          <div class="stat-unit">Days</div>
+          <div class="stat-desc">Expedition duration</div>
+        </div>
+        <div class="stat-block fade-in">
+          <div class="stat-val" data-target="2847">0</div>
+          <div class="stat-unit">km</div>
+          <div class="stat-desc">Total distance traveled</div>
+        </div>
+        <div class="stat-block fade-in">
+          <div class="stat-val" data-target="148000">0</div>
+          <div class="stat-unit">m</div>
+          <div class="stat-desc">Total vertical ascent</div>
+        </div>
+        <div class="stat-block fade-in">
+          <div class="stat-val" data-target="7010">0</div>
+          <div class="stat-unit">m</div>
+          <div class="stat-desc">Highest point reached</div>
+        </div>
+        <div class="stat-block fade-in">
+          <div class="stat-val" data-prefix="−" data-target="154">0</div>
+          <div class="stat-unit">m</div>
+          <div class="stat-desc">Lowest point (Turfan)</div>
+        </div>
+        <div class="stat-block fade-in">
+          <div class="stat-val" data-prefix="+" data-target="47">0</div>
+          <div class="stat-unit">°C</div>
+          <div class="stat-desc">Max temperature recorded</div>
+        </div>
+        <div class="stat-block fade-in">
+          <div class="stat-val" data-prefix="−" data-target="42">0</div>
+          <div class="stat-unit">°C</div>
+          <div class="stat-desc">Min temperature (summit)</div>
+        </div>
+        <div class="stat-block fade-in">
+          <div class="stat-val" data-target="847">0</div>
+          <div class="stat-unit">Photos</div>
+          <div class="stat-desc">Documented images</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">TIANSCHANICA</div>
+          <div class="footer-tagline">A Museum of Expedition</div>
+          <p class="footer-desc">
+            This exhibition documents a 92-day scientific and mountaineering expedition through
+            the Tian Shan range of Central Asia, conducted in the summer of 2024.
+          </p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Exhibition</div>
+          <ul>
+            <li><a href="#overview">01 — Overview</a></li>
+            <li><a href="#geography">02 — Geography</a></li>
+            <li><a href="#peaks">03 — Summit Catalogue</a></li>
+            <li><a href="#gallery">05 — Visual Record</a></li>
+            <li><a href="#timeline">07 — Expedition Journal</a></li>
+            <li><a href="#flora">08 — Biodiversity</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Field Details</div>
+          <div class="footer-detail">
+            <span>Region</span>
+            <span>Central Asia</span>
+          </div>
+          <div class="footer-detail">
+            <span>Countries</span>
+            <span>KZ · KG · CN</span>
+          </div>
+          <div class="footer-detail">
+            <span>Duration</span>
+            <span>Jun 1 – Aug 31, 2024</span>
+          </div>
+          <div class="footer-detail">
+            <span>Summit</span>
+            <span>Khan Tengri, 7,010 m</span>
+          </div>
+          <div class="footer-detail">
+            <span>Range</span>
+            <span>Tian Shan — 天山</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 Tianschanica Expedition</span>
+        <span>Made with the spirit of explorers past</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
