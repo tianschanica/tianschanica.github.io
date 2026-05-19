@@ -3,1061 +3,918 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TIAN SHAN — A Central Asia Expedition</title>
-  <meta name="description" content="An exhibition documenting a 92-day scientific and mountaineering expedition through the Tian Shan range of Central Asia.">
+  <title>Into the Heavenly Mountains — Semyonov & Przhevalsky</title>
+  <meta name="description" content="An exhibition on the great 19th-century scientific expeditions to Central Asia: Semyonov-Tyan-Shansky and Przhevalsky.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════ NAVIGATION ═══ -->
+  <!-- ══════════════════════════════════════════ NAVIGATION ═══ -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="#home" class="nav-logo">
         <span class="nav-logo-main">TIANSCHANICA</span>
-        <span class="nav-logo-sub">Museum of Expedition · 2024</span>
+        <span class="nav-logo-sub">Archive of Central Asian Exploration</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#geography">Geography</a></li>
-        <li><a href="#peaks">Peaks</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#timeline">Journal</a></li>
-        <li><a href="#flora">Biosphere</a></li>
+        <li><a href="#context">Context</a></li>
+        <li><a href="#semyonov">Semyonov</a></li>
+        <li><a href="#przhevalsky">Przhevalsky</a></li>
+        <li><a href="#discoveries">Discoveries</a></li>
+        <li><a href="#legacy">Legacy</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════════════════ HERO ═══ -->
+  <!-- ═══════════════════════════════════════════════ HERO ═══ -->
   <section class="hero" id="home">
-    <div class="hero-mountain">
-      <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <div class="hero-bg">
+      <svg viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="heroSky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#010508"/>
-            <stop offset="35%"  stop-color="#050F20"/>
-            <stop offset="65%"  stop-color="#0C1E3C"/>
-            <stop offset="100%" stop-color="#152844"/>
+          <linearGradient id="hSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#F5EFE0"/>
+            <stop offset="40%"  stop-color="#E8DFC8"/>
+            <stop offset="75%"  stop-color="#D4C9A8"/>
+            <stop offset="100%" stop-color="#C4B890"/>
           </linearGradient>
-          <linearGradient id="mtn1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#243448" stop-opacity="0.55"/>
-            <stop offset="100%" stop-color="#121E2C" stop-opacity="0.7"/>
+          <linearGradient id="hRange1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#B0A888" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#8A8060" stop-opacity="0.65"/>
           </linearGradient>
-          <linearGradient id="mtn2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#192C44" stop-opacity="0.82"/>
-            <stop offset="100%" stop-color="#0A1826" stop-opacity="1"/>
+          <linearGradient id="hRange2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#7A6E50" stop-opacity="0.75"/>
+            <stop offset="100%" stop-color="#5A5038" stop-opacity="0.9"/>
           </linearGradient>
-          <linearGradient id="mtn3" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#0A1620"/>
-            <stop offset="100%" stop-color="#050C14"/>
+          <linearGradient id="hRange3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#4A4028"/>
+            <stop offset="100%" stop-color="#2A2010"/>
           </linearGradient>
         </defs>
-
-        <!-- Sky -->
-        <rect width="1440" height="600" fill="url(#heroSky)"/>
-
-        <!-- Milky Way glow -->
-        <path d="M 0,180 Q 400,100 720,130 Q 1040,160 1440,110"
-              stroke="rgba(180,195,255,0.07)" stroke-width="100" fill="none"/>
-
-        <!-- Stars -->
-        <g fill="white">
-          <circle cx="68"  cy="38"  r="0.8" opacity="0.9"/>
-          <circle cx="145" cy="22"  r="1.1" opacity="0.8"/>
-          <circle cx="210" cy="58"  r="0.7" opacity="0.9"/>
-          <circle cx="272" cy="35"  r="0.9" opacity="0.7"/>
-          <circle cx="335" cy="15"  r="0.8" opacity="0.85"/>
-          <circle cx="392" cy="48"  r="1.0" opacity="0.9"/>
-          <circle cx="448" cy="28"  r="0.7" opacity="0.75"/>
-          <circle cx="508" cy="65"  r="0.9" opacity="0.8"/>
-          <circle cx="572" cy="20"  r="1.2" opacity="0.9"/>
-          <circle cx="628" cy="50"  r="0.8" opacity="0.7"/>
-          <circle cx="685" cy="32"  r="0.7" opacity="0.85"/>
-          <circle cx="740" cy="58"  r="1.0" opacity="0.8"/>
-          <circle cx="800" cy="18"  r="1.1" opacity="0.9"/>
-          <circle cx="858" cy="44"  r="0.8" opacity="0.75"/>
-          <circle cx="912" cy="26"  r="0.9" opacity="0.85"/>
-          <circle cx="970" cy="62"  r="0.7" opacity="0.9"/>
-          <circle cx="1030" cy="30" r="1.2" opacity="0.8"/>
-          <circle cx="1088" cy="52" r="0.8" opacity="0.7"/>
-          <circle cx="1142" cy="20" r="0.9" opacity="0.9"/>
-          <circle cx="1202" cy="42" r="1.0" opacity="0.8"/>
-          <circle cx="1260" cy="60" r="0.7" opacity="0.75"/>
-          <circle cx="1318" cy="28" r="1.1" opacity="0.85"/>
-          <circle cx="1375" cy="48" r="0.8" opacity="0.9"/>
-          <circle cx="1420" cy="35" r="0.9" opacity="0.8"/>
-          <!-- Row 2 -->
-          <circle cx="42"  cy="88"  r="0.7" opacity="0.7"/>
-          <circle cx="105" cy="102" r="0.9" opacity="0.8"/>
-          <circle cx="172" cy="78"  r="1.0" opacity="0.9"/>
-          <circle cx="238" cy="115" r="0.7" opacity="0.65"/>
-          <circle cx="302" cy="92"  r="0.8" opacity="0.75"/>
-          <circle cx="368" cy="118" r="1.1" opacity="0.8"/>
-          <circle cx="428" cy="82"  r="0.7" opacity="0.85"/>
-          <circle cx="492" cy="108" r="0.9" opacity="0.7"/>
-          <circle cx="555" cy="88"  r="0.8" opacity="0.8"/>
-          <circle cx="620" cy="120" r="0.7" opacity="0.75"/>
-          <circle cx="688" cy="95"  r="1.0" opacity="0.85"/>
-          <circle cx="752" cy="115" r="0.8" opacity="0.7"/>
-          <circle cx="818" cy="82"  r="0.9" opacity="0.9"/>
-          <circle cx="882" cy="108" r="0.7" opacity="0.8"/>
-          <circle cx="948" cy="90"  r="1.1" opacity="0.75"/>
-          <circle cx="1012" cy="122" r="0.8" opacity="0.8"/>
-          <circle cx="1075" cy="85"  r="0.7" opacity="0.85"/>
-          <circle cx="1138" cy="112" r="0.9" opacity="0.7"/>
-          <circle cx="1200" cy="92"  r="1.0" opacity="0.8"/>
-          <circle cx="1265" cy="118" r="0.8" opacity="0.75"/>
-          <circle cx="1328" cy="82"  r="0.7" opacity="0.85"/>
-          <circle cx="1390" cy="105" r="0.9" opacity="0.8"/>
-          <!-- Bright stars / planets -->
-          <circle cx="710" cy="72"  r="2.0" opacity="0.92" fill="rgba(255,248,228,1)"/>
-          <circle cx="1095" cy="50" r="1.8" opacity="0.88" fill="rgba(210,225,255,1)"/>
-          <circle cx="375"  cy="28" r="1.6" opacity="0.90" fill="rgba(255,238,210,1)"/>
+        <!-- Sky / parchment background -->
+        <rect width="1440" height="640" fill="url(#hSky)"/>
+        <!-- Decorative crosshatch / aged paper texture lines -->
+        <g stroke="#C0B898" stroke-width="0.3" opacity="0.4">
+          <line x1="0" y1="80"  x2="1440" y2="80"/>
+          <line x1="0" y1="160" x2="1440" y2="160"/>
+          <line x1="0" y1="240" x2="1440" y2="240"/>
+          <line x1="0" y1="320" x2="1440" y2="320"/>
+          <line x1="80"  y1="0" x2="80"  y2="640"/>
+          <line x1="200" y1="0" x2="200" y2="640"/>
+          <line x1="350" y1="0" x2="350" y2="640"/>
+          <line x1="550" y1="0" x2="550" y2="640"/>
+          <line x1="780" y1="0" x2="780" y2="640"/>
+          <line x1="1050" y1="0" x2="1050" y2="640"/>
+          <line x1="1300" y1="0" x2="1300" y2="640"/>
         </g>
-
-        <!-- Distant range -->
-        <path d="M 0,600 0,420 Q 120,378 240,358 Q 380,335 500,318 Q 640,298 760,308 Q 900,278 1020,268 Q 1140,255 1260,272 Q 1360,258 1440,272 L 1440,600 Z"
-              fill="url(#mtn1)"/>
-
-        <!-- Middle range -->
-        <path d="M 0,600 0,468 Q 80,430 160,410 Q 240,388 330,362 Q 420,336 510,318 Q 600,298 680,278 Q 740,258 800,248 Q 858,238 918,252 Q 978,268 1040,254 Q 1098,240 1158,256 Q 1220,272 1282,260 Q 1350,248 1440,264 L 1440,600 Z"
-              fill="url(#mtn2)"/>
-        <!-- Snow on middle -->
-        <polygon points="720,258 744,235 768,258 752,286 727,289" fill="rgba(195,218,248,0.72)"/>
-        <polygon points="800,248 826,222 852,248 835,278 808,281" fill="rgba(205,225,252,0.75)"/>
-        <polygon points="638,278 658,258 678,278 665,300 645,302" fill="rgba(190,212,245,0.68)"/>
-
-        <!-- Main foreground range -->
-        <path d="M 0,600 0,508 Q 65,476 140,458 Q 215,438 282,452 Q 348,466 412,445 Q 475,424 542,405 Q 608,385 672,368 Q 736,350 800,335 Q 858,320 920,342 Q 982,364 1044,348 Q 1108,332 1172,348 Q 1238,365 1300,352 Q 1362,340 1440,358 L 1440,600 Z"
-              fill="url(#mtn3)"/>
-        <!-- Snow on main -->
-        <polygon points="800,335 830,305 860,335 843,368 808,372" fill="rgba(232,242,255,0.87)"/>
-        <polygon points="672,368 702,336 732,368 714,402 680,406" fill="rgba(228,240,255,0.82)"/>
-        <polygon points="542,405 572,372 602,405 583,440 560,444" fill="rgba(222,236,255,0.78)"/>
-
-        <!-- Ground / near silhouette -->
-        <path d="M 0,600 0,560 Q 180,536 360,550 Q 540,562 720,544 Q 900,526 1080,542 Q 1260,556 1440,545 L 1440,600 Z"
-              fill="#020810"/>
+        <!-- Far range -->
+        <path d="M 0,640 0,380 Q 120,340 250,348 Q 380,338 500,310 Q 620,280 740,295 Q 860,265 980,278 Q 1100,258 1220,272 Q 1340,255 1440,265 L 1440,640 Z"
+              fill="url(#hRange1)"/>
+        <!-- Middle range with snow -->
+        <path d="M 0,640 0,440 Q 100,408 200,418 Q 300,395 400,375 Q 500,355 600,368 Q 700,345 800,325 Q 900,308 1000,322 Q 1100,305 1200,318 Q 1300,302 1440,315 L 1440,640 Z"
+              fill="url(#hRange2)"/>
+        <!-- Snow caps on middle range -->
+        <polygon points="800,325 825,302 850,325 835,352 808,355" fill="rgba(255,252,245,0.82)"/>
+        <polygon points="600,368 622,348 644,368 630,392 608,395" fill="rgba(255,252,245,0.75)"/>
+        <polygon points="1000,322 1024,298 1048,322 1032,348 1008,352" fill="rgba(255,252,245,0.78)"/>
+        <!-- Near range -->
+        <path d="M 0,640 0,510 Q 90,482 180,495 Q 275,468 370,478 Q 465,455 560,462 Q 660,442 760,450 Q 860,432 960,445 Q 1060,428 1160,440 Q 1260,425 1440,438 L 1440,640 Z"
+              fill="url(#hRange3)"/>
+        <!-- Decorative map border lines at top and bottom -->
+        <rect x="30" y="20" width="1380" height="4" fill="#A09070" opacity="0.5"/>
+        <rect x="30" y="615" width="1380" height="4" fill="#A09070" opacity="0.5"/>
+        <rect x="30" y="20" width="4" height="599" fill="#A09070" opacity="0.5"/>
+        <rect x="1406" y="20" width="4" height="599" fill="#A09070" opacity="0.5"/>
       </svg>
     </div>
 
     <div class="hero-content">
-      <div class="hero-pre">Central Asia Expedition · Summer 2024</div>
-      <h1 class="hero-title">
-        <span class="hero-tian">TIAN</span>
-        <span class="hero-shan">SHAN</span>
-      </h1>
-      <p class="hero-chinese">天 山</p>
-      <p class="hero-eng">Heavenly Mountains</p>
-      <div class="hero-divider"></div>
-      <p class="hero-desc">Kazakhstan · Kyrgyzstan · China<br>92 Days · 7,010 m Summit · 2,500 km Range</p>
-    </div>
-
-    <div class="hero-stats-bar">
-      <div class="hstat">
-        <span class="hstat-n" data-target="7439">0</span>
-        <span class="hstat-l">m · Highest Peak</span>
+      <div class="hero-catalog">Exhibition No. I — XIX Century</div>
+      <div class="hero-title-wrap">
+        <h1 class="hero-title">Into the<br>Heavenly<br>Mountains</h1>
+        <div class="hero-title-right">
+          <p class="hero-subtitle">The great Russian scientific<br>expeditions to Central Asia</p>
+          <div class="hero-sep"></div>
+          <p class="hero-dates">1856 — 1888</p>
+        </div>
       </div>
-      <div class="hstat-sep"></div>
-      <div class="hstat">
-        <span class="hstat-n" data-target="2500">0</span>
-        <span class="hstat-l">km · Range Length</span>
-      </div>
-      <div class="hstat-sep"></div>
-      <div class="hstat">
-        <span class="hstat-n" data-target="92">0</span>
-        <span class="hstat-l">Days · Field Work</span>
-      </div>
-      <div class="hstat-sep"></div>
-      <div class="hstat">
-        <span class="hstat-n" data-target="3">0</span>
-        <span class="hstat-l">Nations · Traversed</span>
+      <div class="hero-names">
+        <div class="hero-name hero-name--semyonov">
+          <span class="hero-name-initials">П.С.</span>
+          <span class="hero-name-full">Pyotr Semyonov<br><em>Tyan-Shansky</em></span>
+          <span class="hero-name-years">1856 – 1857</span>
+        </div>
+        <div class="hero-name-divider">·</div>
+        <div class="hero-name hero-name--przhevalsky">
+          <span class="hero-name-initials">Н.П.</span>
+          <span class="hero-name-full">Nikolai<br><em>Przhevalsky</em></span>
+          <span class="hero-name-years">1870 – 1888</span>
+        </div>
       </div>
     </div>
 
     <div class="hero-scroll">
-      <span>Scroll to explore</span>
+      <span>Scroll</span>
       <div class="hero-scroll-line"></div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════ OVERVIEW ═══ -->
-  <section class="section" id="overview">
+  <!-- ══════════════════════════════════════ CONTEXT ═══ -->
+  <section class="section" id="context">
     <div class="container">
       <div class="exhibit-header">
-        <span class="exhibit-num">01</span>
+        <span class="exhibit-num">Ι</span>
         <div>
-          <h2 class="section-title">The Exhibition</h2>
-          <p class="section-sub">An introduction to the range and its significance</p>
+          <h2 class="section-title">The Great Game of Science</h2>
+          <p class="section-sub">Central Asia — the last unknown continent of the 19th century</p>
         </div>
       </div>
-      <div class="overview-grid">
-        <div class="overview-text">
+      <div class="context-grid">
+        <div class="context-text">
           <p class="lead-text">
-            "Tian Shan" — 天山 — the Heavenly Mountains. A 2,500-kilometer arc of ice and stone
-            spanning the heart of Central Asia, where the ancient Silk Road wove between glaciated
-            summits that rise to altitudes where air thins and the world below disappears.
+            In the mid-19th century, the heart of Asia remained a blank on European maps. The
+            Tian Shan — "Heavenly Mountains" — rising between the Russian Empire and China,
+            had never been systematically explored by science. Alexander von Humboldt, the era's
+            greatest geographer, theorized they were volcanic. He was wrong.
           </p>
           <p class="body-text">
-            This exhibition documents a 92-day expedition through the Tian Shan range, recording
-            the geological, ecological, and human dimensions of one of Earth's most spectacular
-            yet least-visited mountain systems. From the Zailiysky Alatau above Almaty to the
-            glaciated heights of Khan Tengri on the Kazakhstan–Kyrgyzstan–China tri-border,
-            the journey traversed terrain unchanged since caravans of the Silk Road passed below.
+            Two Russian scientists would change everything. Pyotr Semyonov crossed the Tian Shan
+            in 1856–57, proving the mountains were glacial, not volcanic, and mapping their peaks
+            for the first time. Then Nikolai Przhevalsky, a military officer turned geographer,
+            conducted five major expeditions across the wider Central Asian expanse — Mongolia,
+            Tibet, the Gobi, the Tarim Basin — between 1870 and his death in 1888.
           </p>
           <p class="body-text">
-            The range shelters snow leopards and Marco Polo sheep, ancient Tian Shan spruce
-            forests, and nomadic traditions stretching back centuries — all under the looming
-            permanence of 7,000-meter summits cloaked in eternal ice.
+            Together, their work filled in the blank at the center of the world's largest continent,
+            producing the first accurate maps of regions that had been crossed by Silk Road
+            caravans but never measured, described, or understood by modern science.
           </p>
-          <blockquote class="pull-quote">
-            "The mountains are not stadiums where I satisfy my ambition to achieve,
-            they are cathedrals where I practice my religion."
-            <cite>— Anatoli Boukreev</cite>
-          </blockquote>
         </div>
-        <div class="overview-facts">
-          <div class="fact-card">
-            <div class="fact-num">7,439</div>
-            <div class="fact-lbl">Meters<br><small>Jengish Chokusu (Pik Pobedy) — highest peak</small></div>
+        <div class="context-cards">
+          <div class="context-card">
+            <div class="context-card-year">1856</div>
+            <div class="context-card-text">First scientific penetration of the Tian Shan range — Semyonov crosses the Terskey Alatau</div>
           </div>
-          <div class="fact-card">
-            <div class="fact-num">3</div>
-            <div class="fact-lbl">Countries<br><small>Kazakhstan · Kyrgyzstan · China</small></div>
+          <div class="context-card">
+            <div class="context-card-year">1870</div>
+            <div class="context-card-text">Przhevalsky departs Kyakhta on his first Central Asian expedition into Mongolia</div>
           </div>
-          <div class="fact-card">
-            <div class="fact-num">15,000+</div>
-            <div class="fact-lbl">Years<br><small>Age of glacial ice sampled at altitude</small></div>
+          <div class="context-card">
+            <div class="context-card-year">~40,000 km</div>
+            <div class="context-card-text">Total distance covered by Przhevalsky across all four completed expeditions</div>
           </div>
-          <div class="fact-card">
-            <div class="fact-num">847</div>
-            <div class="fact-lbl">Photographs<br><small>Documented over 92 expedition days</small></div>
+          <div class="context-card">
+            <div class="context-card-year">1888</div>
+            <div class="context-card-text">Przhevalsky dies at Karakol, on the shores of Issyk-Kul, before his fifth expedition can begin</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════ GEOGRAPHY ═══ -->
-  <section class="section section--dark" id="geography">
+  <!-- ══════════════════════════════ SEMYONOV ═══ -->
+  <section class="section section--semyonov" id="semyonov">
+    <div class="container">
+      <div class="exhibit-header">
+        <span class="exhibit-num exhibit-num--s">ΙΙ</span>
+        <div>
+          <h2 class="section-title explorer-title explorer-title--s">Pyotr Semyonov</h2>
+          <p class="section-sub">Tyan-Shansky · 1827 – 1914 · Geographer &amp; Statesman</p>
+        </div>
+      </div>
+
+      <div class="bio-grid">
+        <div class="bio-portrait bio-portrait--s">
+          <div class="portrait-frame">
+            <!-- SVG portrait placeholder — museum silhouette style -->
+            <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="portraitBgS" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#D8CEB4"/>
+                  <stop offset="100%" stop-color="#C4B898"/>
+                </linearGradient>
+              </defs>
+              <rect width="240" height="300" fill="url(#portraitBgS)"/>
+              <!-- Silhouette of a bearded man (Semyonov had a beard) -->
+              <!-- Head -->
+              <ellipse cx="120" cy="90" rx="42" ry="50" fill="#3A2E20"/>
+              <!-- Beard -->
+              <path d="M 88,115 Q 90,150 120,158 Q 150,150 152,115 Q 140,135 120,140 Q 100,135 88,115 Z" fill="#2A2018"/>
+              <!-- Jacket/collar -->
+              <path d="M 60,300 Q 60,200 90,180 Q 105,175 120,175 Q 135,175 150,180 Q 180,200 180,300 Z"
+                    fill="#2A2018"/>
+              <!-- Collar white -->
+              <path d="M 105,178 L 120,195 L 135,178 L 120,175 Z" fill="#E8E0CC"/>
+              <!-- Decorative row at bottom -->
+              <rect x="0" y="285" width="240" height="15" fill="#B0A888" opacity="0.4"/>
+              <!-- Year label -->
+              <text x="120" y="298" text-anchor="middle" font-family="'Space Mono', monospace" font-size="8" fill="#6A5A40" letter-spacing="2">1827 — 1914</text>
+            </svg>
+          </div>
+          <div class="portrait-caption">П. П. Семёнов-Тян-Шанский</div>
+        </div>
+        <div class="bio-text">
+          <p class="body-text">
+            Born into a noble family in Ryazan Oblast in 1827, Pyotr Semyonov was already an
+            accomplished botanist and geographer when he first read Alexander von Humboldt's
+            monumental work <em>Asie Centrale</em> in 1849. Humboldt's confident assertion
+            that the Tian Shan peaks were volcanic struck Semyonov as unproven — and he
+            resolved to test it himself.
+          </p>
+          <p class="body-text">
+            After two years of preparation in Berlin under Ritter and Humboldt himself, Semyonov
+            departed in 1856 for Verny (present-day Almaty). He was the first European scientist
+            to cross the Terskey Alatau range and descend into the Central Tian Shan — territory
+            no Western geographer had ever described.
+          </p>
+          <p class="body-text">
+            His two seasons of fieldwork (1856 and 1857) produced the first accurate survey of
+            the Tian Shan, its glacial hydrology, its flora and fauna zones, and the approximate
+            heights of its major peaks. He concluded definitively: the mountains were
+            <strong>not volcanic</strong>. In 1906, Tsar Nicholas II added "Tyan-Shansky"
+            to his surname in recognition of the life's work.
+          </p>
+          <div class="bio-stats">
+            <div class="bio-stat">
+              <span class="bio-stat-val">2</span>
+              <span class="bio-stat-lbl">Expeditions<br>1856 · 1857</span>
+            </div>
+            <div class="bio-stat">
+              <span class="bio-stat-val">~4,500</span>
+              <span class="bio-stat-lbl">km Total<br>route length</span>
+            </div>
+            <div class="bio-stat">
+              <span class="bio-stat-val">4,600</span>
+              <span class="bio-stat-lbl">m Max alt.<br>Terskey pass</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semyonov Map -->
+    <div class="map-section">
+      <div class="container map-header-row">
+        <div class="map-legend">
+          <div class="map-legend-title">Expedition Routes</div>
+          <div class="map-legend-item">
+            <div class="map-legend-line" style="background:#1B4785"></div>
+            <span>1856 — First crossing of Terskey Alatau</span>
+          </div>
+          <div class="map-legend-item">
+            <div class="map-legend-line" style="background:#5AAAE8"></div>
+            <span>1857 — Penetration to Saryjaz &amp; Central Tian Shan</span>
+          </div>
+        </div>
+        <div class="map-note">
+          Interactive map — scroll to zoom · click markers for details
+        </div>
+      </div>
+      <div class="leaflet-map-wrap">
+        <div id="semyonov-map" class="leaflet-map"></div>
+      </div>
+    </div>
+
+    <!-- Semyonov Timelines -->
+    <div class="container">
+      <h3 class="sub-section-title sub-section-title--s">Expedition Journals</h3>
+      <div class="exp-grid">
+
+        <!-- 1856 -->
+        <div class="exp-card exp-card--s">
+          <div class="exp-card-header">
+            <div class="exp-year">1856</div>
+            <div class="exp-name">First Expedition — The Terskey Crossing</div>
+            <div class="exp-meta">Verny → Issyk-Kul → Terskey Alatau → Naryn · approx. 2,000 km</div>
+          </div>
+          <div class="exp-timeline">
+            <div class="exp-event">
+              <span class="exp-event-date">May 1856</span>
+              <div class="exp-event-body">
+                <strong>Departure from St. Petersburg.</strong> Semyonov travels via Siberia to Barnaul,
+                collecting botanical specimens en route.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Jul 1856</span>
+              <div class="exp-event-body">
+                <strong>Arrives at Verny (Almaty).</strong> First views of the Zailiysky Alatau range
+                above the city. Begins organizing the mountain expedition.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Aug 1856</span>
+              <div class="exp-event-body">
+                <strong>First crossing of the Zailiysky Alatau.</strong> Descends toward the Chu River.
+                First approach to the western shore of Issyk-Kul — the great alpine lake at 1,607 m
+                that had barely been surveyed.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Sep 1856</span>
+              <div class="exp-event-body">
+                <strong>Terskey Alatau crossing.</strong> Semyonov becomes the first European to cross
+                this range south of Issyk-Kul into the Upper Naryn basin. Discovers the glacial
+                headwaters of the Naryn River (the principal source of the Syr Darya).
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Oct 1856</span>
+              <div class="exp-event-body">
+                <strong>Return to Verny.</strong> No volcanic rock anywhere. The foundation of
+                Humboldt's volcanic theory begins to crack. Semyonov plans a second, deeper expedition.
+              </div>
+            </div>
+          </div>
+          <div class="exp-finding">
+            <span class="exp-finding-label">Key result</span>
+            First scientific survey of eastern Issyk-Kul and the Terskey Alatau range.
+            Identification of Naryn River headwaters.
+          </div>
+        </div>
+
+        <!-- 1857 -->
+        <div class="exp-card exp-card--s">
+          <div class="exp-card-header">
+            <div class="exp-year">1857</div>
+            <div class="exp-name">Second Expedition — Into the Central Tian Shan</div>
+            <div class="exp-meta">Verny → Saryjaz Valley → Petrov Glacier · approx. 2,500 km</div>
+          </div>
+          <div class="exp-timeline">
+            <div class="exp-event">
+              <span class="exp-event-date">Jun 1857</span>
+              <div class="exp-event-body">
+                <strong>Second departure from Verny.</strong> Semyonov heads east along the southern
+                shore of Issyk-Kul with a larger scientific party including geologists and botanists.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Jul 1857</span>
+              <div class="exp-event-body">
+                <strong>Karakol area.</strong> Documents the eastern end of Issyk-Kul and begins
+                ascent through the Terskey Alatau via new passes, entering the Saryjaz valley.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Aug 5, 1857</span>
+              <div class="exp-event-body">
+                <strong>Petrov Glacier.</strong> Semyonov reaches the Petrov Glacier at
+                approximately 4,000 m — one of the major glaciers of the Central Tian Shan.
+                From here, the great peaks of the Khan Tengri massif are visible for the first time
+                to a European scientist.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Aug 18, 1857</span>
+              <div class="exp-event-body">
+                <strong>Definitive refutation of Humboldt's theory.</strong> Extensive geological
+                sampling across the Tian Shan reveals no volcanic rock whatsoever. The mountains
+                are <em>crystalline and metamorphic</em>. Semyonov estimates peak heights —
+                Khan Tengri is identified as approximately 7,000 m.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Oct 1857</span>
+              <div class="exp-event-body">
+                <strong>Return to Russia.</strong> Semyonov brings back 300 plant species (87 new
+                to science), 1,000 insect specimens, extensive rock collections, and the first
+                accurate map of the Central Tian Shan.
+              </div>
+            </div>
+          </div>
+          <div class="exp-finding">
+            <span class="exp-finding-label">Key result</span>
+            Tian Shan confirmed as non-volcanic. First sighting of Khan Tengri massif by
+            a European scientist. 87 new plant species described.
+          </div>
+        </div>
+
+      </div><!-- /exp-grid -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ PRZHEVALSKY ═══ -->
+  <section class="section section--przhevalsky" id="przhevalsky">
+    <div class="container">
+      <div class="exhibit-header">
+        <span class="exhibit-num exhibit-num--p">ΙΙΙ</span>
+        <div>
+          <h2 class="section-title explorer-title explorer-title--p">Nikolai Przhevalsky</h2>
+          <p class="section-sub">1839 – 1888 · Colonel &amp; Geographer · 5 Expeditions</p>
+        </div>
+      </div>
+
+      <div class="bio-grid">
+        <div class="bio-portrait bio-portrait--p">
+          <div class="portrait-frame">
+            <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="portraitBgP" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#D0C0A0"/>
+                  <stop offset="100%" stop-color="#B8A880"/>
+                </linearGradient>
+              </defs>
+              <rect width="240" height="300" fill="url(#portraitBgP)"/>
+              <!-- Military figure - head with military hat -->
+              <ellipse cx="120" cy="80" rx="38" ry="44" fill="#2A2018"/>
+              <!-- Military cap -->
+              <ellipse cx="120" cy="50" rx="48" ry="12" fill="#1A2A18"/>
+              <rect x="72" y="38" width="96" height="20" fill="#1A2A18"/>
+              <!-- Mustache (Przhevalsky had famous moustache) -->
+              <path d="M 100,92 Q 120,98 140,92" stroke="#1A1008" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <!-- Military uniform with medals -->
+              <path d="M 50,300 Q 50,190 82,172 Q 100,165 120,165 Q 140,165 158,172 Q 190,190 190,300 Z" fill="#1A2A18"/>
+              <!-- Gold epaulettes -->
+              <rect x="50" y="172" width="30" height="8" fill="#C8A828" rx="2"/>
+              <rect x="160" y="172" width="30" height="8" fill="#C8A828" rx="2"/>
+              <!-- Medals -->
+              <circle cx="100" cy="205" r="8" fill="#C8A828" stroke="#A88818" stroke-width="1"/>
+              <circle cx="120" cy="200" r="7" fill="#8A8888" stroke="#6A6868" stroke-width="1"/>
+              <circle cx="140" cy="208" r="6" fill="#C8A828" stroke="#A88818" stroke-width="1"/>
+              <rect x="0" y="285" width="240" height="15" fill="#A09070" opacity="0.4"/>
+              <text x="120" y="298" text-anchor="middle" font-family="'Space Mono', monospace" font-size="8" fill="#6A5A30" letter-spacing="2">1839 — 1888</text>
+            </svg>
+          </div>
+          <div class="portrait-caption">Н. М. Пржевальский</div>
+        </div>
+        <div class="bio-text">
+          <p class="body-text">
+            Nikolai Przhevalsky was born in 1839 in the Smolensk gubernia and commissioned
+            as an officer in the Russian Imperial Army. Yet from his earliest years, geography
+            was his true vocation. He taught geography at the Warsaw Junker School, writing
+            his first geographical work on the Ussuri region before anyone had heard of
+            Central Asia in connection with his name.
+          </p>
+          <p class="body-text">
+            Between 1870 and 1885 he completed four monumental expeditions across Central
+            Asia — into Mongolia, Lop Nor, Tibet, and the Gobi — covering approximately
+            <strong>40,000 km</strong> on foot and horseback through unmapped terrain.
+            He was the first European to describe Lop Nor (the wandering lake), to
+            survey northeastern Tibet, and to cross the Qaidam Basin.
+          </p>
+          <p class="body-text">
+            He discovered and described dozens of new species, including the last truly wild
+            horse on Earth — <em>Equus przewalskii</em>, Przhevalsky's horse — and the wild
+            Bactrian camel. He died at Karakol on the shores of Issyk-Kul on November 1, 1888,
+            at the very outset of his fifth expedition. The town was renamed <em>Przhevalsk</em>
+            in his honor (today Karakol, Kyrgyzstan).
+          </p>
+          <div class="bio-stats">
+            <div class="bio-stat">
+              <span class="bio-stat-val">5</span>
+              <span class="bio-stat-lbl">Expeditions<br>(4 completed)</span>
+            </div>
+            <div class="bio-stat">
+              <span class="bio-stat-val">~40,000</span>
+              <span class="bio-stat-lbl">km<br>total route</span>
+            </div>
+            <div class="bio-stat">
+              <span class="bio-stat-val">218</span>
+              <span class="bio-stat-lbl">New species<br>described</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Przhevalsky Map -->
+    <div class="map-section">
+      <div class="container map-header-row">
+        <div class="map-legend">
+          <div class="map-legend-title">All Expeditions — Toggle Routes</div>
+          <div class="map-legend-item">
+            <div class="map-legend-line" style="background:#C8320A"></div>
+            <span id="leg1" class="map-legend-toggle active" data-exp="1">I · 1870–73 · Mongolia &amp; Northern China</span>
+          </div>
+          <div class="map-legend-item">
+            <div class="map-legend-line" style="background:#B85A18"></div>
+            <span id="leg2" class="map-legend-toggle active" data-exp="2">II · 1876–77 · Lop Nor</span>
+          </div>
+          <div class="map-legend-item">
+            <div class="map-legend-line" style="background:#7A3880"></div>
+            <span id="leg3" class="map-legend-toggle active" data-exp="3">III · 1879–80 · First Tibet</span>
+          </div>
+          <div class="map-legend-item">
+            <div class="map-legend-line" style="background:#8B7200"></div>
+            <span id="leg4" class="map-legend-toggle active" data-exp="4">IV · 1883–85 · Second Tibet</span>
+          </div>
+        </div>
+        <div class="map-note">
+          Click expedition names to toggle routes · Scroll to zoom
+        </div>
+      </div>
+      <div class="leaflet-map-wrap">
+        <div id="przhevalsky-map" class="leaflet-map"></div>
+      </div>
+    </div>
+
+    <!-- Przhevalsky Expedition Cards -->
+    <div class="container">
+      <h3 class="sub-section-title sub-section-title--p">Expedition Journals</h3>
+      <div class="exp-tabs">
+        <button class="exp-tab exp-tab--active" data-tab="p1">I · 1870–73</button>
+        <button class="exp-tab" data-tab="p2">II · 1876–77</button>
+        <button class="exp-tab" data-tab="p3">III · 1879–80</button>
+        <button class="exp-tab" data-tab="p4">IV · 1883–85</button>
+        <button class="exp-tab" data-tab="p5">V · 1888 †</button>
+      </div>
+
+      <!-- Expedition I -->
+      <div class="exp-panel exp-panel--active" id="p1">
+        <div class="exp-card exp-card--p">
+          <div class="exp-card-header">
+            <div class="exp-year" style="color:#C8320A">I</div>
+            <div class="exp-name">Mongolia and Northern China</div>
+            <div class="exp-meta">Kyakhta → Mongolia → Qinghai Lake → return · 11,800 km · Nov 1870 – Sep 1873</div>
+          </div>
+          <div class="exp-timeline">
+            <div class="exp-event">
+              <span class="exp-event-date">Nov 1870</span>
+              <div class="exp-event-body">
+                <strong>Departure from Kyakhta</strong> (Russia–Mongolia border). Przhevalsky
+                leads a party of 3 men, 2 Cossacks, crossing into Mongolia toward Urga (Ulaanbaatar).
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">1871</span>
+              <div class="exp-event-body">
+                <strong>Inner Mongolia and the Gobi.</strong> Przhevalsky traverses the eastern Gobi
+                Desert, crosses into Inner Mongolia and reaches Dolon Nor and the upper reaches of
+                the Yellow River. Extensive ornithological and botanical collection.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">1872</span>
+              <div class="exp-event-body">
+                <strong>Ala Shan and Ordos.</strong> Crosses the Ala Shan range (Helan Mountains),
+                enters the great bend of the Yellow River. Collects 100 bird species new to science.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">1872</span>
+              <div class="exp-event-body">
+                <strong>Qinghai Lake (Kuku Nor).</strong> Przhevalsky becomes the first Russian
+                scientist to properly survey and describe Qinghai Lake — at 4,500 km² the largest
+                saltwater lake in China and the largest lake in Central Asia. He records its
+                dimensions, depth estimates, and surrounding steppe fauna.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Sep 1873</span>
+              <div class="exp-event-body">
+                <strong>Return to Kyakhta.</strong> 11,800 km covered in 2 years 10 months.
+                The expedition publishes <em>"Mongolia and the Land of the Tanguts"</em> (1875).
+                Przhevalsky is awarded the Imperial Russian Geographical Society's highest honor.
+              </div>
+            </div>
+          </div>
+          <div class="exp-finding">
+            <span class="exp-finding-label">Key results</span>
+            First scientific survey of Qinghai Lake. Extensive Gobi Desert natural history.
+            100+ new bird species. Botanical collections from inner Mongolia.
+          </div>
+        </div>
+      </div>
+
+      <!-- Expedition II -->
+      <div class="exp-panel" id="p2">
+        <div class="exp-card exp-card--p">
+          <div class="exp-card-header">
+            <div class="exp-year" style="color:#B85A18">II</div>
+            <div class="exp-name">The Lop Nor Expedition</div>
+            <div class="exp-meta">Kuldzha → Tian Shan → Lop Nor → return · 4,190 km · Aug 1876 – Oct 1877</div>
+          </div>
+          <div class="exp-timeline">
+            <div class="exp-event">
+              <span class="exp-event-date">Aug 1876</span>
+              <div class="exp-event-body">
+                <strong>Departure from Kuldzha (Yining)</strong>, in the Ili Valley of present-day
+                China. Przhevalsky crosses the eastern Tian Shan range, descending into the Turpan
+                depression — one of the lowest and hottest points in Asia.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Jan 1877</span>
+              <div class="exp-event-body">
+                <strong>Discovery of Lop Nor.</strong> Przhevalsky reaches and surveys Lop Nor —
+                a shallow salt lake in the Tarim Basin that had been known from Chinese records
+                but never properly mapped by Western science. He establishes it is a wandering lake,
+                shifting position over centuries. The discovery triggers decades of cartographic debate.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Feb 1877</span>
+              <div class="exp-event-body">
+                <strong>Dunhuang region.</strong> Przhevalsky reaches the Dunhuang oasis area
+                and the Qilian Shan foothills, adding the eastern Tarim Basin to the map.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Oct 1877</span>
+              <div class="exp-event-body">
+                <strong>Return via Tian Shan.</strong> Przhevalsky recrosses the Tian Shan.
+                Publishes <em>"From Kuldzha Across the Tian Shan to Lop Nor"</em> (1878).
+                First discovery of wild Bactrian camels living around Lop Nor.
+              </div>
+            </div>
+          </div>
+          <div class="exp-finding">
+            <span class="exp-finding-label">Key results</span>
+            First scientific survey of Lop Nor. Discovery of wild Bactrian camel
+            (<em>Camelus ferus</em>). First crossing and mapping of eastern Tian Shan.
+          </div>
+        </div>
+      </div>
+
+      <!-- Expedition III -->
+      <div class="exp-panel" id="p3">
+        <div class="exp-card exp-card--p">
+          <div class="exp-card-header">
+            <div class="exp-year" style="color:#7A3880">III</div>
+            <div class="exp-name">First Tibetan Expedition</div>
+            <div class="exp-meta">Zaisan → Hami → Lop Nor → Tibet (turned ~250 km from Lhasa) · ~8,000 km · Mar 1879 – Oct 1880</div>
+          </div>
+          <div class="exp-timeline">
+            <div class="exp-event">
+              <span class="exp-event-date">Mar 1879</span>
+              <div class="exp-event-body">
+                <strong>Departure from Zaisan</strong> (eastern Kazakhstan). Przhevalsky aims south
+                toward Tibet with 12 men, aiming to reach Lhasa — a goal that had fired the
+                imagination of Western exploration for decades.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Summer 1879</span>
+              <div class="exp-event-body">
+                <strong>Across the Tarim Basin.</strong> Via Hami and Lop Nor, the expedition
+                crosses into the Qaidam (Tsaidam) Basin — a high-altitude depression at 2,700 m
+                filled with salt marshes. First scientific survey of this region.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Aug 1879</span>
+              <div class="exp-event-body">
+                <strong>Discovery of Przhevalsky's Horse.</strong> Near Lop Nor, specimens of
+                a truly wild horse are obtained — unknown to Western science. Named
+                <em>Equus przewalskii</em>. The last wild horse on Earth, it survives today
+                only through breeding programs in zoos and reserves.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Jan 1880</span>
+              <div class="exp-event-body">
+                <strong>Blocked 250 km from Lhasa.</strong> A Tibetan delegation halts the
+                expedition near the town of Nagchu (Naqu). The Tibetan authorities refuse
+                passage to Lhasa. Przhevalsky turns north, having mapped the northern
+                Tibetan plateau to approximately 33°N latitude.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Oct 1880</span>
+              <div class="exp-event-body">
+                <strong>Return to Russia.</strong> Przhevalsky publishes
+                <em>"From Zaisan through Hami to Tibet"</em> (1883). The first scientific
+                account of the northern Tibetan plateau, Qaidam Basin, and Qilian Shan.
+              </div>
+            </div>
+          </div>
+          <div class="exp-finding">
+            <span class="exp-finding-label">Key results</span>
+            Discovery of <em>Equus przewalskii</em> (Przhevalsky's horse). First survey of
+            northern Tibet and Qaidam Basin. Blocked 250 km from Lhasa.
+          </div>
+        </div>
+      </div>
+
+      <!-- Expedition IV -->
+      <div class="exp-panel" id="p4">
+        <div class="exp-card exp-card--p">
+          <div class="exp-card-header">
+            <div class="exp-year" style="color:#8B7200">IV</div>
+            <div class="exp-name">Second Tibetan Expedition</div>
+            <div class="exp-meta">Kyakhta → Mongolia → Tsaidam → Tibet → Keriya → Lop Nor → return · ~7,800 km · Oct 1883 – Nov 1885</div>
+          </div>
+          <div class="exp-timeline">
+            <div class="exp-event">
+              <span class="exp-event-date">Oct 1883</span>
+              <div class="exp-event-body">
+                <strong>Departure from Kyakhta.</strong> Przhevalsky crosses Mongolia to the
+                Gobi Desert, following a more westerly route than his first expedition
+                into the heart of the continent.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">1884</span>
+              <div class="exp-event-body">
+                <strong>Tsaidam and Tibet.</strong> The expedition makes a deep penetration of
+                the Tibetan Plateau, reaching approximately 34°N — further south than any
+                previous expedition. The Yellow River headwaters are surveyed and mapped
+                for the first time.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">1884</span>
+              <div class="exp-event-body">
+                <strong>Keriya (Yutian) and the Kunlun Shan.</strong> Przhevalsky explores the
+                Keriya Darya river valley south of the Tarim, mapping the northern faces of the
+                Kunlun range — the great barrier between Tibet and Central Asia.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">1885</span>
+              <div class="exp-event-body">
+                <strong>Return via Lop Nor.</strong> Przhevalsky revisits Lop Nor and surveys
+                its position again — confirming its wandering nature. Full publication follows:
+                <em>"From Kyakhta to the Headwaters of the Yellow River"</em> (1888).
+              </div>
+            </div>
+          </div>
+          <div class="exp-finding">
+            <span class="exp-finding-label">Key results</span>
+            Survey of Yellow River headwaters. Deep penetration of Tibetan Plateau.
+            Mapping of Keriya Darya and Kunlun Shan. Confirmation of Lop Nor's
+            wandering position.
+          </div>
+        </div>
+      </div>
+
+      <!-- Expedition V -->
+      <div class="exp-panel" id="p5">
+        <div class="exp-card exp-card--p exp-card--death">
+          <div class="exp-card-header">
+            <div class="exp-year" style="color:#666">V</div>
+            <div class="exp-name">Third Tibetan Expedition — Unfinished</div>
+            <div class="exp-meta">Karakol, Issyk-Kul · Sep – Nov 1, 1888</div>
+          </div>
+          <div class="exp-timeline">
+            <div class="exp-event">
+              <span class="exp-event-date">Sep 1888</span>
+              <div class="exp-event-body">
+                <strong>Departure for Tashkent.</strong> Przhevalsky sets out for what would be
+                his fifth Central Asian expedition, aiming once more to attempt the crossing
+                to Lhasa. He travels via Samarkand and Tashkent toward Issyk-Kul.
+              </div>
+            </div>
+            <div class="exp-event">
+              <span class="exp-event-date">Oct 1888</span>
+              <div class="exp-event-body">
+                <strong>Arrives at Karakol.</strong> On the eastern shore of Issyk-Kul, where
+                Semyonov had explored 30 years before, Przhevalsky falls ill — almost certainly
+                typhoid fever, contracted from drinking Chu River water during a hunting trip.
+              </div>
+            </div>
+            <div class="exp-event exp-event--death">
+              <span class="exp-event-date">Nov 1, 1888</span>
+              <div class="exp-event-body">
+                <strong>Death at Karakol.</strong> Przhevalsky dies aged 49, requesting to be
+                buried on the shore of Issyk-Kul, "in his explorer's clothes." He is buried
+                on a promontory above the lake. The town of Karakol is renamed
+                <em>Przhevalsk</em> by Imperial decree.
+              </div>
+            </div>
+          </div>
+          <div class="exp-finding exp-finding--death">
+            <span class="exp-finding-label">Epitaph</span>
+            "The first condition of success in the career of an explorer is good health,
+            the second is perseverance, the third patience, and the fourth modesty."
+            <em style="display:block;margin-top:0.4rem;">— Przhevalsky</em>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /container -->
+  </section>
+
+  <!-- ══════════════════════════════ DISCOVERIES ═══ -->
+  <section class="section section--dark" id="discoveries">
     <div class="container">
       <div class="exhibit-header exhibit-header--light">
-        <span class="exhibit-num exhibit-num--light">02</span>
+        <span class="exhibit-num exhibit-num--light">ΙV</span>
         <div>
-          <h2 class="section-title section-title--light">Geographic Survey</h2>
-          <p class="section-sub section-sub--light">The range spans 2,500 km from Uzbekistan to western China</p>
+          <h2 class="section-title section-title--light">The Catalogue of Discovery</h2>
+          <p class="section-sub section-sub--light">What the expeditions brought back to science</p>
         </div>
       </div>
-    </div>
-    <div class="map-wrap">
-      <svg id="ts-map" viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="mapBg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#1A2838"/>
-            <stop offset="100%" stop-color="#0E1A28"/>
-          </linearGradient>
-          <linearGradient id="ridgeGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#5A7A9A"/>
-            <stop offset="100%" stop-color="#2A4A6A"/>
-          </linearGradient>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
 
-        <rect width="960" height="520" fill="url(#mapBg)"/>
+      <div class="discovery-grid">
+        <div class="discovery-card fade-in">
+          <div class="discovery-tag discovery-tag--s">Semyonov</div>
+          <div class="discovery-icon">🏔</div>
+          <div class="discovery-title">Non-volcanic Tian Shan</div>
+          <p class="discovery-text">Refuted Humboldt's volcanic theory. The Tian Shan are crystalline and metamorphic in origin — entirely glacial in their modern form. This was one of the most important geological corrections of 19th-century geography.</p>
+        </div>
+        <div class="discovery-card fade-in">
+          <div class="discovery-tag discovery-tag--s">Semyonov</div>
+          <div class="discovery-icon">🌊</div>
+          <div class="discovery-title">Source of the Naryn River</div>
+          <p class="discovery-text">Identified the glacial headwaters of the Naryn, the principal tributary of the Syr Darya — one of Central Asia's two great rivers. Documented how the Tian Shan glaciers sustain river flow to the Aral Sea basin.</p>
+        </div>
+        <div class="discovery-card fade-in">
+          <div class="discovery-tag discovery-tag--s">Semyonov</div>
+          <div class="discovery-icon">🌿</div>
+          <div class="discovery-title">87 New Plant Species</div>
+          <p class="discovery-text">Over 300 botanical specimens were returned, 87 of which were new to science. The Tian Shan flora showed a unique transitional character between Mediterranean, Siberian, and Chinese floral zones.</p>
+        </div>
+        <div class="discovery-card fade-in">
+          <div class="discovery-tag discovery-tag--p">Przhevalsky</div>
+          <div class="discovery-icon">🐎</div>
+          <div class="discovery-title">Przhevalsky's Horse</div>
+          <p class="discovery-text"><em>Equus przewalskii</em> — the last true wild horse on Earth, distinct from all domesticated breeds. Specimens collected near Lop Nor in 1879. Today the species survives only through captive breeding programs, with reintroduction underway in Mongolia and China.</p>
+        </div>
+        <div class="discovery-card fade-in">
+          <div class="discovery-tag discovery-tag--p">Przhevalsky</div>
+          <div class="discovery-icon">🐪</div>
+          <div class="discovery-title">Wild Bactrian Camel</div>
+          <p class="discovery-text"><em>Camelus ferus</em> — confirmed as genetically distinct from the domestic Bactrian camel. Found around the Lop Nor basin. Now Critically Endangered, with fewer than 1,000 remaining in the wild in the Gobi and Gashun Gobi.</p>
+        </div>
+        <div class="discovery-card fade-in">
+          <div class="discovery-tag discovery-tag--p">Przhevalsky</div>
+          <div class="discovery-icon">🏞</div>
+          <div class="discovery-title">Lop Nor — The Wandering Lake</div>
+          <p class="discovery-text">The shallow salt lake in the Tarim Basin, known from ancient Chinese records, was first properly surveyed and mapped by Przhevalsky in 1877. He established its wandering nature — the lake shifts position by centuries due to river course changes. Lop Nor dried up entirely by the 1970s.</p>
+        </div>
+        <div class="discovery-card fade-in">
+          <div class="discovery-tag discovery-tag--p">Przhevalsky</div>
+          <div class="discovery-icon">🗺</div>
+          <div class="discovery-title">Northern Tibet Mapped</div>
+          <p class="discovery-text">Przhevalsky produced the first European survey of the northern Tibetan Plateau, the Qaidam (Tsaidam) Basin, the Qilian Shan, and the headwaters of the Yellow River. He reached approximately 33–34°N latitude — 250 km from Lhasa at his closest approach.</p>
+        </div>
+        <div class="discovery-card fade-in">
+          <div class="discovery-tag discovery-tag--p">Przhevalsky</div>
+          <div class="discovery-icon">🦅</div>
+          <div class="discovery-title">218 Species Described</div>
+          <p class="discovery-text">Over four expeditions, Przhevalsky described and collected specimens of 218 species new to Western science — mammals, birds, reptiles, fish, and invertebrates. The Siberian white crane, Przewalski's gazelle, and numerous rodent species bear connections to his collections.</p>
+        </div>
+      </div>
 
-        <!-- Terrain regions -->
-        <!-- Kazakh steppe (north) -->
-        <ellipse cx="320" cy="85"  rx="300" ry="78" fill="#2A3C28" opacity="0.4"/>
-        <!-- Tarim Basin (SE) -->
-        <ellipse cx="780" cy="420" rx="165" ry="90" fill="#3A3420" opacity="0.45"/>
-        <!-- Fergana Valley -->
-        <ellipse cx="155" cy="350" rx="72"  ry="38" fill="#283A20" opacity="0.5"/>
+      <!-- Comparison Chart -->
+      <div class="compare-wrap">
+        <h3 class="sub-section-title sub-section-title--light">Expeditions at a Glance</h3>
+        <div class="compare-chart-grid">
+          <div class="chart-panel chart-panel--dark">
+            <div class="chart-label chart-label--dark">Route Distance per Expedition (km)</div>
+            <div class="chart-wrap">
+              <canvas id="distanceChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-panel chart-panel--dark">
+            <div class="chart-label chart-label--dark">Expedition Duration (months)</div>
+            <div class="chart-wrap">
+              <canvas id="durationChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- Lake Balkhash -->
-        <path d="M 92,118 Q 160,96 245,108 Q 325,102 362,120 Q 328,145 262,150 Q 178,154 112,145 Z"
-              fill="#1A4A72" opacity="0.85" stroke="#2A6A9A" stroke-width="0.8"/>
-        <text x="210" y="132" class="map-water">Balkhash</text>
-
-        <!-- Issyk-Kul -->
-        <ellipse cx="448" cy="272" rx="88" ry="32" fill="#1A4A72" opacity="0.9"
-                 stroke="#2A6A9A" stroke-width="0.8"/>
-        <text x="406" y="277" class="map-water">Issyk-Kul</text>
-
-        <!-- Tian Shan main ridge (filled polygon) -->
-        <path d="M 180,335 L 220,302 L 252,318 L 292,278 L 328,295 L 368,258 L 405,272 L 440,242 L 475,258 L 508,228 L 542,244 L 575,215 L 610,232 L 644,212 L 678,228 L 715,218 L 750,234 L 788,222 L 825,238 L 862,228 L 900,244 L 940,234 L 960,248 L 960,400 L 180,400 Z"
-              fill="url(#ridgeGrad)" opacity="0.78"/>
-
-        <!-- Snow caps on ridge -->
-        <polygon points="508,228 525,210 542,228 530,248 513,251" fill="rgba(220,235,255,0.88)"/>
-        <polygon points="575,215 594,196 613,215 600,237 580,240" fill="rgba(225,238,255,0.90)"/>
-        <polygon points="644,212 664,192 684,212 670,235 650,238" fill="rgba(230,240,255,0.92)"/>
-        <polygon points="715,218 735,198 755,218 740,242 720,245" fill="rgba(232,242,255,0.88)"/>
-
-        <!-- Northern sub-range (Zailiysky Alatau) -->
-        <path d="M 240,248 L 270,228 L 298,242 L 325,222 L 355,235 L 382,218 L 412,228 L 440,242"
-              fill="none" stroke="#4A6A8A" stroke-width="5" stroke-linecap="round" opacity="0.65"/>
-        <path d="M 240,248 L 270,228 L 298,242 L 325,222 L 355,235 L 382,218 L 412,228 L 440,242 L 440,268 L 240,268 Z"
-              fill="#3A5A7A" opacity="0.35"/>
-
-        <!-- Expedition route -->
-        <path d="M 362,222 Q 388,228 412,248 Q 435,262 452,272 Q 476,272 496,268 Q 518,260 535,248 Q 548,240 558,228"
-              fill="none" stroke="#E63329" stroke-width="2.5" stroke-dasharray="7,5" opacity="0.9"
-              class="route-path"/>
-
-        <!-- Country labels -->
-        <text x="255" y="75"  class="map-country">KAZAKHSTAN</text>
-        <text x="225" y="405" class="map-country">KYRGYZSTAN</text>
-        <text x="720" cy="460" class="map-country">CHINA (XINJIANG)</text>
-        <text x="30"  y="440" class="map-country">UZBEKISTAN</text>
-        <text x="720" y="460" class="map-country">CHINA (XINJIANG)</text>
-
-        <!-- Cities -->
-        <circle cx="362" cy="218" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
-        <text x="372" y="215" class="map-city">Almaty</text>
-        <circle cx="292" cy="252" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
-        <text x="302" y="249" class="map-city">Bishkek</text>
-        <circle cx="78"  cy="348" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
-        <text x="88"  y="345" class="map-city">Tashkent</text>
-        <circle cx="712" cy="375" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
-        <text x="722" y="372" class="map-city">Kashgar</text>
-        <circle cx="835" cy="318" r="5.5" fill="#E63329" stroke="#fff" stroke-width="1.5"/>
-        <text x="845" y="315" class="map-city">Ürümqi</text>
-
-        <!-- Peak markers -->
-        <!-- Khan Tengri -->
-        <polygon points="542,228 552,208 562,228" fill="#fff" stroke="#5AAAE8" stroke-width="1.5"/>
-        <text x="565" y="214" class="map-peak">Khan Tengri</text>
-        <text x="565" y="225" class="map-peak-elev">7,010 m</text>
-        <!-- Jengish Chokusu -->
-        <polygon points="610,232 621,210 632,232" fill="#fff" stroke="#5AAAE8" stroke-width="1.5"/>
-        <text x="636" y="216" class="map-peak">Jengish Chokusu</text>
-        <text x="636" y="227" class="map-peak-elev">7,439 m</text>
-
-        <!-- Compass -->
-        <g transform="translate(898,55)">
-          <circle r="24" fill="rgba(10,20,36,0.8)" stroke="rgba(90,130,180,0.6)" stroke-width="1"/>
-          <polygon points="0,-18 -4,-6 4,-6" fill="#E0EAF8"/>
-          <polygon points="0,18 -4,6 4,6" fill="#506070"/>
-          <polygon points="-18,0 -6,-4 -6,4" fill="#506070"/>
-          <polygon points="18,0 6,-4 6,4" fill="#506070"/>
-          <text x="0" y="-20" class="compass-n">N</text>
-        </g>
-
-        <!-- Scale bar -->
-        <g transform="translate(48,480)">
-          <line x1="0" y1="0" x2="108" y2="0" stroke="#8AAAC8" stroke-width="2"/>
-          <line x1="0" y1="-5" x2="0"   y2="5" stroke="#8AAAC8" stroke-width="2"/>
-          <line x1="108" y1="-5" x2="108" y2="5" stroke="#8AAAC8" stroke-width="2"/>
-          <text x="54" y="-8" class="scale-lbl">500 km</text>
-        </g>
-
-        <!-- Legend box -->
-        <g transform="translate(720,468)">
-          <rect x="0" y="-18" width="192" height="60" rx="2"
-                fill="rgba(8,16,28,0.88)" stroke="rgba(90,130,180,0.4)" stroke-width="0.8"/>
-          <polygon points="8,5 13,-8 18,5" fill="#fff" stroke="#5AAAE8" stroke-width="1.2"/>
-          <text x="25" y="6"  class="legend-lbl">Major Peak</text>
-          <circle cx="10" cy="20" r="4.5" fill="#E63329" stroke="#fff" stroke-width="1"/>
-          <text x="25" y="24" class="legend-lbl">City</text>
-          <line x1="5" y1="37" x2="22" y2="37" stroke="#E63329" stroke-width="2" stroke-dasharray="5,3"/>
-          <text x="25" y="41" class="legend-lbl">Expedition Route</text>
-        </g>
-      </svg>
-    </div>
-    <div class="container map-caption-wrap">
-      <p class="map-caption">
-        Map of the Tian Shan region showing the expedition route (dashed red line) from Almaty, Kazakhstan
-        to the Khan Tengri base camp, traversing Issyk-Kul and the Central Tian Shan massif.
-      </p>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════ PEAKS ═══ -->
-  <section class="section" id="peaks">
+  <!-- ═══════════════════════════════════════ LEGACY ═══ -->
+  <section class="section" id="legacy">
     <div class="container">
       <div class="exhibit-header">
-        <span class="exhibit-num">03</span>
+        <span class="exhibit-num">V</span>
         <div>
-          <h2 class="section-title">Summit Catalogue</h2>
-          <p class="section-sub">Principal peaks of the Tian Shan by elevation</p>
+          <h2 class="section-title">Legacy</h2>
+          <p class="section-sub">How their work shaped the map of Central Asia</p>
         </div>
       </div>
-      <div class="charts-grid">
-        <div class="chart-panel">
-          <div class="chart-label">Peak Elevations — Tian Shan</div>
-          <div class="chart-wrap chart-wrap--tall">
-            <canvas id="peaksChart"></canvas>
-          </div>
+      <div class="legacy-grid">
+        <div class="legacy-block">
+          <div class="legacy-block-num">01</div>
+          <h3 class="legacy-block-title">The Cartographic Revolution</h3>
+          <p class="body-text">Before these expeditions, the interior of Central Asia was represented on European maps by a blank or by ancient Arab and Chinese descriptions redrawn by guesswork. By 1890, the Tian Shan, Kunlun, northern Tibet, the Tarim Basin, the Gobi Desert, and Mongolia were mapped with reasonable accuracy for the first time.</p>
         </div>
-        <div class="chart-panel">
-          <div class="chart-label">Terrain Composition</div>
-          <div class="chart-wrap chart-wrap--sq">
-            <canvas id="terrainChart"></canvas>
-          </div>
-          <div class="donut-legend" id="terrainLegend"></div>
+        <div class="legacy-block">
+          <div class="legacy-block-num">02</div>
+          <h3 class="legacy-block-title">The Geographical Society</h3>
+          <p class="body-text">Both explorers were central figures in the Imperial Russian Geographical Society. Their published accounts — richly detailed with maps, natural history illustrations, and ethnographic observations — inspired a generation of Russian scholars to follow. Kozlov, Roborovsky, and Potanin all continued the work.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════ ELEVATION PROFILE ═══ -->
-  <section class="section section--cream" id="elevation">
-    <div class="container">
-      <div class="exhibit-header">
-        <span class="exhibit-num">04</span>
-        <div>
-          <h2 class="section-title">Elevation Profile</h2>
-          <p class="section-sub">Altitude traverse — Base camp to Khan Tengri summit and return over 21 days</p>
+        <div class="legacy-block">
+          <div class="legacy-block-num">03</div>
+          <h3 class="legacy-block-title">Species Conservation</h3>
+          <p class="body-text">Przhevalsky's horse was brought back from extinction purely because specimens were collected and described in 1879. Every living Przewalski's horse today descends from 12–15 individuals held in zoos after the wild population vanished around 1969. Reintroduction programs in Mongolia and China have established wild herds numbering around 2,000.</p>
         </div>
-      </div>
-      <div class="chart-panel chart-panel--full">
-        <div class="chart-label">Expedition Elevation Profile (meters above sea level)</div>
-        <div class="chart-wrap chart-wrap--wide">
-          <canvas id="elevChart"></canvas>
-        </div>
-      </div>
-      <div class="elev-zones">
-        <div class="elev-zone" style="--color:#3D6B4F">
-          <div class="elev-zone-bar"></div>
-          <div class="elev-zone-name">Alpine Zone</div>
-          <div class="elev-zone-range">3,000 – 4,000 m</div>
-        </div>
-        <div class="elev-zone" style="--color:#5A8A9A">
-          <div class="elev-zone-bar"></div>
-          <div class="elev-zone-name">Subalpine</div>
-          <div class="elev-zone-range">4,000 – 5,000 m</div>
-        </div>
-        <div class="elev-zone" style="--color:#3A6080">
-          <div class="elev-zone-bar"></div>
-          <div class="elev-zone-name">Glacial Zone</div>
-          <div class="elev-zone-range">5,000 – 6,000 m</div>
-        </div>
-        <div class="elev-zone" style="--color:#1B3D6B">
-          <div class="elev-zone-bar"></div>
-          <div class="elev-zone-name">High Alpine</div>
-          <div class="elev-zone-range">6,000 m +</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════ GALLERY ═══ -->
-  <section class="section" id="gallery">
-    <div class="container">
-      <div class="exhibit-header">
-        <span class="exhibit-num">05</span>
-        <div>
-          <h2 class="section-title">Visual Record</h2>
-          <p class="section-sub">Selected landscapes — rendered as chromatic studies</p>
-        </div>
-      </div>
-    </div>
-    <div class="gallery-grid">
-
-      <!-- Artwork 1: Dawn -->
-      <div class="artwork fade-in">
-        <div class="artwork-frame">
-          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#14102A"/>
-                <stop offset="28%"  stop-color="#3A1E4A"/>
-                <stop offset="52%"  stop-color="#A84C22"/>
-                <stop offset="68%"  stop-color="#E09050"/>
-                <stop offset="82%"  stop-color="#F2C870"/>
-                <stop offset="100%" stop-color="#E8BC60"/>
-              </linearGradient>
-              <linearGradient id="dawnMtn" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#18263A"/>
-                <stop offset="100%" stop-color="#080E18"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="280" fill="url(#dawn)"/>
-            <!-- Sun glow -->
-            <ellipse cx="200" cy="158" rx="80" ry="40" fill="#F5A030" opacity="0.25"/>
-            <ellipse cx="200" cy="162" rx="40" ry="20" fill="#FAC040" opacity="0.35"/>
-            <!-- Mountains -->
-            <polygon points="0,280 70,190 120,215 180,158 225,185 288,128 330,162 382,138 400,155 400,280"
-                     fill="url(#dawnMtn)"/>
-            <!-- Snow peak glow -->
-            <polygon points="288,128 306,114 324,128 312,150 293,153" fill="#ECBA60" opacity="0.65"/>
-            <!-- Foreground dark -->
-            <rect x="0" y="255" width="400" height="25" fill="#050C14"/>
-          </svg>
-        </div>
-        <div class="artwork-placard">
-          <div class="artwork-title">Dawn at Base Camp</div>
-          <div class="artwork-meta">Khan Tengri Massif · 3,200 m · Day 1</div>
-        </div>
-      </div>
-
-      <!-- Artwork 2: Glacier -->
-      <div class="artwork fade-in">
-        <div class="artwork-frame">
-          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="glacSky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#204A7A"/>
-                <stop offset="55%"  stop-color="#3E74A8"/>
-                <stop offset="100%" stop-color="#78A8C8"/>
-              </linearGradient>
-              <linearGradient id="iceBody" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%"   stop-color="#C2DCF0"/>
-                <stop offset="45%"  stop-color="#98C0E0"/>
-                <stop offset="80%"  stop-color="#68A0C0"/>
-                <stop offset="100%" stop-color="#3A7098"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="280" fill="url(#glacSky)"/>
-            <!-- Glacier -->
-            <path d="M 0,280 0,175 Q 55,158 115,168 Q 178,152 224,162 Q 278,148 328,158 Q 368,152 400,162 L 400,280 Z"
-                  fill="url(#iceBody)"/>
-            <!-- Crevasse lines -->
-            <path d="M 90,195  Q 128,180 162,196" stroke="#5A90B0" stroke-width="1.8" fill="none" opacity="0.7"/>
-            <path d="M 195,182 Q 238,168 272,183" stroke="#5A90B0" stroke-width="1.5" fill="none" opacity="0.7"/>
-            <path d="M 305,174 Q 338,163 362,175" stroke="#5A90B0" stroke-width="1.5" fill="none" opacity="0.7"/>
-            <!-- Rocky peak -->
-            <polygon points="148,168 188,72 228,168" fill="#7A8E9A"/>
-            <polygon points="188,72 206,56 224,72 212,98 191,101" fill="#EBF0F8"/>
-            <!-- Moraine -->
-            <path d="M 0,245 Q 100,238 200,242 Q 300,235 400,240"
-                  stroke="#7A7060" stroke-width="14" fill="none" opacity="0.45" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="artwork-placard">
-          <div class="artwork-title">The Inylchek Glacier</div>
-          <div class="artwork-meta">South Inylchek · 4,000 m · Day 7</div>
-        </div>
-      </div>
-
-      <!-- Artwork 3: Wide panorama -->
-      <div class="artwork artwork--wide fade-in">
-        <div class="artwork-frame">
-          <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="panSky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#080E22"/>
-                <stop offset="38%"  stop-color="#183060"/>
-                <stop offset="70%"  stop-color="#3868A8"/>
-                <stop offset="100%" stop-color="#6898C8"/>
-              </linearGradient>
-              <linearGradient id="snowF" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#EEF4FA"/>
-                <stop offset="100%" stop-color="#B4C8DC"/>
-              </linearGradient>
-            </defs>
-            <rect width="800" height="280" fill="url(#panSky)"/>
-            <!-- Background range -->
-            <path d="M 0,280 0,200 Q 80,175 160,188 Q 240,165 320,178 Q 400,155 480,168 Q 560,148 640,160 Q 720,145 800,158 L 800,280 Z"
-                  fill="#1A2E48" opacity="0.65"/>
-            <!-- Middle peaks -->
-            <polygon points="0,280 60,218 120,238 200,182 260,202 340,165 400,185 460,155 520,178 560,280" fill="#243C5A" opacity="0.8"/>
-            <!-- Main peaks (Khan Tengri style) -->
-            <polygon points="260,280 295,88  330,280" fill="#2E4E72"/>
-            <polygon points="295,88  315,68  335,88  322,118 298,121" fill="url(#snowF)"/>
-            <polygon points="440,280 475,118 510,280" fill="#3A5880"/>
-            <polygon points="475,118 493,98  511,118 498,145 478,148" fill="#E5EEF8"/>
-            <polygon points="600,280 630,148 660,280" fill="#2A4A68"/>
-            <polygon points="630,148 648,130 666,148 654,172 634,175" fill="#E8F0FA"/>
-            <!-- Snow field foreground -->
-            <path d="M 0,280 0,252 Q 200,238 400,248 Q 600,235 800,245 L 800,280 Z" fill="url(#snowF)" opacity="0.88"/>
-            <!-- Haze bands -->
-            <rect x="0" y="195" width="800" height="22" fill="#3868A8" opacity="0.12"/>
-            <rect x="0" y="215" width="800" height="15" fill="#5888C0" opacity="0.08"/>
-          </svg>
-        </div>
-        <div class="artwork-placard">
-          <div class="artwork-title">Khan Tengri Panorama — "Pyramid of the Sky"</div>
-          <div class="artwork-meta">Central Tian Shan · 5,800 m · Day 14</div>
-        </div>
-      </div>
-
-      <!-- Artwork 4: Alpine meadow -->
-      <div class="artwork fade-in">
-        <div class="artwork-frame">
-          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="meadSky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#3A80C8"/>
-                <stop offset="100%" stop-color="#80C0E8"/>
-              </linearGradient>
-              <linearGradient id="grassG" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#4A7A3A"/>
-                <stop offset="100%" stop-color="#2E5A28"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="280" fill="url(#meadSky)"/>
-            <!-- Clouds -->
-            <ellipse cx="110" cy="72" rx="58" ry="22" fill="white" opacity="0.82"/>
-            <ellipse cx="140" cy="64" rx="42" ry="20" fill="white" opacity="0.9"/>
-            <ellipse cx="295" cy="58" rx="48" ry="18" fill="white" opacity="0.75"/>
-            <ellipse cx="322" cy="52" rx="32" ry="16" fill="white" opacity="0.85"/>
-            <!-- Background mountains -->
-            <polygon points="0,280 55,192 115,218 195,172 258,202 338,168 400,195 400,280"
-                     fill="#688060" opacity="0.55"/>
-            <!-- Meadow -->
-            <rect x="0" y="215" width="400" height="65" fill="url(#grassG)"/>
-            <!-- Wildflowers -->
-            <circle cx="72"  cy="210" r="4"   fill="#E8CC28"/>
-            <circle cx="132" cy="213" r="3.2" fill="#E06090"/>
-            <circle cx="175" cy="208" r="4"   fill="#E8DC38"/>
-            <circle cx="225" cy="212" r="3.2" fill="#9ACC68"/>
-            <circle cx="295" cy="210" r="4"   fill="#E06090"/>
-            <circle cx="348" cy="212" r="3.2" fill="#E8CC28"/>
-            <circle cx="40"  cy="215" r="3"   fill="#70B850"/>
-            <circle cx="382" cy="214" r="3"   fill="#D050A0"/>
-            <!-- Yurt -->
-            <ellipse cx="312" cy="206" rx="14" ry="8"  fill="#F0E0C0"/>
-            <polygon points="298,206 312,196 326,206"   fill="#D8C8A0"/>
-            <!-- Stream -->
-            <path d="M 0,244 Q 100,236 200,240 Q 300,232 400,238"
-                  stroke="#6AAAC8" stroke-width="3" fill="none" opacity="0.72"/>
-          </svg>
-        </div>
-        <div class="artwork-placard">
-          <div class="artwork-title">Jyrgalan Valley — Summer Pasture</div>
-          <div class="artwork-meta">Eastern Kyrgyzstan · 2,100 m · Day 28</div>
-        </div>
-      </div>
-
-      <!-- Artwork 5: Night / stars -->
-      <div class="artwork fade-in">
-        <div class="artwork-frame">
-          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="nightSky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#010410"/>
-                <stop offset="55%"  stop-color="#081225"/>
-                <stop offset="100%" stop-color="#12203C"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="280" fill="url(#nightSky)"/>
-            <!-- Milky Way -->
-            <path d="M -60,260 Q 100,145 200,115 Q 300,85 460,18"
-                  stroke="rgba(190,205,255,0.22)" stroke-width="65" fill="none"/>
-            <!-- Stars -->
-            <g fill="white">
-              <circle cx="48"  cy="28" r="1.4" opacity="0.9"/>
-              <circle cx="88"  cy="14" r="1.0" opacity="0.7"/>
-              <circle cx="128" cy="42" r="1.4" opacity="0.85"/>
-              <circle cx="168" cy="18" r="1.0" opacity="0.9"/>
-              <circle cx="202" cy="52" r="1.8" opacity="0.7"/>
-              <circle cx="238" cy="28" r="1.0" opacity="0.8"/>
-              <circle cx="278" cy="14" r="1.4" opacity="0.9"/>
-              <circle cx="315" cy="38" r="1.0" opacity="0.7"/>
-              <circle cx="352" cy="22" r="1.4" opacity="0.85"/>
-              <circle cx="382" cy="58" r="1.0" opacity="0.9"/>
-              <circle cx="28"  cy="68" r="1.0" opacity="0.6"/>
-              <circle cx="68"  cy="82" r="1.4" opacity="0.8"/>
-              <circle cx="108" cy="95" r="1.0" opacity="0.7"/>
-              <circle cx="148" cy="72" r="1.0" opacity="0.9"/>
-              <circle cx="218" cy="88" r="1.4" opacity="0.8"/>
-              <circle cx="258" cy="62" r="1.0" opacity="0.7"/>
-              <circle cx="298" cy="78" r="1.0" opacity="0.85"/>
-              <circle cx="338" cy="52" r="1.4" opacity="0.9"/>
-              <circle cx="388" cy="88" r="1.0" opacity="0.7"/>
-              <circle cx="44"  cy="118" r="1.0" opacity="0.5"/>
-              <circle cx="84"  cy="108" r="1.4" opacity="0.65"/>
-              <circle cx="152" cy="122" r="1.0" opacity="0.7"/>
-              <circle cx="192" cy="105" r="1.0" opacity="0.6"/>
-              <circle cx="245" cy="112" r="1.4" opacity="0.7"/>
-              <circle cx="325" cy="102" r="1.0" opacity="0.55"/>
-              <circle cx="375" cy="115" r="1.0" opacity="0.65"/>
-              <!-- Bright -->
-              <circle cx="175" cy="40"  r="2.2" fill="rgba(255,248,220,0.95)"/>
-              <circle cx="320" cy="25"  r="1.8" fill="rgba(210,230,255,0.92)"/>
-            </g>
-            <!-- Mountain silhouette -->
-            <polygon points="0,280 48,225 98,245 158,192 218,215 288,172 348,198 400,182 400,280"
-                     fill="#050C1A"/>
-            <!-- Glacier reflection highlight -->
-            <path d="M 282,178 Q 312,172 338,178 Q 342,184 312,190 Q 285,187 278,183"
-                  fill="#8AAAC8" opacity="0.45"/>
-            <!-- Tent glow -->
-            <ellipse cx="198" cy="262" rx="18" ry="8" fill="#F09820" opacity="0.3"/>
-            <polygon points="184,268 198,244 212,268" fill="#E08818" opacity="0.72"/>
-          </svg>
-        </div>
-        <div class="artwork-placard">
-          <div class="artwork-title">Milky Way over Base Camp</div>
-          <div class="artwork-meta">Inylchek Glacier · 4,100 m · Night, Day 9</div>
-        </div>
-      </div>
-
-      <!-- Artwork 6: Summit -->
-      <div class="artwork fade-in">
-        <div class="artwork-frame">
-          <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="summSky" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#030610"/>
-                <stop offset="38%"  stop-color="#0A1435"/>
-                <stop offset="100%" stop-color="#182E60"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="280" fill="url(#summSky)"/>
-            <!-- Horizon glow (sunrise seen from summit) -->
-            <ellipse cx="200" cy="268" rx="280" ry="72" fill="#D87018" opacity="0.38"/>
-            <ellipse cx="200" cy="280" rx="200" ry="55" fill="#F09828" opacity="0.28"/>
-            <!-- Stars at altitude -->
-            <g fill="white" opacity="0.7">
-              <circle cx="52"  cy="22" r="1.2"/>
-              <circle cx="115" cy="12" r="0.9"/>
-              <circle cx="178" cy="35" r="1.1"/>
-              <circle cx="248" cy="18" r="0.9"/>
-              <circle cx="302" cy="30" r="1.2"/>
-              <circle cx="358" cy="15" r="0.9"/>
-              <circle cx="385" cy="42" r="1.1"/>
-            </g>
-            <!-- Distant mountains below (view from above) -->
-            <polygon points="0,280 38,248 88,262 158,238 238,254 308,232 372,245 400,238 400,280"
-                     fill="#1A2838" opacity="0.82"/>
-            <!-- Near summit ridge -->
-            <polygon points="118,280 168,262 200,270 242,255 282,268 325,280"
-                     fill="#080E1C"/>
-            <!-- Summit snow surface -->
-            <path d="M 75,272 Q 200,232 325,268"
-                  stroke="#E0ECF8" stroke-width="5" fill="none" opacity="0.82" stroke-linecap="round"/>
-            <!-- Wind-blown snow -->
-            <g fill="rgba(220,235,255,0.65)">
-              <circle cx="198" cy="238" r="1.1"/>
-              <circle cx="218" cy="233" r="1.5"/>
-              <circle cx="238" cy="242" r="1.1"/>
-              <circle cx="258" cy="236" r="1.0"/>
-              <circle cx="278" cy="244" r="1.5"/>
-              <circle cx="155" cy="240" r="1.0"/>
-              <circle cx="135" cy="246" r="1.5"/>
-            </g>
-            <!-- Flag / figure -->
-            <line x1="200" y1="270" x2="200" y2="243" stroke="#E63329" stroke-width="2.2"/>
-            <polygon points="200,243 218,248 200,255" fill="#E63329"/>
-          </svg>
-        </div>
-        <div class="artwork-placard">
-          <div class="artwork-title">Summit — Khan Tengri, 7,010 m</div>
-          <div class="artwork-meta">Central Tian Shan · Day 18 · 06:42 AM</div>
-        </div>
-      </div>
-
-    </div><!-- /gallery-grid -->
-  </section>
-
-  <!-- ════════════════════════════════════ CLIMATE ═══ -->
-  <section class="section section--cream" id="climate">
-    <div class="container">
-      <div class="exhibit-header">
-        <span class="exhibit-num">06</span>
-        <div>
-          <h2 class="section-title">Climate & Conditions</h2>
-          <p class="section-sub">Meteorological data recorded at 4,200 m base camp, June – October</p>
-        </div>
-      </div>
-      <div class="charts-grid">
-        <div class="chart-panel">
-          <div class="chart-label">Temperature & Precipitation</div>
-          <div class="chart-wrap">
-            <canvas id="climateChart"></canvas>
-          </div>
-        </div>
-        <div class="chart-panel">
-          <div class="chart-label">Wind Speed & Visibility</div>
-          <div class="chart-wrap">
-            <canvas id="windChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════ TIMELINE ═══ -->
-  <section class="section" id="timeline">
-    <div class="container">
-      <div class="exhibit-header">
-        <span class="exhibit-num">07</span>
-        <div>
-          <h2 class="section-title">Expedition Journal</h2>
-          <p class="section-sub">Key milestones across 92 days in the field</p>
-        </div>
-      </div>
-      <div class="timeline">
-
-        <div class="tl-item fade-in">
-          <div class="tl-date">Jun 1</div>
-          <div class="tl-dot"></div>
-          <div class="tl-body">
-            <div class="tl-title">Departure — Almaty, Kazakhstan</div>
-            <p class="tl-text">The expedition departs Almaty at dawn. First sight of the Zailiysky Alatau range: snow-capped summits emerging from morning haze above the city at 847 m.</p>
-            <span class="tl-elev">847 m</span>
-          </div>
-        </div>
-
-        <div class="tl-item fade-in">
-          <div class="tl-date">Jun 8</div>
-          <div class="tl-dot"></div>
-          <div class="tl-body">
-            <div class="tl-title">Issyk-Kul Traverse</div>
-            <p class="tl-text">Circumnavigation of Lake Issyk-Kul, Central Asia's largest alpine lake. Water temperature 17 °C despite surrounding snow peaks. Edelweiss fields in full bloom along the southern shore.</p>
-            <span class="tl-elev">1,607 m</span>
-          </div>
-        </div>
-
-        <div class="tl-item fade-in">
-          <div class="tl-date">Jun 22</div>
-          <div class="tl-dot"></div>
-          <div class="tl-body">
-            <div class="tl-title">Inylchek Glacier — First Crossing</div>
-            <p class="tl-text">The South Inylchek glacier stretches 60 km — one of the longest outside polar regions. Navigating the chaotic icefall required 3 days. Crevasse depths measured at 40+ meters.</p>
-            <span class="tl-elev">3,800 – 4,200 m</span>
-          </div>
-        </div>
-
-        <div class="tl-item fade-in">
-          <div class="tl-date">Jul 3</div>
-          <div class="tl-dot tl-dot--accent"></div>
-          <div class="tl-body">
-            <div class="tl-title">Base Camp Established — Khan Tengri</div>
-            <p class="tl-text">The marble peak of Khan Tengri reveals itself — a perfect pyramid of white marble rising 7,010 m. Named "Ruler of the Spirits" in Kazakh. Not climbed until 1931.</p>
-            <span class="tl-elev">4,100 m</span>
-          </div>
-        </div>
-
-        <div class="tl-item fade-in">
-          <div class="tl-date">Jul 18</div>
-          <div class="tl-dot tl-dot--summit"></div>
-          <div class="tl-body">
-            <div class="tl-title tl-title--summit">SUMMIT — Khan Tengri, 7,010 m</div>
-            <p class="tl-text">Summit achieved at 06:42 AM after a 14-hour push from high camp. Temperature: −42 °C, wind 80 km/h. Visibility: 400 km in all directions. The peak's shadow stretched to the horizon at sunrise.</p>
-            <span class="tl-elev tl-elev--summit">7,010 m ▲</span>
-          </div>
-        </div>
-
-        <div class="tl-item fade-in">
-          <div class="tl-date">Aug 5</div>
-          <div class="tl-dot"></div>
-          <div class="tl-body">
-            <div class="tl-title">Border Crossing — China (Xinjiang)</div>
-            <p class="tl-text">Entry to China via the Torugart Pass. Landscape transforms: alpine meadows give way to the Tarim Basin. Ancient Silk Road caravanserai visible in the valley below.</p>
-            <span class="tl-elev">3,752 m</span>
-          </div>
-        </div>
-
-        <div class="tl-item fade-in">
-          <div class="tl-date">Aug 24</div>
-          <div class="tl-dot"></div>
-          <div class="tl-body">
-            <div class="tl-title">Turfan Depression</div>
-            <p class="tl-text">Descent to the Turfan Depression at −154 m below sea level — the world's second lowest point. Temperature: +49 °C. The contrast with glaciated summits 5 days prior is staggering.</p>
-            <span class="tl-elev">−154 m</span>
-          </div>
-        </div>
-
-        <div class="tl-item fade-in">
-          <div class="tl-date">Sep 1</div>
-          <div class="tl-dot"></div>
-          <div class="tl-body">
-            <div class="tl-title">Return via Silk Road</div>
-            <p class="tl-text">Final traverse westward through Kashgar and Osh. The Fergana Valley seen in autumn colours from the Kara-Darya valley rim — the expedition concludes at the point where the mountains meet the steppe.</p>
-            <span class="tl-elev">750 m</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════ FLORA ═══ -->
-  <section class="section section--dark" id="flora">
-    <div class="container">
-      <div class="exhibit-header exhibit-header--light">
-        <span class="exhibit-num exhibit-num--light">08</span>
-        <div>
-          <h2 class="section-title section-title--light">Biodiversity Survey</h2>
-          <p class="section-sub section-sub--light">Species recorded across elevation zones during the expedition</p>
-        </div>
-      </div>
-      <div class="species-grid">
-
-        <div class="species-card fade-in">
-          <div class="species-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="36" fill="#2A2018" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-              <ellipse cx="40" cy="42" rx="18" ry="14" fill="#C8B898"/>
-              <circle  cx="35" cy="32" r="10" fill="#D0C0A0"/>
-              <circle  cx="27" cy="28" r="4.5" fill="#C0B090" opacity="0.8"/>
-              <circle  cx="40" cy="29" r="3.5" fill="#A89870" opacity="0.75"/>
-              <circle  cx="48" cy="34" r="3"   fill="#A89870" opacity="0.7"/>
-              <circle  cx="33" cy="38" r="2.5" fill="#988860" opacity="0.65"/>
-              <polygon points="28,22 24,13 32,20" fill="#C0B090"/>
-              <polygon points="42,22 46,13 38,20" fill="#C0B090"/>
-              <ellipse cx="30" cy="30" rx="3.5" ry="3"  fill="#4A7840"/>
-              <ellipse cx="40" cy="30" rx="3.5" ry="3"  fill="#4A7840"/>
-              <circle  cx="30" cy="30" r="2"   fill="#0A0A0A"/>
-              <circle  cx="40" cy="30" r="2"   fill="#0A0A0A"/>
-            </svg>
-          </div>
-          <div class="species-name">Snow Leopard</div>
-          <div class="species-latin">Panthera uncia</div>
-          <div class="species-bar"><div class="species-bar-fill" style="width:15%"></div></div>
-          <div class="species-stats">3 sightings · 3,500 – 5,000 m</div>
-        </div>
-
-        <div class="species-card fade-in">
-          <div class="species-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="36" fill="#1E2C18" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-              <ellipse cx="40" cy="44" rx="20" ry="16" fill="#C0B090"/>
-              <circle  cx="30" cy="30" r="12"  fill="#CABEA0"/>
-              <path d="M 22,22 Q 14,10 22,6 Q 28,4 26,16" stroke="#8A7050" stroke-width="2.5" fill="none"/>
-              <path d="M 38,22 Q 46,10 38,6 Q 32,4 34,16" stroke="#8A7050" stroke-width="2.5" fill="none"/>
-              <circle cx="24" cy="28" r="3" fill="#2A1808"/>
-              <ellipse cx="22" cy="36" rx="6" ry="4" fill="#B8A888"/>
-            </svg>
-          </div>
-          <div class="species-name">Marco Polo Sheep</div>
-          <div class="species-latin">Ovis ammon polii</div>
-          <div class="species-bar"><div class="species-bar-fill" style="width:78%"></div></div>
-          <div class="species-stats">47 sightings · 3,000 – 5,500 m</div>
-        </div>
-
-        <div class="species-card fade-in">
-          <div class="species-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="36" fill="#221A10" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-              <ellipse cx="40" cy="46" rx="18" ry="14" fill="#8A5A28"/>
-              <circle  cx="32" cy="30" r="12"  fill="#9A6A38"/>
-              <circle  cx="23" cy="22" r="7"   fill="#8A5A28"/>
-              <circle  cx="44" cy="22" r="7"   fill="#8A5A28"/>
-              <circle  cx="28" cy="28" r="3.5" fill="#120A04"/>
-              <circle  cx="38" cy="28" r="3.5" fill="#120A04"/>
-              <ellipse cx="33" cy="35" rx="7" ry="6" fill="#7A4818"/>
-              <ellipse cx="33" cy="37" rx="4" ry="3" fill="#200A04"/>
-            </svg>
-          </div>
-          <div class="species-name">Tian Shan Brown Bear</div>
-          <div class="species-latin">Ursus arctos isabellinus</div>
-          <div class="species-bar"><div class="species-bar-fill" style="width:25%"></div></div>
-          <div class="species-stats">8 sightings · 1,500 – 3,500 m</div>
-        </div>
-
-        <div class="species-card fade-in">
-          <div class="species-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="36" fill="#1A2810" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#F0EEE0" transform="rotate(0,40,40)"/>
-              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#EEECDe" transform="rotate(51.4,40,40)"/>
-              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#EEEAE0" transform="rotate(102.8,40,40)"/>
-              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#F0EEE0" transform="rotate(154.2,40,40)"/>
-              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#EEECDe" transform="rotate(205.6,40,40)"/>
-              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#EEEAE0" transform="rotate(257,40,40)"/>
-              <ellipse cx="40" cy="40" rx="10" ry="13" fill="#F0EEE0" transform="rotate(308.4,40,40)"/>
-              <circle cx="40" cy="40" r="9" fill="#D4C030"/>
-              <circle cx="40" cy="40" r="6" fill="#C0AC28"/>
-            </svg>
-          </div>
-          <div class="species-name">Edelweiss</div>
-          <div class="species-latin">Leontopodium fedtschenkoanum</div>
-          <div class="species-bar"><div class="species-bar-fill" style="width:95%"></div></div>
-          <div class="species-stats">Abundant · 2,800 – 4,200 m</div>
-        </div>
-
-        <div class="species-card fade-in">
-          <div class="species-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="36" fill="#18200A" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-              <path d="M 40,40 Q 12,30 8,42 Q 14,37 40,45" fill="#7A5018"/>
-              <path d="M 40,40 Q 68,30 72,42 Q 66,37 40,45" fill="#6A4010"/>
-              <ellipse cx="40" cy="44" rx="14" ry="11" fill="#B08030"/>
-              <circle  cx="40" cy="30"  r="10"  fill="#C09038"/>
-              <circle  cx="30" cy="28"  r="4.5" fill="#D8A838"/>
-              <circle  cx="30" cy="28"  r="3"   fill="#100A04"/>
-              <polygon points="25,33 20,37 25,37" fill="#C07818"/>
-              <path d="M 28,49 Q 40,58 52,49" stroke="#7A4010" stroke-width="2.5" fill="none"/>
-            </svg>
-          </div>
-          <div class="species-name">Golden Eagle</div>
-          <div class="species-latin">Aquila chrysaetos daphanes</div>
-          <div class="species-bar"><div class="species-bar-fill" style="width:57%"></div></div>
-          <div class="species-stats">34 sightings · 500 – 4,500 m</div>
-        </div>
-
-        <div class="species-card fade-in">
-          <div class="species-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="40" r="36" fill="#10200E" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-              <polygon points="40,12 28,32 52,32" fill="#286828"/>
-              <polygon points="40,20 24,42 56,42" fill="#2E7030"/>
-              <polygon points="40,28 18,54 62,54" fill="#347838"/>
-              <rect x="36" y="54" width="8" height="10" fill="#7A4820"/>
-              <path d="M 28,32 Q 40,26 52,32" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
-              <path d="M 24,42 Q 40,35 56,42" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
-            </svg>
-          </div>
-          <div class="species-name">Tian Shan Spruce</div>
-          <div class="species-latin">Picea schrenkiana</div>
-          <div class="species-bar"><div class="species-bar-fill" style="width:100%"></div></div>
-          <div class="species-stats">Dominant · 1,600 – 3,000 m</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════ STATISTICS ═══ -->
-  <section class="section section--stats" id="stats">
-    <div class="container">
-      <div class="exhibit-header exhibit-header--light">
-        <span class="exhibit-num exhibit-num--light">09</span>
-        <div>
-          <h2 class="section-title section-title--light">Expedition Data</h2>
-          <p class="section-sub section-sub--light">Quantitative record of the 92-day traverse</p>
-        </div>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-block fade-in">
-          <div class="stat-val" data-target="92">0</div>
-          <div class="stat-unit">Days</div>
-          <div class="stat-desc">Expedition duration</div>
-        </div>
-        <div class="stat-block fade-in">
-          <div class="stat-val" data-target="2847">0</div>
-          <div class="stat-unit">km</div>
-          <div class="stat-desc">Total distance traveled</div>
-        </div>
-        <div class="stat-block fade-in">
-          <div class="stat-val" data-target="148000">0</div>
-          <div class="stat-unit">m</div>
-          <div class="stat-desc">Total vertical ascent</div>
-        </div>
-        <div class="stat-block fade-in">
-          <div class="stat-val" data-target="7010">0</div>
-          <div class="stat-unit">m</div>
-          <div class="stat-desc">Highest point reached</div>
-        </div>
-        <div class="stat-block fade-in">
-          <div class="stat-val" data-prefix="−" data-target="154">0</div>
-          <div class="stat-unit">m</div>
-          <div class="stat-desc">Lowest point (Turfan)</div>
-        </div>
-        <div class="stat-block fade-in">
-          <div class="stat-val" data-prefix="+" data-target="47">0</div>
-          <div class="stat-unit">°C</div>
-          <div class="stat-desc">Max temperature recorded</div>
-        </div>
-        <div class="stat-block fade-in">
-          <div class="stat-val" data-prefix="−" data-target="42">0</div>
-          <div class="stat-unit">°C</div>
-          <div class="stat-desc">Min temperature (summit)</div>
-        </div>
-        <div class="stat-block fade-in">
-          <div class="stat-val" data-target="847">0</div>
-          <div class="stat-unit">Photos</div>
-          <div class="stat-desc">Documented images</div>
+        <div class="legacy-block">
+          <div class="legacy-block-num">04</div>
+          <h3 class="legacy-block-title">Named in Their Honor</h3>
+          <p class="body-text">
+            Semyonov-Tyan-Shansky lends his name to a mountain range in Kyrgyzstan, a glacier,
+            and several dozen plant and insect species. Przhevalsky's name is borne by the city
+            of Karakol (briefly <em>Przhevalsk</em>), the horse, a camel subspecies, a gazelle,
+            a finch, and numerous species of plants and invertebrates.
+          </p>
         </div>
       </div>
     </div>
@@ -1067,52 +924,37 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">
+        <div>
           <div class="footer-logo">TIANSCHANICA</div>
-          <div class="footer-tagline">A Museum of Expedition</div>
+          <div class="footer-tagline">Archive of Central Asian Exploration</div>
           <p class="footer-desc">
-            This exhibition documents a 92-day scientific and mountaineering expedition through
-            the Tian Shan range of Central Asia, conducted in the summer of 2024.
+            An exhibition documenting the 19th-century scientific expeditions of
+            Pyotr Semyonov-Tyan-Shansky and Nikolai Przhevalsky — the founders of
+            modern Central Asian geography.
           </p>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Exhibition</div>
           <ul>
-            <li><a href="#overview">01 — Overview</a></li>
-            <li><a href="#geography">02 — Geography</a></li>
-            <li><a href="#peaks">03 — Summit Catalogue</a></li>
-            <li><a href="#gallery">05 — Visual Record</a></li>
-            <li><a href="#timeline">07 — Expedition Journal</a></li>
-            <li><a href="#flora">08 — Biodiversity</a></li>
+            <li><a href="#context">I — Historical Context</a></li>
+            <li><a href="#semyonov">II — Semyonov-Tyan-Shansky</a></li>
+            <li><a href="#przhevalsky">III — Przhevalsky</a></li>
+            <li><a href="#discoveries">IV — Catalogue of Discovery</a></li>
+            <li><a href="#legacy">V — Legacy</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <div class="footer-col-title">Field Details</div>
-          <div class="footer-detail">
-            <span>Region</span>
-            <span>Central Asia</span>
-          </div>
-          <div class="footer-detail">
-            <span>Countries</span>
-            <span>KZ · KG · CN</span>
-          </div>
-          <div class="footer-detail">
-            <span>Duration</span>
-            <span>Jun 1 – Aug 31, 2024</span>
-          </div>
-          <div class="footer-detail">
-            <span>Summit</span>
-            <span>Khan Tengri, 7,010 m</span>
-          </div>
-          <div class="footer-detail">
-            <span>Range</span>
-            <span>Tian Shan — 天山</span>
-          </div>
+          <div class="footer-col-title">Sources</div>
+          <div class="footer-detail"><span>Primary</span><span>Imperial Russian Geographical Society Archives</span></div>
+          <div class="footer-detail"><span>Semyonov</span><span><em>Travels in the Tian-Shan</em>, 1856–57</span></div>
+          <div class="footer-detail"><span>Przhevalsky</span><span><em>Mongolia and the Tanguts</em>, 1875</span></div>
+          <div class="footer-detail"><span>Przhevalsky</span><span><em>From Kuldzha to Lop Nor</em>, 1878</span></div>
+          <div class="footer-detail"><span>Przhevalsky</span><span><em>From Zaisan to Tibet</em>, 1883</span></div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2024 Tianschanica Expedition</span>
-        <span>Made with the spirit of explorers past</span>
+        <span>© 2024 Tianschanica · Historical Exhibition</span>
+        <span>Map data © OpenStreetMap contributors · © CARTO</span>
       </div>
     </div>
   </footer>
