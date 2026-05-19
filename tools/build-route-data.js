@@ -93,6 +93,128 @@ const SOURCE_BY_ID = {
     accuracy: 'Историческая реконструкция',
     source: 'Реконструкция по отчетам экспедиции Роборовского и Козлова 1893-1895; не GPS',
   },
+  dutreuil: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по материалам миссии Дютрёя де Рена и Гренара 1891-1894; не GPS',
+    url: 'https://heritage.bnf.fr/france-chine/mission-dutreuil-rhins-grenard-1890-1895',
+  },
+  littledale: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по опубликованным описаниям путешествий Литтлдейла через Центральную Азию и Тибет; не GPS',
+    url: 'https://www.nature.com/articles/049567a0',
+  },
+  wellby: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту Wellby and Malcolm: Leh-Peking across northern Tibet; не GPS',
+    url: 'https://www.gutenberg.org/ebooks/57646',
+  },
+  deasy: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по путешествию H. H. P. Deasy в Тибете и Китайском Туркестане 1897-1899; не GPS',
+    url: 'https://www.alteagallery.com/product/deasy-tibet-15159/',
+  },
+  futterer: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по Karl Futterer, Durch Asien, и геологическим маршрутам 1897-1898; не GPS',
+    url: 'https://china-bibliographie.univie.ac.at/2011/07/08/futterer-durch-asien/',
+  },
+  klementz: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по первой русской археологической разведке Турфана Д. А. Клеменца 1898 года; не GPS',
+    url: 'https://idp.bl.uk/blog/idp-collections-in-russia/',
+  },
+  grum: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по описаниям экспедиции Г. Е. Грум-Гржимайло в Восточный Тянь-Шань, Турфан и Хами; не GPS',
+  },
+  kozlov1: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по описаниям Монголо-Камской экспедиции П. К. Козлова 1899-1901; не GPS',
+  },
+  hedin2: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по ключевым пунктам экспедиции Свена Хедина 1899-1902; не GPS',
+    url: 'https://svenhedinfoundation.org/expeditions/',
+  },
+  stein1: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту первой Центральноазиатской экспедиции Ауреля Стейна 1900-1901; не GPS',
+  },
+  otani1: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по описаниям первой экспедиции Отани в Восточный Туркестан; не GPS',
+  },
+  turfan1: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по материалам первой немецкой Турфанской экспедиции 1902-1903; не GPS',
+    url: 'https://themen.crossasia.org/deutsche-turfanexpeditionen/?lang=en',
+  },
+  filchner: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по научной экспедиции В. Фильхнера в Китай и Тибет 1903-1905; не GPS',
+    url: 'https://ci.nii.ac.jp/ncid/BA03536554',
+  },
+  turfan2: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по материалам второй немецкой Турфанской экспедиции 1904-1905; не GPS',
+    url: 'https://www.iranicaonline.org/articles/turfan-expeditions-2/',
+  },
+  turfan3: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту третьей немецкой Турфанской экспедиции 1905-1907; не GPS',
+    url: 'https://themen.crossasia.org/deutsche-turfanexpeditionen/?lang=en',
+  },
+  pelliot: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту экспедиции Поля Пеллио 1906-1908; не GPS',
+  },
+  stein2: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту второй Центральноазиатской экспедиции Ауреля Стейна 1906-1908; не GPS',
+  },
+  mannerheim: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту азиатского путешествия К. Г. Маннергейма 1906-1908; не GPS',
+  },
+  hedin3: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по ключевым пунктам экспедиции Свена Хедина 1906-1908; не GPS',
+    url: 'https://svenhedinfoundation.org/expeditions/',
+  },
+  kozlov2: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по описаниям Монголо-Сычуаньской экспедиции П. К. Козлова 1907-1909 и Хара-Хото; не GPS',
+  },
+  oldenburg1: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту первой Русской Туркестанской экспедиции С. Ф. Ольденбурга 1909-1910; не GPS',
+  },
+  otani2: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по описаниям второй экспедиции Отани в Синьцзян; не GPS',
+  },
+  otani3: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по описаниям третьей экспедиции Отани в Восточный Туркестан и Ганьсу; не GPS',
+  },
+  carruthers: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по экспедиции Дугласа Каррутерса в Северо-Западную Монголию и Джунгарию 1910-1911; не GPS',
+    url: 'https://rsaa.org.uk/blog/douglas-carruthers-and-the-outer-mongolia-expedition-of-1910-1911/',
+  },
+  turfan4: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту четвертой немецкой Турфанской экспедиции 1913-1914; не GPS',
+    url: 'https://themen.crossasia.org/deutsche-turfanexpeditionen/?lang=en',
+  },
+  stein3: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту третьей Центральноазиатской экспедиции Ауреля Стейна 1913-1916; не GPS',
+  },
+  oldenburg2: {
+    accuracy: 'Историческая реконструкция',
+    source: 'Реконструкция по маршруту второй Русской Туркестанской экспедиции С. Ф. Ольденбурга 1914-1915; не GPS',
+  },
 };
 
 function loadExpeditions() {
@@ -120,16 +242,10 @@ function loadExistingHedinRoute() {
   return context.window.ROUTE_LIBRARY?.hedin1893_1897 || context.window.ROUTE_LIBRARY?.hedin || null;
 }
 
-function loadHedinFromKml() {
+function loadKmlRoute(routeNames) {
   if (!fs.existsSync(hedinKmlPath)) return null;
 
-  const names = new Set([
-    'Hedin 1893-1897 - Taklamakan',
-    'Hedin 1893-1897 - Pamir',
-    'Hedin 1893-1897 - Muztagh-ata',
-    'Hedin 1893-1897 - Mus-tag-ata detalj',
-    'Hedin 1893-1897 - Chang Tang',
-  ]);
+  const names = new Set(routeNames);
   const xml = fs.readFileSync(hedinKmlPath, 'utf8');
   const re = /<Placemark>[\s\S]*?<name>([\s\S]*?)<\/name>[\s\S]*?<coordinates>([\s\S]*?)<\/coordinates>[\s\S]*?<\/Placemark>/g;
   const routeParts = [];
@@ -157,6 +273,32 @@ function loadHedinFromKml() {
     url: 'https://svenhedinfoundation.org/expeditions/',
     routeParts,
   };
+}
+
+function loadHedinFromKml() {
+  return loadKmlRoute([
+    'Hedin 1893-1897 - Taklamakan',
+    'Hedin 1893-1897 - Pamir',
+    'Hedin 1893-1897 - Muztagh-ata',
+    'Hedin 1893-1897 - Mus-tag-ata detalj',
+    'Hedin 1893-1897 - Chang Tang',
+  ]);
+}
+
+function loadHedinSecondFromKml() {
+  return loadKmlRoute([
+    'Hedin 1899-1902 1',
+    'Hedin nr 2',
+  ]);
+}
+
+function loadHedinThirdFromKml() {
+  return loadKmlRoute([
+    'Hedin 1906. Persien',
+    'Hedin 1906. Beluchistan',
+    'Hedin 1906-1907',
+    'Hedin 1907-1908',
+  ]);
 }
 
 function round(value) {
@@ -253,14 +395,18 @@ function build() {
   const expeditions = loadExpeditions();
   const hedin = loadHedinFromKml() || loadExistingHedinRoute();
   if (!hedin) throw new Error('Missing Hedin KML route data');
+  const hedin2 = loadHedinSecondFromKml();
+  const hedin3 = loadHedinThirdFromKml();
 
   const library = {
     hedin1893_1897: hedin,
     hedin,
   };
+  if (hedin2) library.hedin2 = hedin2;
+  if (hedin3) library.hedin3 = hedin3;
 
   for (const exp of expeditions) {
-    if (exp.id === 'hedin') continue;
+    if (library[exp.id]) continue;
     if (!Array.isArray(exp.route) || exp.route.length < 2) continue;
 
     const source = SOURCE_BY_ID[exp.id] || {

@@ -1,25 +1,26 @@
 /* ТЯНЬШАНИКА — светлый музейный интерфейс */
 
 :root {
-  --bg: #f6f4ef;
-  --bg2: #fffdfa;
-  --bg3: #ebe7df;
+  --bg: #f7f7f7;
+  --bg2: #ffffff;
+  --bg3: #eeeeee;
   --gold: #e84a32;
   --gold-dim: rgba(232, 74, 50, 0.14);
   --gold-line: rgba(17, 17, 17, 0.52);
   --text: #111111;
-  --text-dim: #62615d;
-  --text-faint: #aaa49a;
+  --text-dim: #5f5f5f;
+  --text-faint: #a4a4a4;
   --border: rgba(17, 17, 17, 0.16);
   --border2: rgba(17, 17, 17, 0.06);
   --shadow: 0 18px 46px rgba(17, 17, 17, 0.12);
 
   --header-h: 64px;
-  --strip-h: 58px;
-  --map-w: 40vw;
-  --card-w: 248px;
-  --card-h: 158px;
-  --focus-pct: 34%;
+  --strip-h: 42px;
+  --timeline-h: 260px;
+  --info-w: 360px;
+  --card-w: 196px;
+  --card-h: 92px;
+  --focus-pct: 18%;
 
   --font-disp: 'Inter', system-ui, sans-serif;
   --font-ser: 'Inter', system-ui, sans-serif;
@@ -175,20 +176,19 @@ select {
 /* Map panel */
 #map-panel {
   position: fixed;
-  top: 0;
+  top: var(--header-h);
   left: 0;
-  bottom: 0;
-  width: var(--map-w);
+  right: 0;
+  bottom: var(--timeline-h);
+  width: auto;
   z-index: 100;
   background: var(--bg2);
-  border-right: 1px solid var(--text);
-  display: flex;
-  flex-direction: column;
+  border-bottom: 1px solid var(--text);
 }
 
 #main-map {
-  flex: 1;
-  min-height: 0;
+  position: absolute;
+  inset: 0;
 }
 
 .map-fallback {
@@ -224,6 +224,12 @@ select {
   background: var(--bg2) !important;
   color: var(--text) !important;
   border-color: var(--border) !important;
+}
+
+.route-line,
+.route-hit-line {
+  cursor: pointer;
+  pointer-events: stroke;
 }
 
 .leaflet-popup-content-wrapper {
@@ -263,13 +269,17 @@ select {
 
 /* Map info */
 #map-info {
-  flex-shrink: 0;
-  height: 232px;
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  width: min(var(--info-w), calc(100vw - 36px));
+  max-height: calc(100% - 36px);
   padding: 1rem 1.15rem 1.15rem;
-  border-top: 1px solid var(--text);
+  border: 1px solid var(--text);
   overflow: auto;
-  position: relative;
   background: var(--bg2);
+  z-index: 420;
+  box-shadow: var(--shadow);
 }
 
 .mi-welcome-title {
@@ -400,10 +410,11 @@ select {
 /* Horizontal timeline */
 #scroll-wrap {
   position: fixed;
-  top: var(--header-h);
-  left: var(--map-w);
+  left: 0;
   right: 0;
   bottom: var(--strip-h);
+  height: calc(var(--timeline-h) - var(--strip-h));
+  z-index: 300;
   overflow-x: scroll;
   overflow-y: hidden;
   cursor: grab;
@@ -413,6 +424,7 @@ select {
   scrollbar-width: none;
   -ms-overflow-style: none;
   background: var(--bg);
+  border-top: 1px solid var(--text);
 }
 
 #scroll-wrap::-webkit-scrollbar {
@@ -461,7 +473,7 @@ select {
 .decade-label {
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -30px);
+  transform: translate(-50%, -20px);
   font-family: var(--font-disp);
   font-size: 0.9rem;
   font-weight: 800;
@@ -479,17 +491,17 @@ select {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-top: 4px solid var(--gold);
-  padding: 0.82rem 0.9rem 0.78rem;
+  padding: 0.48rem 0.62rem 0.5rem;
   z-index: 10;
   opacity: 0.56;
   cursor: pointer;
   will-change: transform, opacity;
   transition:
-    opacity 0.28s ease,
-    box-shadow 0.28s ease,
-    border-color 0.28s ease,
-    background-color 0.28s ease,
-    transform 0.28s ease;
+    opacity 0.34s ease,
+    box-shadow 0.34s ease,
+    border-color 0.34s ease,
+    background-color 0.34s ease,
+    transform 0.34s ease;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -520,52 +532,52 @@ select {
 
 .card-year {
   font-family: var(--font-disp);
-  font-size: 2rem;
+  font-size: 1.24rem;
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1;
   color: var(--gold);
-  margin-bottom: 0.18rem;
+  margin-bottom: 0.08rem;
 }
 
 .card-name {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: var(--text);
   line-height: 1.22;
-  margin-bottom: 0.14rem;
+  margin-bottom: 0.08rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .card-title {
-  font-size: 0.76rem;
+  font-size: 0.62rem;
   font-weight: 500;
   color: var(--text-dim);
   line-height: 1.34;
-  margin-bottom: 0.58rem;
+  margin-bottom: 0.28rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .card-tags {
   display: flex;
-  gap: 0.35rem;
+  gap: 0.28rem;
   flex-wrap: wrap;
   margin-top: auto;
-  margin-bottom: 0.48rem;
+  margin-bottom: 0;
 }
 
 .card-tag {
   font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.44rem;
   letter-spacing: 0;
   text-transform: uppercase;
-  padding: 0.16rem 0.38rem;
+  padding: 0.12rem 0.32rem;
   background: var(--bg3);
   border: 1px solid var(--border);
   color: var(--text-dim);
@@ -576,8 +588,9 @@ select {
 }
 
 .card-dist {
+  display: none;
   font-family: var(--font-mono);
-  font-size: 0.56rem;
+  font-size: 0.5rem;
   letter-spacing: 0;
   color: var(--text-dim);
   text-transform: uppercase;
@@ -631,7 +644,7 @@ select {
 #year-strip {
   position: fixed;
   bottom: 0;
-  left: var(--map-w);
+  left: 0;
   right: 0;
   height: var(--strip-h);
   z-index: 400;
@@ -689,6 +702,13 @@ select {
   border-radius: 50%;
   transform: translateX(-50%);
   border: 1px solid var(--bg2);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.yr-dot:hover {
+  transform: translateX(-50%) scale(1.8);
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.08);
 }
 
 #year-cursor {
@@ -714,7 +734,7 @@ select {
 
 #kb-hint {
   position: fixed;
-  bottom: calc(var(--strip-h) + 12px);
+  bottom: calc(var(--timeline-h) + 10px);
   right: 16px;
   font-family: var(--font-mono);
   font-size: 0.56rem;
@@ -739,8 +759,9 @@ select {
 /* Responsive */
 @media (max-width: 1080px) {
   :root {
-    --map-w: 43vw;
-    --card-w: 232px;
+    --info-w: 320px;
+    --card-w: 188px;
+    --timeline-h: 252px;
   }
 
   #hdr-logo {
@@ -754,8 +775,9 @@ select {
 
 @media (max-width: 900px) {
   :root {
-    --map-w: 50vw;
-    --card-w: 218px;
+    --info-w: 300px;
+    --card-w: 184px;
+    --timeline-h: 244px;
   }
 
   #hdr-right {
@@ -765,16 +787,21 @@ select {
 
 @media (max-width: 600px) {
   :root {
-    --map-w: 0px;
     --header-h: 54px;
-    --strip-h: 52px;
-    --card-w: 204px;
-    --card-h: 150px;
-    --focus-pct: 50%;
+    --strip-h: 38px;
+    --timeline-h: 228px;
+    --card-w: 168px;
+    --card-h: 86px;
+    --focus-pct: 22%;
   }
 
-  #map-panel {
-    display: none;
+  #map-info {
+    left: 10px;
+    right: 10px;
+    top: 10px;
+    width: auto;
+    max-height: min(42vh, calc(100% - 20px));
+    padding: 0.8rem 0.9rem;
   }
 
   #hdr {
@@ -801,8 +828,8 @@ select {
   }
 
   .decade-label {
-    transform: translate(-50%, -24px);
-    font-size: 0.78rem;
+    transform: translate(-50%, -16px);
+    font-size: 0.72rem;
   }
 
   #kb-hint {
